@@ -1,0 +1,8 @@
+# directories
+target/
+.idea/
+.settings/
+
+# files
+.classpath
+.project
