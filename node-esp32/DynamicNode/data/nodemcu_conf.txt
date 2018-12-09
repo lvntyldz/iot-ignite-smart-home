@@ -1,0 +1,1 @@
+{"nodeId":"testNodeId1","ssid":"<WIFI_SSID>","password":"<WIFI_PASS>","gatewayId":"<MAC_ID>@iotigniteagent","state":"SEARCH_GATEWAY_STA"}
