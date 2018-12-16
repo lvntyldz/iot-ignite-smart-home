@@ -5,26 +5,24 @@
 #include <ESP8266WiFi.h>
 
 // Node Type
-
 #define NODE_TYPE "DYNAMIC NODE - DHT11 SENSOR"
 
 // Sensors
 #define SENSOR_DHT11_TEMPERATURE "DHT11 Temperature Sensor"
 #define SENSOR_DHT11_HUMIDITY "DHT11 Humidity Sensor"
 
-#define ACTUATOR  true
+#define ACTUATOR true
 #define NOT_ACTUATOR false
 
-//Sensor Types
+// Sensor Types
 #define TYPE_TEMPERATURE "Temperature"
 #define TYPE_HUMIDITY "Humidity"
 #define TYPE_LED "Led"
 
-
-//Actuators
+// Actuators
 #define ACTUATOR_BLUE_LED "Blue LED Actuator"
 
-//ConnectedPinsForInfo
+// ConnectedPinsForInfo
 #define PIN_DATA_DHT11_SENSOR "D4"
 #define PIN_DATA_BLUE_LED "D6"
 
@@ -32,22 +30,20 @@
 #define PIN_BLUE_LED D6
 #define PIN_RESET_BUTTON D8
 
-//reset button
+// reset button
 #define PIN_DATA_RESET_BUTTON "D8"
 
-//Vendors
-
-#define VENDOR_DHT11  "DHT11 Temperature And Humidity Sensor"
+// Vendors
+#define VENDOR_DHT11 "DHT11 Temperature And Humidity Sensor"
 #define VENDOR_BLUE_LED "Simple Diode"
 
-//Data Types
-
+// Data Types
 #define DATA_TYPE_FLOAT "FLOAT"
 #define DATA_TYPE_STRING "STRING"
 #define DATA_TYPE_INTEGER "INTEGER"
 #define DATA_TYPE_BOOLEAN "BOOLEAN"
 
-//DHT Specific
+// DHT Specific
 #define DHTTYPE DHT11
 
 #define CONFIG_REQUEST "configuration"
@@ -55,7 +51,6 @@
 #define RESET_REQUEST "reset"
 #define DATA_RESPONSE "data"
 #define STATUS_REQUEST "inventory-status"
-
 
 DHT *IgniteEsp8266ThingHandler::dht = new DHT(PIN_DHT11_SENSOR, DHTTYPE);
 
@@ -69,15 +64,16 @@ void IgniteEsp8266ThingHandler::setup() {
   dht->begin();
 }
 
-IgniteEsp8266ThingHandler::IgniteEsp8266ThingHandler(): IgniteThingHandler(NODE_TYPE, getMacAddress()) {
-
+IgniteEsp8266ThingHandler::IgniteEsp8266ThingHandler()
+    : IgniteThingHandler(NODE_TYPE, getMacAddress()) {
   ledState = false;
   resetStateTime = 0;
 }
-IgniteEsp8266ThingHandler::~IgniteEsp8266ThingHandler() {
-}
 
-void IgniteEsp8266ThingHandler::thingActionReceived(String thingId, String action) {
+IgniteEsp8266ThingHandler::~IgniteEsp8266ThingHandler() {}
+
+void IgniteEsp8266ThingHandler::thingActionReceived(String thingId,
+                                                    String action) {
 
   Serial.println("Action Received For :");
   Serial.println(thingId);
@@ -86,48 +82,47 @@ void IgniteEsp8266ThingHandler::thingActionReceived(String thingId, String actio
   Serial.println(action);
 
   StaticJsonBuffer<250> jsonBuffer;
-  JsonObject& root = jsonBuffer.parseObject(action);
+  JsonObject &root = jsonBuffer.parseObject(action);
 
   if (thingId.equals(ACTUATOR_BLUE_LED)) {
     float actionMsg = root["status"];
     setBlueLED(actionMsg);
   }
-
 }
+
 void IgniteEsp8266ThingHandler::inventorySetup() {
 
-  addThingToInventory(SENSOR_DHT11_TEMPERATURE,
-                      TYPE_TEMPERATURE,
-                      PIN_DATA_DHT11_SENSOR,
-                      NOT_ACTUATOR,
-                      VENDOR_DHT11,
-                      DATA_TYPE_FLOAT, new IgniteEsp8266Timer(readDHTTemperature));
+  Serial.println("----- ----- ----- inventorySetup ----- ----- -----");
 
-  addThingToInventory(SENSOR_DHT11_HUMIDITY,
-                      TYPE_HUMIDITY,
-                      PIN_DATA_DHT11_SENSOR,
-                      NOT_ACTUATOR,
-                      VENDOR_DHT11,
+  addThingToInventory(SENSOR_DHT11_TEMPERATURE, TYPE_TEMPERATURE,
+                      PIN_DATA_DHT11_SENSOR, NOT_ACTUATOR, VENDOR_DHT11,
+                      DATA_TYPE_FLOAT,
+                      new IgniteEsp8266Timer(readDHTTemperature));
+
+  addThingToInventory(SENSOR_DHT11_HUMIDITY, TYPE_HUMIDITY,
+                      PIN_DATA_DHT11_SENSOR, NOT_ACTUATOR, VENDOR_DHT11,
                       DATA_TYPE_FLOAT, new IgniteEsp8266Timer(readDHTHumidity));
 
-
-  addThingToInventory(ACTUATOR_BLUE_LED,
-                      TYPE_LED,
-                      PIN_DATA_BLUE_LED,
-                      ACTUATOR,
-                      VENDOR_BLUE_LED,
-                      DATA_TYPE_STRING, new IgniteEsp8266Timer(readLedData));
-
+  addThingToInventory(ACTUATOR_BLUE_LED, TYPE_LED, PIN_DATA_BLUE_LED, ACTUATOR,
+                      VENDOR_BLUE_LED, DATA_TYPE_STRING,
+                      new IgniteEsp8266Timer(readLedData));
 }
+
 void IgniteEsp8266ThingHandler::unknownMessageReceived(String msg) {
-
+  Serial.println("----- ----- ----- unknownMessageReceived ----- ----- -----");
+  Serial.print("msg");
+  Serial.println(msg);
 }
 
-
-void  IgniteEsp8266ThingHandler::readDHTTemperature() {
+void IgniteEsp8266ThingHandler::readDHTTemperature() {
+  Serial.println("----- ----- ----- readDHTTemperature ----- ----- -----");
   String packet = "";
   String tempData = "";
   float t = dht->readTemperature();
+
+  Serial.print("Temperature : ");
+  Serial.println(t);
+
   if (isnan(t)) {
     Serial.println("Failed to read from DHT sensor!");
     return;
@@ -135,8 +130,8 @@ void  IgniteEsp8266ThingHandler::readDHTTemperature() {
   tempData = String(t);
 
   StaticJsonBuffer<100> jsonBuffer;
-  JsonObject& root = jsonBuffer.createObject();
-  JsonArray& data = root.createNestedArray("data");
+  JsonObject &root = jsonBuffer.createObject();
+  JsonArray &data = root.createNestedArray("data");
 
   root["messageType"] = DATA_RESPONSE;
   root["thingId"] = SENSOR_DHT11_TEMPERATURE;
@@ -150,20 +145,25 @@ void  IgniteEsp8266ThingHandler::readDHTTemperature() {
   sendMessage(packet);
 }
 
-void  IgniteEsp8266ThingHandler::readDHTHumidity() {
+void IgniteEsp8266ThingHandler::readDHTHumidity() {
+  Serial.println("----- ----- ----- readDHTHumidity ----- ----- -----");
   String packet = "";
   String humData = "";
   float h = dht->readHumidity();
+
+  Serial.print("Humidity : ");
+  Serial.println(h);
+
+
   if (isnan(h)) {
     Serial.println("Failed to read from DHT sensor!");
     return;
   }
   humData = String(h);
 
-
   StaticJsonBuffer<100> jsonBuffer;
-  JsonObject& root = jsonBuffer.createObject();
-  JsonArray& data = root.createNestedArray("data");
+  JsonObject &root = jsonBuffer.createObject();
+  JsonArray &data = root.createNestedArray("data");
 
   root["messageType"] = DATA_RESPONSE;
   root["thingId"] = SENSOR_DHT11_HUMIDITY;
@@ -174,14 +174,14 @@ void  IgniteEsp8266ThingHandler::readDHTHumidity() {
   Serial.println(packet);
   packet += "\n";
   sendMessage(packet);
-
 }
-void  IgniteEsp8266ThingHandler::readLedData() {
 
+void IgniteEsp8266ThingHandler::readLedData() {
+  Serial.println("----- ----- ----- readLedData ----- ----- -----");
   String packet = "";
   StaticJsonBuffer<100> jsonBuffer;
-  JsonObject& root = jsonBuffer.createObject();
-  JsonArray& data = root.createNestedArray("data");
+  JsonObject &root = jsonBuffer.createObject();
+  JsonArray &data = root.createNestedArray("data");
 
   String ledDataString = "";
 
@@ -199,10 +199,10 @@ void  IgniteEsp8266ThingHandler::readLedData() {
   Serial.println(packet);
   packet += "\n";
   sendMessage(packet);
-
 }
 
 String IgniteEsp8266ThingHandler::getMacAddress() {
+  Serial.println("----- ----- ----- getMacAddress ----- ----- -----");
 
   byte mac[6];
   WiFi.macAddress(mac);
@@ -217,23 +217,27 @@ String IgniteEsp8266ThingHandler::getMacAddress() {
 }
 
 void IgniteEsp8266ThingHandler::initBlueLED() {
-
+  Serial.println("----- ----- ----- initBlueLED ----- ----- -----");
   pinMode(PIN_BLUE_LED, OUTPUT);
   digitalWrite(PIN_BLUE_LED, LOW);
 }
-void IgniteEsp8266ThingHandler:: initResetButton() {
+
+void IgniteEsp8266ThingHandler::initResetButton() {
+  Serial.println("----- ----- ----- initResetButton ----- ----- -----");
   pinMode(PIN_RESET_BUTTON, INPUT);
   attachInterrupt(PIN_RESET_BUTTON, resetOn, RISING);
 }
 
-void  IgniteEsp8266ThingHandler::resetOn() {
+void IgniteEsp8266ThingHandler::resetOn() {
+  Serial.println("----- ----- ----- resetOn ----- ----- -----");
   Serial.println("\nHold Reset Button 4 Sec.\n");
   detachInterrupt(PIN_RESET_BUTTON);
   attachInterrupt(PIN_RESET_BUTTON, resetOnFinal, FALLING);
   resetStateTime = millis();
 }
 
-void  IgniteEsp8266ThingHandler::resetOnFinal() {
+void IgniteEsp8266ThingHandler::resetOnFinal() {
+  Serial.println("----- ----- ----- resetOnFinal ----- ----- -----");
   detachInterrupt(PIN_RESET_BUTTON);
 
   if ((resetStateTime + 4000) < millis()) {
@@ -246,7 +250,7 @@ void  IgniteEsp8266ThingHandler::resetOnFinal() {
 }
 
 void IgniteEsp8266ThingHandler::setBlueLED(int msg) {
-
+  Serial.println("----- ----- ----- setBlueLED ----- ----- -----");
   Serial.println("LED MSG :");
   Serial.println(msg);
   String ledSyncMessage = "{\"ledState\":";
@@ -256,13 +260,12 @@ void IgniteEsp8266ThingHandler::setBlueLED(int msg) {
     ledState = true;
     ledSyncMessage += "1}";
 
-  } else if (msg == 0 ) {
+  } else if (msg == 0) {
     digitalWrite(PIN_BLUE_LED, LOW);
     ledState = false;
     ledSyncMessage += "0}";
   }
 
-  //send syncronization message here.
-
+  // send syncronization message here.
   sendMessage(ledSyncMessage);
 }
