@@ -1,15 +1,14 @@
 #include "DHT.h"
 
 #define DHTPIN 4 // 2
-
 #define DHTTYPE DHT11 // DHT 11
 
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("DHT starting...");
-  dht.begin();
+        Serial.begin(9600);
+        Serial.println("DHT starting...");
+        dht.begin();
 }
 
 void loop() {
@@ -18,10 +17,10 @@ void loop() {
   //humidity
   float h = dht.readHumidity();
 
-//temperature
+  //temperature
   float t = dht.readTemperature();
 
-//temperature(Fahrenheit)
+  //temperature(Fahrenheit)
   float f = dht.readTemperature(true);
 
   // Check results.
