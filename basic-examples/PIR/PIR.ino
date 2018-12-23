@@ -1,5 +1,5 @@
 
-int sensor = 13;
+int sensor = 13;// d7
 
 void setup() {
   Serial.begin(9600);
