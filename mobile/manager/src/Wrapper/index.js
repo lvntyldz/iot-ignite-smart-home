@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
-import Login from 'MgrScreen/Login';
+import FormLogin from 'MgrScreen/FormLogin';
 
 const AppContext = React.createContext();
 
@@ -47,8 +47,7 @@ export default class Wrapper extends Component {
             {(context) => {
               return (
                 <View style={{flex: 1,flexDirection: 'column', backgroundColor:'#c4c4c4'}}>
-                <Text>MAIN COMPONENT : {context.value}</Text>
-                <Login />
+                <FormLogin />
                 </View>
               );//return
             }//context
@@ -66,7 +65,7 @@ export default class Wrapper extends Component {
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
-    borderWidth: 1
+    margin: 0,
+    //borderWidth: 1
   }
 });
