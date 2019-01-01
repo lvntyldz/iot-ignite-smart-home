@@ -13,7 +13,15 @@ import {
   Title,
 } from 'native-base';
 
+//custom
+import * as login from 'MgrLib/login';
+
 export default class Wrapper extends Component {
+
+_handleLoginClick = () => {
+  login.loginToCloud("<API_USERNAME>","<API_PASSWORD>");
+}
+
   render() {
     return (
       <Container style={{ paddingTop: 100 }}>
@@ -32,9 +40,7 @@ export default class Wrapper extends Component {
             <Input secureTextEntry={true} />
           </FormItem>
 
-          <Button full primary style={{ paddingBottom: 4 }} onPress={()=>{
-            alert("login operation will be here!");
-          }}>
+          <Button full primary style={{ paddingBottom: 4 }} onPress={this._handleLoginClick}>
             <Text> Login </Text>
           </Button>
 
