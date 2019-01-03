@@ -15,10 +15,12 @@ import {
 
 //custom
 import * as login from 'MgrLib/login';
+import * as db from 'MgrLib/db';
 
 export default class Wrapper extends Component {
 
 _handleLoginClick = () => {
+  db.sampleCRUD();
   login.loginToCloud("<API_USERNAME>","<API_PASSWORD>");
 }
 
