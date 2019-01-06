@@ -16,13 +16,16 @@ import {
 //custom
 import * as login from 'MgrLib/login';
 import * as db from 'MgrLib/db';
+import * as tokenDb from 'MgrLib/db/token';
 
 export default class Wrapper extends Component {
 
-_handleLoginClick = () => {
-  db.sampleCRUD();
-  login.loginToCloud("<API_USERNAME>","<API_PASSWORD>");
-}
+  _handleLoginClick = () => {
+    db.createScripts();
+    tokenDb.addToken("a1-b1-c1-d1-e1-f1-g1");
+    tokenDb.listTokens();
+    login.loginToCloud("<API_USERNAME>", "<API_PASSWORD>");
+  }
 
   render() {
     return (
