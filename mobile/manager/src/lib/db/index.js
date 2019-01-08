@@ -5,7 +5,7 @@ export const db = openDatabase("managerApp.db", "1.0", "SmartHome Manager App Da
 export const createScripts = () => {
   db.transaction(function(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS token (id INTEGER PRIMARY KEY AUTOINCREMENT, acces_token TEXT)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT , firstname TEXT , lastname TEXT)');
+    tx.executeSql("CREATE TABLE IF NOT EXISTS user( ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL UNIQUE, PASSWORD TEXT NOT NULL,FIRSTNAME TEXT, LASTNAME TEXT, PHONE TEXT, EMAIL TEXT, REMEMBER_ME INT NOT NULL DEFAULT 0 ,CREATE_DATE DATE DEFAULT (datetime('now','localtime')), LAST_LOGIN_DATE DATE DEFAULT NULL)");
   });
 }
 
