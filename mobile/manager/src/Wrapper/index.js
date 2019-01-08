@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
+import { CtxProvider, CtxConsumer } from 'MgrBoot/Container';
 import FormLogin from 'MgrScreen/FormLogin';
-
-const AppContext = React.createContext();
 
 class AppProvider extends Component {
 
@@ -12,8 +11,9 @@ class AppProvider extends Component {
 
     this.state = {
       value: 0,
-      reset: () => {
-        this.setState({value: 0});
+      token:null,
+      setToken: (d) => {
+        this.setState({token: d});
       },
       increase: () => {
         this.setState({value: this.state.value + 1});
@@ -26,9 +26,9 @@ class AppProvider extends Component {
 
   render() {
     return (
-      <AppContext.Provider value={this.state}>
+      <CtxProvider value={this.state}>
         {this.props.children}
-      </AppContext.Provider>
+      </CtxProvider>
     ); //return
 
   } //render
@@ -43,16 +43,17 @@ export default class Wrapper extends Component {
       <AppProvider>
         <View style={[s.container, {borderColor: 'black',top: 20}]}>
 
-          <AppContext.Consumer>
+          <CtxConsumer>
             {(context) => {
               return (
                 <View style={{flex: 1,flexDirection: 'column', backgroundColor:'#c4c4c4'}}>
+                <Text> Token  : {context.token}</Text>
                 <FormLogin />
                 </View>
               );//return
             }//context
             }
-          </AppContext.Consumer>
+          </CtxConsumer>
 
         </View>
       </AppProvider>

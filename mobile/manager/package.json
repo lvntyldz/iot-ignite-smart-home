@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "6.2.1",
+    "MgrBoot": "./src/boot",
     "MgrComponent": "./src/component",
     "MgrConfig": "./src/config",
     "MgrEnum": "./src/enum",

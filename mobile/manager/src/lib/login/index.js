@@ -11,7 +11,7 @@ export const loginToCloud = (username, password) => {
       .json()
       .get()
       .then(r => {
-        console.warn("Get JSON Response : ", r);
+        console.info("Get JSON Response : ", r);
       });
 
     ajax.doFetch("http://dummy.restapiexample.com/api/v1/create", {
@@ -23,22 +23,23 @@ export const loginToCloud = (username, password) => {
       .json()
       .post()
       .then(r => {
-        console.warn("Post JSON Response : ", r);
+        console.info("Post JSON Response : ", r);
       });
   */
 
-  ajax.doFetch("/login/oauth", {
-      grant_type: "password",
-      username: username,
-      password: password
-    })
-    .header({
-      'Authorization': 'Basic ' + encodeAuth(username, password)
-    })
-    .formData()
-    .then(r => {
-      console.warn("Api Login Response  : ", r);
-    });
-
-
+  return new Promise((resolve, reject) => {
+    ajax.doFetch("/login/oauth", {
+        grant_type: "password",
+        username: username,
+        password: password
+      })
+      .header({
+        'Authorization': 'Basic ' + encodeAuth(username, password)
+      })
+      .formData()
+      .then(r => {
+        console.info("Api Login Response  : ", r);
+        resolve(r.access_token);
+      });
+  });
 }
