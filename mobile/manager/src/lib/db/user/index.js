@@ -1,19 +1,26 @@
+import {db} from 'MgrLib/db';
+
 export const getLastRemembered = () => {
   return new Promise((resolve, reject) => {
-    //SELECT * FROM user WHERE REMEMBER_ME=1  ORDER BY LAST_LOGIN_DATE  DESC LIMIT 1
     db.transaction((tx) => {
-      tx.executeSql('SELECT * FROM user WHERE REMEMBER_ME=1  ORDER BY LAST_LOGIN_DATE  DESC LIMIT 1', [], (tx, results) => {
+      tx.executeSql('SELECT * FROM user  ORDER BY id  DESC LIMIT 1', [], (tx, results) => {
         var len = results.rows.length;
-
         if (len > 0) {
           let row = results.rows.item(0);
-          console.warn(`Token  ID: ${row.id}, Val: ${row.acces_token}`);
           resolve(row);
         }
-
         resolve(null);
-
       });
+    });
+  });
+}
+
+export const updateLoginUser = (email,password) => {
+  db.transaction(function(tx) {
+    tx.executeSql('INSERT OR REPLACE INTO user  (email,password) VALUES(?,?)', [email,password], function(transaction, result) {
+      resolve(result.insertId);
+    }, function(transaction, error) {
+      console.log(error);
     });
   });
 }

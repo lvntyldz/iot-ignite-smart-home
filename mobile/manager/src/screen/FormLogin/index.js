@@ -15,12 +15,36 @@ import {
 
 //custom
 import * as login from 'MgrLib/login';
-import * as db from 'MgrLib/db';
 import * as tokenDb from 'MgrLib/db/token';
+import * as userDb from 'MgrLib/db/user';
 import { CtxProvider, CtxConsumer } from 'MgrBoot/Container';
 
 export default class Wrapper extends Component {
+  constructor(props) {
+       super(props)
+       this.state = {
+         email:null,
+         password:null
+       }
+   }
 
+   componentWillMount = ()=>{
+     userDb.getLastRemembered().then(r=>{
+       if(!r){
+         return;
+       }
+        this.setState({email:r.email,password:r.password});
+     });
+   }
+
+  handleLoginClick = (context) => {
+
+    login.loginToCloud(this.state.email, this.state.password).then(token => {
+      tokenDb.addToken(token);
+      userDb.updateLoginUser(this.state.email, this.state.password);
+      context.setToken(token);
+    });
+  }
   render() {
     return (
 <CtxConsumer>
@@ -35,21 +59,14 @@ export default class Wrapper extends Component {
     <Form>
       <FormItem floatingLabel>
         <Label>Email</Label>
-        <Input />
+        <Input onChangeText={(d)=>{this.setState({email:d})}} value={this.state.email}  />
       </FormItem>
       <FormItem floatingLabel last>
         <Label>Password</Label>
-        <Input secureTextEntry={true} />
+        <Input secureTextEntry={true} onChangeText={(d)=>{this.setState({password:d})}} value={this.state.password}  />
       </FormItem>
 
-      <Button full primary style={{ paddingBottom: 4 }} onPress={()=>{
-        login.loginToCloud("<API_USERNAME>", "<API_PASSWORD>").then(token=>{
-          context.setToken(token);
-          db.createScripts();
-          tokenDb.addToken(token);
-          tokenDb.listTokens();
-        });
-      }}>
+      <Button full primary style={{ paddingBottom: 4 }} onPress={(c)=>this.handleLoginClick(context)}>
         <Text> Login </Text>
       </Button>
 

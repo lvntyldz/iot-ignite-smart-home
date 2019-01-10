@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 
 import { CtxProvider, CtxConsumer } from 'MgrBoot/Container';
 import FormLogin from 'MgrScreen/FormLogin';
+import * as db from 'MgrLib/db';
 
 class AppProvider extends Component {
 
@@ -22,6 +23,9 @@ class AppProvider extends Component {
         this.setState({value: this.state.value - 1});
       }
     } //state
+
+    //create DB and Tables...
+    db.createScripts();
   } //constructor
 
   render() {
