@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 
 import { CtxProvider, CtxConsumer } from 'MgrBoot/Container';
 import FormLogin from 'MgrScreen/FormLogin';
+import ListHeader from 'MgrScreen/ListHeader';
 import * as db from 'MgrLib/db';
 
 class AppProvider extends Component {
@@ -13,8 +14,12 @@ class AppProvider extends Component {
     this.state = {
       value: 0,
       token:null,
+      currenPage:"FormLogin",
       setToken: (d) => {
         this.setState({token: d});
+      },
+      setActivePage: (d) => {
+        this.setState({currenPage: d});
       },
       increase: () => {
         this.setState({value: this.state.value + 1});
@@ -41,6 +46,18 @@ class AppProvider extends Component {
 
 export default class Wrapper extends Component {
 
+  loadScreenBy(currenPage){
+
+    if(currenPage==="FormLogin"){
+      return <FormLogin />
+    }
+    if(currenPage==="ListHeader"){
+      return <ListHeader />
+    }
+
+    return <FormLogin />
+  }
+
   render() {
 
     return (
@@ -52,7 +69,7 @@ export default class Wrapper extends Component {
               return (
                 <View style={{flex: 1,flexDirection: 'column', backgroundColor:'#c4c4c4'}}>
                 <Text> Token  : {context.token}</Text>
-                <FormLogin />
+                {this.loadScreenBy(context.currenPage)}
                 </View>
               );//return
             }//context
