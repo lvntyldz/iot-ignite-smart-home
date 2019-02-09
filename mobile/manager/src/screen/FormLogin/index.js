@@ -43,7 +43,7 @@ export default class Wrapper extends Component {
       tokenDb.addToken(token);
       userDb.updateLoginUser(this.state.email, this.state.password);
       context.setToken(token);
-      context.setActivePage("ListHeader");
+      context.setActivePage("Dashboard");
     });
   }
   render() {

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 import { CtxProvider, CtxConsumer } from 'MgrBoot/Container';
+import Dashboard from 'MgrScreen/Dashboard';
 import FormLogin from 'MgrScreen/FormLogin';
 import ListHeader from 'MgrScreen/ListHeader';
 import * as db from 'MgrLib/db';
@@ -48,9 +49,14 @@ export default class Wrapper extends Component {
 
   loadScreenBy(currenPage){
 
+    if(currenPage==="Dashboard"){
+      return <Dashboard />
+    }
+
     if(currenPage==="FormLogin"){
       return <FormLogin />
     }
+
     if(currenPage==="ListHeader"){
       return <ListHeader />
     }
