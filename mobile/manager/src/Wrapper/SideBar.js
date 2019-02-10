@@ -18,7 +18,6 @@ import {
 
 import {CtxConsumer} from 'MgrBoot/Container';
 
-
 export default class SideBar extends Component {
 
     render() {
