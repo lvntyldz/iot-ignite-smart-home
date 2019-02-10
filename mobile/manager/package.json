@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android",
+    "reinstall": "rm -rf node_modules/ && npm install && rnpm link && react-native link",
     "test": "jest"
   },
   "dependencies": {
@@ -21,6 +24,7 @@
     "native-base": "^2.10.0",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-drawer": "^2.5.1",
     "react-native-elements": "0.18.5",
     "react-native-sqlite-storage": "^3.3.9"
   },

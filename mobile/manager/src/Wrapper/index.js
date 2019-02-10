@@ -1,99 +1,117 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
-import { CtxProvider, CtxConsumer } from 'MgrBoot/Container';
+import Drawer from 'react-native-drawer'
+
+import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
 import Dashboard from 'MgrScreen/Dashboard';
 import FormLogin from 'MgrScreen/FormLogin';
 import ListHeader from 'MgrScreen/ListHeader';
 import * as db from 'MgrLib/db';
+import SideBar from './SideBar';
 
 class AppProvider extends Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      value: 0,
-      token:null,
-      currenPage:"FormLogin",
-      setToken: (d) => {
-        this.setState({token: d});
-      },
-      setActivePage: (d) => {
-        this.setState({currenPage: d});
-      },
-      increase: () => {
-        this.setState({value: this.state.value + 1});
-      },
-      decrease: () => {
-        this.setState({value: this.state.value - 1});
-      }
-    } //state
+        this.state = {
+            token: null,
+            screenType: "FormLogin",
+            sideBarOpen: false,
+            setToken: (d) => {
+                this.setState({token: d});
+            },
+            setActivePage: (d) => {
+                this.setState({screenType: d});
+            },
+            showSideBar: () => {
+                this.setState({sideBarOpen: true});
+            },
+            hideSideBar: () => {
+                this.setState({sideBarOpen: false});
+            },
+            logut: () => {
+                this.setState({screenType: "FormLogin", token: null, sideBarOpen: false});
+            },
+            changeScreenByType: (screenType) => {
 
-    //create DB and Tables...
-    db.createScripts();
-  } //constructor
+                if (!screenType) {
+                    screenType = "FormLogin";
+                }
 
-  render() {
-    return (
-      <CtxProvider value={this.state}>
-        {this.props.children}
-      </CtxProvider>
-    ); //return
+                this.setState({screenType: screenType, sideBarOpen: false});
+            }
 
-  } //render
+        } //state
+
+        //create DB and Tables...
+        db.createScripts();
+    } //constructor
+
+    render() {
+        return (
+            <CtxProvider value={this.state}>
+                {this.props.children}
+            </CtxProvider>
+        ); //return
+
+    } //render
 
 } //AppProvider
 
 export default class Wrapper extends Component {
 
-  loadScreenBy(currenPage){
+    loadScreenByType = (screenType) => {
 
-    if(currenPage==="Dashboard"){
-      return <Dashboard />
+        if (screenType === "ListHeader") {
+            return <ListHeader/>;
+        }
+
+        if (screenType === "Dashboard") {
+            return <Dashboard/>;
+        }
+
+        return <FormLogin/>;
     }
 
-    if(currenPage==="FormLogin"){
-      return <FormLogin />
-    }
+    render() {
 
-    if(currenPage==="ListHeader"){
-      return <ListHeader />
-    }
+        return (
+            <AppProvider>
+                <View style={[s.container, {borderColor: 'black', top: 20}]}>
 
-    return <FormLogin />
-  }
+                    <CtxConsumer>
+                        {(context) => {
+                            console.warn(context);
+                            return (
+                                <Drawer
+                                    openDrawerOffset={0.2}
+                                    open={context.sideBarOpen}
+                                    content={<SideBar
+                                        changeScreenByType={(d) => this.changeScreenByType(d)}/>}
+                                >
+                                    <Text> Token : {context.token}</Text>
+                                    {this.loadScreenByType(context.screenType)}
+                                </Drawer>
+                            )//return
 
-  render() {
+                        }//context
+                        }
+                    </CtxConsumer>
 
-    return (
-      <AppProvider>
-        <View style={[s.container, {borderColor: 'black',top: 20}]}>
-
-          <CtxConsumer>
-            {(context) => {
-              return (
-                <View style={{flex: 1,flexDirection: 'column', backgroundColor:'#c4c4c4'}}>
-                <Text> Token  : {context.token}</Text>
-                {this.loadScreenBy(context.currenPage)}
                 </View>
-              );//return
-            }//context
-            }
-          </CtxConsumer>
+            </AppProvider>
+        ); //return
 
-        </View>
-      </AppProvider>
-    ); //return
-
-  } //render
+    } //render
 
 } //Wrapper
 
 const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 0,
-    //borderWidth: 1
-  }
+    container: {
+        flex: 1,
+        margin: 0,
+        //borderWidth: 1
+    }
 });
