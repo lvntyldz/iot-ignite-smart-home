@@ -4,6 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import Drawer from 'react-native-drawer'
 
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
+import DeviceList from 'MgrScreen/DeviceList';
 import Dashboard from 'MgrScreen/Dashboard';
 import FormLogin from 'MgrScreen/FormLogin';
 import ListHeader from 'MgrScreen/ListHeader';
@@ -72,6 +73,10 @@ export default class Wrapper extends Component {
             return <Dashboard/>;
         }
 
+        if (screenType === "DeviceList") {
+            return <DeviceList/>;
+        }
+
         return <FormLogin/>;
     }
 
@@ -83,7 +88,6 @@ export default class Wrapper extends Component {
 
                     <CtxConsumer>
                         {(context) => {
-                            console.warn(context);
                             return (
                                 <Drawer
                                     openDrawerOffset={0.2}

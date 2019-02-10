@@ -24,7 +24,7 @@ export const doHeader = (headers, url, params, timeout) => {
     headers: {}
   }
 
-  console.warn("headers : ", headers);
+  console.info("headers : ", headers);
 
   if (headers !== null) {
     fetchOptions.headers = headers;
@@ -50,7 +50,7 @@ export const doHeader = (headers, url, params, timeout) => {
       }
       formData = formData.join("&");
 
-      console.warn(formData);
+      console.info(formData);
       return doRequest(url, fetchOptions, formData, timeout).post(false);
     }
   }

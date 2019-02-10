@@ -41,6 +41,7 @@ export default class SideBar extends Component {
                             </Header>
 
                             <Content>
+
                                 <ListItem icon>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("Dashboard")}
@@ -52,6 +53,19 @@ export default class SideBar extends Component {
                                     <Text>Dashboard</Text>
                                     </Body>
                                 </ListItem>
+
+                                <ListItem icon>
+                                    <Left>
+                                        <Button onPress={() => context.changeScreenByType("DeviceList")}
+                                                style={{backgroundColor: "#007AFF"}}>
+                                            <Icon active name="phone-portrait"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>DeviceList</Text>
+                                    </Body>
+                                </ListItem>
+
                                 <ListItem icon>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("ListHeader")}

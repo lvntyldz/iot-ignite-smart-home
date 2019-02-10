@@ -3,12 +3,12 @@ import {db} from 'MgrLib/db';
 export const listTokens = () => {
   db.transaction((tx) => {
     tx.executeSql('SELECT * FROM token', [], (tx, results) => {
-      console.warn("Query completed");
+      console.info("Query completed");
 
       var len = results.rows.length;
       for (let i = 0; i < len; i++) {
         let row = results.rows.item(i);
-        console.warn(`Token  ID: ${row.id}, Val: ${row.acces_token}`);
+        console.info(`Token  ID: ${row.id}, Val: ${row.acces_token}`);
       }
 
     });
