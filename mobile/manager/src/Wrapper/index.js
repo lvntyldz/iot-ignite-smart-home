@@ -4,6 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import Drawer from 'react-native-drawer'
 
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
+import DeviceDetail from 'MgrScreen/DeviceDetail';
 import DeviceList from 'MgrScreen/DeviceList';
 import Dashboard from 'MgrScreen/Dashboard';
 import FormLogin from 'MgrScreen/FormLogin';
@@ -17,11 +18,19 @@ class AppProvider extends Component {
         super(props);
 
         this.state = {
+            device: null,
+            workingset: null,
             token: null,
             screenType: "FormLogin",
             sideBarOpen: false,
             setToken: (d) => {
                 this.setState({token: d});
+            },
+            setDevice: (d) => {
+                this.setState({device: d});
+            },
+            setWorkingset: (d) => {
+                this.setState({workingset: d});
             },
             setActivePage: (d) => {
                 this.setState({screenType: d});
@@ -75,6 +84,10 @@ export default class Wrapper extends Component {
 
         if (screenType === "DeviceList") {
             return <DeviceList/>;
+        }
+
+        if (screenType === "DeviceDetail") {
+            return <DeviceDetail/>;
         }
 
         return <FormLogin/>;
