@@ -72,6 +72,15 @@ export class DeviceDetailContext extends Component {
         });
     }
 
+    handleRestartClick = () => {
+
+        const {context} = this.props;
+
+        workingset.restartDevice(context.token, context.workingset).then(response => {
+            console.info("device rebooted...");
+        });
+    }
+
     render() {
         const {device} = this.state;
         const {context} = this.props;
@@ -108,7 +117,7 @@ export class DeviceDetailContext extends Component {
 
                     <Separator/>
 
-                    <Button block warning>
+                    <Button block warning onPress={() => this.handleRestartClick()}>
                         <Text>Restart Device</Text>
                     </Button>
 

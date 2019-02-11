@@ -66,11 +66,22 @@ export const startRing = (token, workingset) => {
 
 export const ringstop = (token, workingset) => {
     return new Promise((resolve, reject) => {
-        ajax.doFetch("/workingset/" + workingset + "/control/ringstop", {
-            "duration": "",
-            "localPath": "",
-            "volumeLevel": 5
-        })
+        ajax.doFetch("/workingset/" + workingset + "/control/ringstop", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post(true)
+            .then(r => {
+                console.log("ringstop  Workingset Response   : ", r);
+                resolve(r);
+            });
+    });
+}
+
+export const restartDevice = (token, workingset) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/workingset/" + workingset + "/control/reboot", {})
             .header({
                 'Authorization': 'Bearer ' + token
             })
