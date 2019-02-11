@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-    Badge,
     Body,
     Button,
     Container,
@@ -8,12 +7,16 @@ import {
     Header,
     Icon,
     Left,
-    ListItem,
     Right,
     Separator,
+    List,
+    ListItem,
+    Item,
     Text,
     Title,
 } from 'native-base';
+
+import Dialog, {DialogButton, DialogContent, DialogFooter, DialogTitle} from 'react-native-popup-dialog';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 
@@ -81,6 +84,13 @@ export class DeviceDetailContext extends Component {
         });
     }
 
+    handleDetailClick = () => {
+
+
+        this.setState({visible: true});
+
+    }
+
     render() {
         const {device} = this.state;
         const {context} = this.props;
@@ -120,6 +130,58 @@ export class DeviceDetailContext extends Component {
                     <Button block warning onPress={() => this.handleRestartClick()}>
                         <Text>Restart Device</Text>
                     </Button>
+
+                    <Separator/>
+
+                    <Button block primary onPress={() => this.handleDetailClick()}>
+                        <Text>Device Detail</Text>
+                    </Button>
+
+                    <Dialog
+                        width={0.8}
+                        height={0.8}
+                        visible={this.state.visible}
+                        onTouchOutside={() => {
+                            this.setState({visible: false});
+                        }}
+                        dialogTitle={<DialogTitle title="Device Detail"/>}
+                        footer={
+                            <DialogFooter>
+                                <DialogButton
+                                    text="CANCEL"
+                                    onPress={() => {
+                                        this.setState({visible: false});
+                                    }}
+                                />
+                                <DialogButton
+                                    text="OK"
+                                    onPress={() => {
+                                        this.setState({visible: false});
+                                    }}
+                                />
+                            </DialogFooter>
+                        }
+                    >
+                        <DialogContent>
+                            <List>
+                                <ListItem itemDivider>
+                                    <Text>A</Text>
+                                </ListItem>
+                                <ListItem>
+                                    <Text>Aaron Bennet</Text>
+                                </ListItem>
+                                <ListItem>
+                                    <Text>Ali Connors</Text>
+                                </ListItem>
+                                <ListItem itemDivider>
+                                    <Text>B</Text>
+                                </ListItem>
+                                <ListItem>
+                                    <Text>Bradley Horowitz</Text>
+                                </ListItem>
+                            </List>
+                        </DialogContent>
+                    </Dialog>
 
                 </Content>
             </Container>
