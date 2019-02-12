@@ -4,7 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import Drawer from 'react-native-drawer'
 
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
-import DeviceDetail from 'MgrScreen/DeviceDetail';
+import DeviceControl from 'MgrScreen/DeviceControl';
 import DeviceList from 'MgrScreen/DeviceList';
 import Dashboard from 'MgrScreen/Dashboard';
 import FormLogin from 'MgrScreen/FormLogin';
@@ -86,8 +86,8 @@ export default class Wrapper extends Component {
             return <DeviceList/>;
         }
 
-        if (screenType === "DeviceDetail") {
-            return <DeviceDetail/>;
+        if (screenType === "DeviceControl") {
+            return <DeviceControl/>;
         }
 
         return <FormLogin/>;

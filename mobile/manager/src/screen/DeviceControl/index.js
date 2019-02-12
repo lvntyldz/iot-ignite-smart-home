@@ -1,45 +1,30 @@
 import React, {Component} from 'react';
-import {
-    Body,
-    Button,
-    Container,
-    Content,
-    Header,
-    Icon,
-    Left,
-    Right,
-    Separator,
-    List,
-    ListItem,
-    Item,
-    Text,
-    Title,
-} from 'native-base';
-
-import Dialog, {DialogButton, DialogContent, DialogFooter, DialogTitle} from 'react-native-popup-dialog';
+import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
+import {Body, Button, Container, Content, Header, Icon, Left, Right, Separator, Text, Title,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 
 import * as workingset from 'MgrLib/workingset';
 
-export default class DeviceDetail extends Component {
+export default class DeviceControl extends Component {
     render() {
         return (
             <CtxConsumer>
                 {(context) => {
-                    return <DeviceDetailContext context={context}/>;
+                    return <DeviceControlContext context={context}/>;
                 }}
             </CtxConsumer>
         );//return
     }//render
 }//class
 
-export class DeviceDetailContext extends Component {
+export class DeviceControlContext extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
+            modalVisible: false,
             rerender: false,
             device: {
                 code: null,
@@ -47,6 +32,12 @@ export class DeviceDetailContext extends Component {
             }
         }
     }
+
+
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    }
+
 
     componentWillMount = () => {
 
@@ -103,9 +94,8 @@ export class DeviceDetailContext extends Component {
             <Container>
                 <Header>
                     <Body>
-                    <Title>DeviceDetail</Title>
+                    <Title>Device Control</Title>
                     </Body>
-                    <Left/>
                     <Right>
                         <Button onPress={() => context.showSideBar()} iconLeft light>
                             <Icon name='list'/>
@@ -133,55 +123,30 @@ export class DeviceDetailContext extends Component {
 
                     <Separator/>
 
-                    <Button block primary onPress={() => this.handleDetailClick()}>
+                    <Button block primary onPress={(d) => this.setModalVisible(true)}>
                         <Text>Device Detail</Text>
                     </Button>
 
-                    <Dialog
-                        width={0.8}
-                        height={0.8}
-                        visible={this.state.visible}
-                        onTouchOutside={() => {
-                            this.setState({visible: false});
-                        }}
-                        dialogTitle={<DialogTitle title="Device Detail"/>}
-                        footer={
-                            <DialogFooter>
-                                <DialogButton
-                                    text="CANCEL"
-                                    onPress={() => {
-                                        this.setState({visible: false});
-                                    }}
-                                />
-                                <DialogButton
-                                    text="OK"
-                                    onPress={() => {
-                                        this.setState({visible: false});
-                                    }}
-                                />
-                            </DialogFooter>
-                        }
+                    <Modal
+                        presentationStyle="overFullScreen"
+                        animationType="slide"
+                        visible={this.state.modalVisible}
                     >
-                        <DialogContent>
-                            <List>
-                                <ListItem itemDivider>
-                                    <Text>A</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text>Aaron Bennet</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text>Ali Connors</Text>
-                                </ListItem>
-                                <ListItem itemDivider>
-                                    <Text>B</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text>Bradley Horowitz</Text>
-                                </ListItem>
-                            </List>
-                        </DialogContent>
-                    </Dialog>
+                        <Container>
+                            <Header>
+                                <Left/>
+                                <Body>
+                                <Title>Device Detail</Title>
+                                </Body>
+                                <Right>
+                                    <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
+                                        <Text>X</Text>
+                                    </Button>
+                                </Right>
+                            </Header>
+                        </Container>
+
+                    </Modal>
 
                 </Content>
             </Container>

@@ -53,7 +53,7 @@ export class DeviceListContext extends Component {
         workingset.empty(context.token).then(code => {
             context.setWorkingset(code);
             context.setDevice(d);
-            context.setActivePage("DeviceDetail");
+            context.setActivePage("DeviceControl");
         });
 
     }
