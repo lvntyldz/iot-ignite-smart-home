@@ -116,7 +116,6 @@ export class DeviceControlContext extends Component {
     }
 
     render() {
-        //console.warn(this.state);
         const {device} = this.state;
         const {context} = this.props;
         const {osProfile} = device;
@@ -217,7 +216,7 @@ export class DeviceControlContext extends Component {
                                         <Text>{osProfile.device}</Text>
                                     </Left>
                                 </ListItem>
-                                
+
                                 <Separator bordered>
                                     <Text>Connection Status</Text>
                                 </Separator>
