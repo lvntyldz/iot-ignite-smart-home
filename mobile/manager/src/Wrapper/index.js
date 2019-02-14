@@ -7,7 +7,7 @@ import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
 import DeviceControl from 'MgrScreen/DeviceControl';
 import DeviceList from 'MgrScreen/DeviceList';
 import Dashboard from 'MgrScreen/Dashboard';
-import FormLogin from 'MgrScreen/FormLogin';
+import Login from '../screen/Login';
 import ListHeader from 'MgrScreen/ListHeader';
 import * as db from 'MgrLib/db';
 import SideBar from './SideBar';
@@ -21,7 +21,7 @@ class AppProvider extends Component {
             device: null,
             workingset: null,
             token: null,
-            screenType: "FormLogin",
+            screenType: "Login",
             sideBarOpen: false,
             setToken: (d) => {
                 this.setState({token: d});
@@ -42,12 +42,12 @@ class AppProvider extends Component {
                 this.setState({sideBarOpen: false});
             },
             logut: () => {
-                this.setState({screenType: "FormLogin", token: null, sideBarOpen: false});
+                this.setState({screenType: "Login", token: null, sideBarOpen: false});
             },
             changeScreenByType: (screenType) => {
 
                 if (!screenType) {
-                    screenType = "FormLogin";
+                    screenType = "Login";
                 }
 
                 this.setState({screenType: screenType, sideBarOpen: false});
@@ -90,7 +90,7 @@ export default class Wrapper extends Component {
             return <DeviceControl/>;
         }
 
-        return <FormLogin/>;
+        return <Login/>;
     }
 
     render() {
