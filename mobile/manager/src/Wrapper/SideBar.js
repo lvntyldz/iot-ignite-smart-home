@@ -67,6 +67,18 @@ export default class SideBar extends Component {
 
                                 <ListItem icon>
                                     <Left>
+                                        <Button onPress={() => context.changeScreenByType("SensorType")}
+                                                style={{backgroundColor: "#007AFF"}}>
+                                            <Icon active name="list"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>SensorType</Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem icon>
+                                    <Left>
                                         <Button onPress={() => context.changeScreenByType("ListHeader")}
                                                 style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="person"/>

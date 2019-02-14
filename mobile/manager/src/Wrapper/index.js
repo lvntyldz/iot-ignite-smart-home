@@ -6,6 +6,7 @@ import Drawer from 'react-native-drawer'
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
 import DeviceControl from 'MgrScreen/DeviceControl';
 import DeviceList from 'MgrScreen/DeviceList';
+import SensorType from 'MgrScreen/SensorType';
 import Dashboard from 'MgrScreen/Dashboard';
 import Login from '../screen/Login';
 import ListHeader from 'MgrScreen/ListHeader';
@@ -84,6 +85,10 @@ export default class Wrapper extends Component {
 
         if (screenType === "DeviceList") {
             return <DeviceList/>;
+        }
+
+        if (screenType === "SensorType") {
+            return <SensorType/>;
         }
 
         if (screenType === "DeviceControl") {
