@@ -14,6 +14,7 @@ import {
     Text,
     Title,
 } from 'native-base';
+
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 
@@ -116,8 +117,8 @@ export class DeviceControlContext extends Component {
     }
 
     render() {
-        const {device} = this.state;
         const {context} = this.props;
+        const {device} = this.state;
         const {osProfile} = device;
 
         if (!device) {

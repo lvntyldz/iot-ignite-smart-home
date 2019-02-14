@@ -14,3 +14,33 @@ export const getList = (token) => {
             });
     });
 }
+
+export const add = (token, data) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device/sensor/types", data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post()
+            .then(r => {
+                console.log("Api Add Sensor Type Response  : ", r);
+                resolve(r);
+            });
+    });
+}
+
+export const remove = (token, sensorId) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device/sensor/types/" + sensorId, {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .delete()
+            .then(r => {
+                console.log("Api Remove Sensor Type Response  : ", r);
+                resolve(r);
+            });
+    });
+}

@@ -1,6 +1,7 @@
 import * as config from 'MgrConfig';
 
 export const _PUT = "PUT";
+export const _DELETE = "DELETE";
 export const _POST = "POST";
 export const _GET = "GET";
 
@@ -61,6 +62,20 @@ export const doRequest = (url, fetchOptions, params, timeout) => {
     return {
         get: () => {
             fetchOptions.method = _GET;
+            return fetchWrapper(url, fetchOptions, timeout);
+        },
+        delete: (json = true) => {
+            console.info("json : ", json);
+
+            fetchOptions.method = _DELETE;
+            fetchOptions.body = JSON.stringify(params);
+
+            if (json === false) {
+                fetchOptions.body = params;
+            }
+
+            console.info("fetchOptions : ", fetchOptions);
+
             return fetchWrapper(url, fetchOptions, timeout);
         },
         post: (json = true) => {

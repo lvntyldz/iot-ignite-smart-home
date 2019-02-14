@@ -69,7 +69,7 @@ export default class SideBar extends Component {
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("SensorType")}
                                                 style={{backgroundColor: "#007AFF"}}>
-                                            <Icon active name="list"/>
+                                            <Icon active name="wifi"/>
                                         </Button>
                                     </Left>
                                     <Body>

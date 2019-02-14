@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
+import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {
     Badge,
     Body,
     Button,
     Container,
     Content,
+    Form,
     Header,
     Icon,
+    Input,
+    Item as FormItem,
+    Label,
     Left,
     List,
     ListItem,
+    Picker,
     Right,
     Text,
     Title,
@@ -35,20 +41,57 @@ export class SensorTypeContext extends Component {
         super(props)
 
         this.state = {
+            selectedDataType: "",
+            sensorType: null,
+            sensorVendor: null,
+            modalVisible: false,
             rerender: false,
             sensors: []
         }
     }
 
     componentWillMount = () => {
-
         sensor.getList(this.props.context.token).then(sensors => {
             this.setState({sensors});
         });
     }
 
-    handleClickDevice = (d) => {
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    }
+
+    handleAddSensorClick = () => {
+        this.setState({modalVisible: true});
+    }
+
+    onValueChange(value: string) {
+        this.setState({
+            selectedDataType: value
+        });
+    }
+
+    handleSaveSensorClick = () => {
+
         const {context} = this.props;
+
+        sensor.add(context.token, {
+            "dataType": this.state.selectedDataType,
+            "type": this.state.sensorType,
+            "vendor": this.state.sensorVendor
+        }).then(count => {
+            console.info("add sensor operation is success");
+            this.setModalVisible(false);
+        });
+    }
+
+    handleDeleteSensorClick = (sensorId) => {
+
+        const {context} = this.props;
+
+        sensor.remove(context.token, sensorId).then(response => {
+            console.info("delete sensor operation is success");
+            this.setState({rerender: !this.state.rerender});
+        });
     }
 
     render() {
@@ -71,6 +114,18 @@ export class SensorTypeContext extends Component {
 
                 <Content>
                     <List>
+                        <ListItem icon>
+                            <Left/>
+                            <Body/>
+                            <Right>
+                                <Button primary style={{margin: 2}}>
+                                    <Icon active name="download"/>
+                                </Button>
+                                <Button success style={{margin: 2}} onPress={() => this.handleAddSensorClick()}>
+                                    <Icon active name="add"/>
+                                </Button>
+                            </Right>
+                        </ListItem>
                         {
                             sensors.map((v, k) => {
 
@@ -82,17 +137,79 @@ export class SensorTypeContext extends Component {
                                         <Text note numberOfLines={1}>{v.type}---{v.dataType}</Text>
                                         </Body>
                                         <Right>
-                                            <Badge danger>
-                                                <Icon name="trash"
-                                                      style={{fontSize: 22, color: "#fff", lineHeight: 20}}/>
-                                            </Badge>
+                                            <Button transparent onPress={(d) => this.handleDeleteSensorClick(v.id)}>
+                                                <Badge danger>
+                                                    <Icon name="trash"
+                                                          style={{fontSize: 22, color: "#fff", lineHeight: 20}}/>
+                                                </Badge>
+                                            </Button>
                                         </Right>
                                     </ListItem>
                                 );
                             })
                         }
-
                     </List>
+
+                    <Modal
+                        presentationStyle="overFullScreen"
+                        animationType="slide"
+                        visible={this.state.modalVisible}
+                    >
+                        <Container>
+                            <Header>
+                                <Left/>
+                                <Body>
+                                <Title>Create Sensor Type</Title>
+                                </Body>
+                                <Right>
+                                    <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
+                                        <Text>X</Text>
+                                    </Button>
+                                </Right>
+                            </Header>
+
+                            <Content>
+                                <Form>
+                                    <FormItem floatingLabel>
+                                        <Label>Type</Label>
+                                        <Input onChangeText={(d) => {
+                                            this.setState({sensorType: d})
+                                        }} value={this.state.sensorType}/>
+                                    </FormItem>
+                                    <FormItem floatingLabel>
+                                        <Label>Vendor</Label>
+                                        <Input onChangeText={(d) => {
+                                            this.setState({sensorVendor: d})
+                                        }} value={this.state.sensorVendor}/>
+                                    </FormItem>
+
+                                    <Picker
+                                        mode="dropdown"
+                                        iosHeader="Data Type"
+                                        iosIcon={<Icon name="arrow-down"/>}
+                                        style={{width: "100%"}}
+                                        selectedValue={this.state.selectedDataType}
+                                        onValueChange={this.onValueChange.bind(this)}
+                                    >
+                                        <Picker.Item label="Select Data Type" value=""/>
+                                        <Picker.Item label="INTEGER" value="INTEGER"/>
+                                        <Picker.Item label="FLOAT" value="FLOAT"/>
+                                        <Picker.Item label="STRING" value="STRING"/>
+                                        <Picker.Item label="LOCATION" value="LOCATION"/>
+                                    </Picker>
+
+                                    <Button full primary style={{paddingBottom: 4}}
+                                            onPress={() => this.handleSaveSensorClick()}>
+                                        <Text> Save </Text>
+                                    </Button>
+
+                                </Form>
+                            </Content>
+
+                        </Container>
+
+                    </Modal>
+
                 </Content>
             </Container>
         );//return
