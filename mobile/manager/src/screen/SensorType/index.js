@@ -41,12 +41,14 @@ export class SensorTypeContext extends Component {
         super(props)
 
         this.state = {
+            modalContentType: null,
             selectedDataType: "",
             sensorType: null,
             sensorVendor: null,
             modalVisible: false,
             rerender: false,
-            sensors: []
+            sensors: [],
+            preDefinedSensors: []
         }
     }
 
@@ -61,7 +63,14 @@ export class SensorTypeContext extends Component {
     }
 
     handleAddSensorClick = () => {
-        this.setState({modalVisible: true});
+        this.setState({modalVisible: true, modalContentType: "create"});
+    }
+
+    handleImportSensorClick = () => {
+
+        sensor.getPreDefinedList(this.props.context.token).then(preDefinedSensors => {
+            this.setState({preDefinedSensors, modalVisible: true, modalContentType: "import"});
+        });
     }
 
     onValueChange(value: string) {
@@ -94,6 +103,128 @@ export class SensorTypeContext extends Component {
         });
     }
 
+    createSensorForm = () => {
+        return <Container>
+            <Header>
+                <Left/>
+                <Body>
+                <Title>Create Sensor Type</Title>
+                </Body>
+                <Right>
+                    <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
+                        <Text>X</Text>
+                    </Button>
+                </Right>
+            </Header>
+
+            <Content>
+                <Form>
+                    <FormItem floatingLabel>
+                        <Label>Type</Label>
+                        <Input onChangeText={(d) => {
+                            this.setState({sensorType: d})
+                        }} value={this.state.sensorType}/>
+                    </FormItem>
+                    <FormItem floatingLabel>
+                        <Label>Vendor</Label>
+                        <Input onChangeText={(d) => {
+                            this.setState({sensorVendor: d})
+                        }} value={this.state.sensorVendor}/>
+                    </FormItem>
+
+                    <Picker
+                        mode="dropdown"
+                        iosHeader="Data Type"
+                        iosIcon={<Icon name="arrow-down"/>}
+                        style={{width: "100%"}}
+                        selectedValue={this.state.selectedDataType}
+                        onValueChange={this.onValueChange.bind(this)}
+                    >
+                        <Picker.Item label="Select Data Type" value=""/>
+                        <Picker.Item label="INTEGER" value="INTEGER"/>
+                        <Picker.Item label="FLOAT" value="FLOAT"/>
+                        <Picker.Item label="STRING" value="STRING"/>
+                        <Picker.Item label="LOCATION" value="LOCATION"/>
+                    </Picker>
+
+                    <Button full primary style={{paddingBottom: 4}}
+                            onPress={() => this.handleSaveSensorClick()}>
+                        <Text> Save </Text>
+                    </Button>
+
+                </Form>
+            </Content>
+
+        </Container>
+    }
+
+    importPreDefinedSensor = () => {
+        const {preDefinedSensors} = this.state;
+        const {context} = this.props;
+
+        return <Container>
+            <Header>
+                <Left/>
+                <Body>
+                <Title>Import Sensor Type</Title>
+                </Body>
+                <Right>
+                    <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
+                        <Text>X</Text>
+                    </Button>
+                </Right>
+            </Header>
+
+            <Content>
+                <List>
+                    {
+                        preDefinedSensors.map((v, k) => {
+
+                            return (
+                                <ListItem key={v.id} thumbnail>
+                                    <Left/>
+                                    <Body>
+                                    <Text>{v.vendor}</Text>
+                                    <Text note numberOfLines={1}>{v.type}---{v.dataType}</Text>
+                                    </Body>
+                                    <Right>
+                                        <Button transparent onPress={(d) => this.handleImportDefinedSensorClick(v.id)}>
+                                            <Badge success>
+                                                <Icon name="ios-checkmark"
+                                                      style={{fontSize: 30, color: "#fff", lineHeight: 25}}/>
+                                            </Badge>
+                                        </Button>
+                                    </Right>
+                                </ListItem>
+                            );
+                        })
+                    }
+                </List>
+            </Content>
+        </Container>
+    }
+
+    handleImportDefinedSensorClick = (id) => {
+
+        const {context} = this.props;
+
+        sensor.addPreDefined(context.token, {id}).then(count => {
+            console.info("add preDefined sensor operation is success");
+            this.setModalVisible(false);
+        });
+    }
+
+    loadModalContentBy = () => {
+
+        if (this.state.modalContentType === "create") {
+            return this.createSensorForm();
+        }
+
+        if (this.state.modalContentType === "import") {
+            return this.importPreDefinedSensor();
+        }
+    }
+
     render() {
         const {sensors} = this.state;
         const {context} = this.props;
@@ -118,7 +249,7 @@ export class SensorTypeContext extends Component {
                             <Left/>
                             <Body/>
                             <Right>
-                                <Button primary style={{margin: 2}}>
+                                <Button primary style={{margin: 2}} onPress={() => this.handleImportSensorClick()}>
                                     <Icon active name="download"/>
                                 </Button>
                                 <Button success style={{margin: 2}} onPress={() => this.handleAddSensorClick()}>
@@ -155,58 +286,7 @@ export class SensorTypeContext extends Component {
                         animationType="slide"
                         visible={this.state.modalVisible}
                     >
-                        <Container>
-                            <Header>
-                                <Left/>
-                                <Body>
-                                <Title>Create Sensor Type</Title>
-                                </Body>
-                                <Right>
-                                    <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
-                                        <Text>X</Text>
-                                    </Button>
-                                </Right>
-                            </Header>
-
-                            <Content>
-                                <Form>
-                                    <FormItem floatingLabel>
-                                        <Label>Type</Label>
-                                        <Input onChangeText={(d) => {
-                                            this.setState({sensorType: d})
-                                        }} value={this.state.sensorType}/>
-                                    </FormItem>
-                                    <FormItem floatingLabel>
-                                        <Label>Vendor</Label>
-                                        <Input onChangeText={(d) => {
-                                            this.setState({sensorVendor: d})
-                                        }} value={this.state.sensorVendor}/>
-                                    </FormItem>
-
-                                    <Picker
-                                        mode="dropdown"
-                                        iosHeader="Data Type"
-                                        iosIcon={<Icon name="arrow-down"/>}
-                                        style={{width: "100%"}}
-                                        selectedValue={this.state.selectedDataType}
-                                        onValueChange={this.onValueChange.bind(this)}
-                                    >
-                                        <Picker.Item label="Select Data Type" value=""/>
-                                        <Picker.Item label="INTEGER" value="INTEGER"/>
-                                        <Picker.Item label="FLOAT" value="FLOAT"/>
-                                        <Picker.Item label="STRING" value="STRING"/>
-                                        <Picker.Item label="LOCATION" value="LOCATION"/>
-                                    </Picker>
-
-                                    <Button full primary style={{paddingBottom: 4}}
-                                            onPress={() => this.handleSaveSensorClick()}>
-                                        <Text> Save </Text>
-                                    </Button>
-
-                                </Form>
-                            </Content>
-
-                        </Container>
+                        {this.loadModalContentBy()}
 
                     </Modal>
 

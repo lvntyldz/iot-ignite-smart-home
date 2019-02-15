@@ -21,6 +21,9 @@ import {CtxConsumer} from 'MgrBoot/Container';
 export default class SideBar extends Component {
 
     render() {
+
+        const activeStyle = {backgroundColor: '#F1F1F1'};
+
         return (
             <CtxConsumer>
                 {(context) => {
@@ -41,10 +44,10 @@ export default class SideBar extends Component {
 
                             <Content>
 
-                                <ListItem icon>
+                                <ListItem icon style={context.screenType === "Dashboard" ? activeStyle : {}}>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("Dashboard")}
-                                                style={{backgroundColor: "#FF9501"}}>
+                                                style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="pie"/>
                                         </Button>
                                     </Left>
@@ -53,7 +56,7 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem icon>
+                                <ListItem icon style={context.screenType === "DeviceList" ? activeStyle : {}}>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("DeviceList")}
                                                 style={{backgroundColor: "#007AFF"}}>
@@ -65,7 +68,7 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem icon>
+                                <ListItem icon style={context.screenType === "SensorType" ? activeStyle : {}}>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("SensorType")}
                                                 style={{backgroundColor: "#007AFF"}}>
@@ -77,7 +80,7 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem icon>
+                                <ListItem icon style={context.screenType === "ListHeader" ? activeStyle : {}}>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("ListHeader")}
                                                 style={{backgroundColor: "#007AFF"}}>

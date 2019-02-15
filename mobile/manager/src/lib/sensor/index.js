@@ -15,6 +15,21 @@ export const getList = (token) => {
     });
 }
 
+export const getPreDefinedList = (token) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device/sensor/types/?pageSize=1000", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                console.log("Api Sensor Types Response  : ", r);
+                resolve(r);
+            });
+    });
+}
+
 export const add = (token, data) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/device/sensor/types", data)
@@ -25,6 +40,21 @@ export const add = (token, data) => {
             .post()
             .then(r => {
                 console.log("Api Add Sensor Type Response  : ", r);
+                resolve(r);
+            });
+    });
+}
+
+export const addPreDefined = (token, data) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device/sensor/types/assign", data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post()
+            .then(r => {
+                console.log("Api Add Predefined Sensor Type Response  : ", r);
                 resolve(r);
             });
     });
