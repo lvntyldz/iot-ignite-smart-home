@@ -46,6 +46,8 @@ export class DashboardContext extends Component {
     componentWillMount = () => {
         const {context} = this.props;
 
+        context.showLoading();
+
         device.getDeviceSummary(context.token).then(summary => {
             this.setState({summary});
         });
@@ -56,6 +58,7 @@ export class DashboardContext extends Component {
 
         device.getDeviceOsList(context.token).then(os => {
             this.setState({os});
+            context.hideLoading();
         });
     }
 

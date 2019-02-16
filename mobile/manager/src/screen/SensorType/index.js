@@ -53,8 +53,11 @@ export class SensorTypeContext extends Component {
     }
 
     componentWillMount = () => {
-        sensor.getList(this.props.context.token).then(sensors => {
+        const {context} = this.props;
+        context.showLoading();
+        sensor.getList(context.token).then(sensors => {
             this.setState({sensors});
+            context.hideLoading();
         });
     }
 

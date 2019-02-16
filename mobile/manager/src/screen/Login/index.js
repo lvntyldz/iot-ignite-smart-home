@@ -18,7 +18,7 @@ import * as tokenDb from 'MgrLib/db/token';
 import * as userDb from 'MgrLib/db/user';
 import {CtxConsumer} from 'MgrBoot/Container';
 
-export default class Wrapper extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -38,12 +38,14 @@ export default class Wrapper extends Component {
 
     handleLoginClick = (context) => {
 
+        context.showLoading();
         login.loginToCloud(this.state.email, this.state.password).then(token => {
             tokenDb.addToken(token);
             userDb.updateLoginUser(this.state.email, this.state.password);
             context.setToken(token);
             context.setActivePage("Dashboard");
             context.hideSideBar();
+            context.hideLoading();
         });
     }
 

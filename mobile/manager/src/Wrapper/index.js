@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 
 import Drawer from 'react-native-drawer'
+import {Spinner} from 'native-base';
 
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
 import DeviceControl from 'MgrScreen/DeviceControl';
@@ -24,6 +25,13 @@ class AppProvider extends Component {
             token: null,
             screenType: "Login",
             sideBarOpen: false,
+            loading: false,
+            showLoading: () => {
+                this.setState({loading: true});
+            },
+            hideLoading: () => {
+                this.setState({loading: false});
+            },
             setToken: (d) => {
                 this.setState({token: d});
             },
@@ -98,10 +106,32 @@ export default class Wrapper extends Component {
         return <Login/>;
     }
 
+    loadActivityIndicator = (show, msg) => {
+
+        if (show === true) {
+            return (
+                <ActivityIndicator size="large" color="#000" style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(52, 52, 52, 0.7)',
+                    zIndex: 10,
+                }}/>
+            )
+        }
+
+        return null;
+    }
+
     render() {
 
         return (
             <AppProvider>
+
                 <View style={[s.container, {borderColor: 'black', top: 20}]}>
 
                     <CtxConsumer>
@@ -113,6 +143,7 @@ export default class Wrapper extends Component {
                                     content={<SideBar
                                         changeScreenByType={(d) => this.changeScreenByType(d)}/>}
                                 >
+                                    {this.loadActivityIndicator(context.loading)}
                                     <Text> Token : {context.token}</Text>
                                     {this.loadScreenByType(context.screenType)}
                                 </Drawer>

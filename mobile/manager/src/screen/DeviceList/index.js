@@ -42,9 +42,13 @@ export class DeviceListContext extends Component {
     }
 
     componentWillMount = () => {
+        const {context} = this.props;
+
+        context.showLoading();
 
         device.getList(this.props.context.token).then(devices => {
             this.setState({devices});
+            context.hideLoading();
         });
     }
 
