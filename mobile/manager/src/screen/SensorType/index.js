@@ -52,7 +52,7 @@ export class SensorTypeContext extends Component {
         }
     }
 
-    componentWillMount = () => {
+    loadSesnsorListFromApi = () => {
         const {context} = this.props;
         context.showLoading();
         sensor.getList(context.token).then(sensors => {
@@ -61,8 +61,20 @@ export class SensorTypeContext extends Component {
         });
     }
 
+    componentDidMount = () => {
+        this.loadSesnsorListFromApi();
+        console.warn("componentDidMount");
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        console.warn("componentDidUpdate");
+        if (this.state.rerender != prevState.rerender) {
+            this.loadSesnsorListFromApi();
+        }
+    }
+
     setModalVisible(visible) {
-        this.setState({modalVisible: visible});
+        this.setState({modalVisible: visible, rerender: !this.state.rerender});
     }
 
     handleAddSensorClick = () => {
