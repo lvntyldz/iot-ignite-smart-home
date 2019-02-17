@@ -95,6 +95,18 @@ export class SensorTypeContext extends Component {
     handleSaveSensorClick = () => {
 
         const {context} = this.props;
+        const {sensors} = this.state;
+        let isSensorExist = false;
+
+        sensors.map((v, k) => {
+            if (v.type === this.state.sensorType && v.vendor === this.state.sensorVendor && v.dataType === this.state.selectedDataType) {
+                isSensorExist = true;
+            }
+        });
+
+        if (isSensorExist === true) {
+            return;
+        }
 
         sensor.add(context.token, {
             "dataType": this.state.selectedDataType,
