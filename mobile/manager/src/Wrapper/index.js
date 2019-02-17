@@ -26,6 +26,31 @@ class AppProvider extends Component {
             screenType: "Login",
             sideBarOpen: false,
             loading: false,
+            toast: {
+                active: true,
+                message: null,
+                bgColor: null
+            },
+            showMessage: (msg) => {
+                setTimeout(() => {
+                    this.setState({toast: {active: false, message: null, bgColor: null}});
+                }, 3000);
+
+                return {
+                    warn: () => {
+                        this.setState({toast: {active: true, message: msg, bgColor: '#FDBD2C'}});
+                    },
+                    info: () => {
+                        this.setState({toast: {active: true, message: msg, bgColor: '#1787FB'}});
+                    },
+                    succes: () => {
+                        this.setState({toast: {active: true, message: msg, bgColor: '#17A346'}});
+                    },
+                    err: () => {
+                        this.setState({toast: {active: true, message: msg, bgColor: '#E43C45'}});
+                    }
+                }
+            },
             showLoading: () => {
                 this.setState({loading: true});
             },
@@ -106,6 +131,28 @@ export default class Wrapper extends Component {
         return <Login/>;
     }
 
+    loadMessageBar = (toast) => {
+
+        if (toast.active === true) {
+            return (
+                <View style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: toast.bgColor,
+                    zIndex: 11,
+                    height: 50
+                }}>
+                    <Text style={{fontSize: 15, fontWeight: 'bold', color: '#FFF'}}>{toast.message}</Text>
+                </View>
+            )
+        }
+
+        return null;
+    }
     loadActivityIndicator = (show, msg) => {
 
         if (show === true) {
@@ -143,6 +190,7 @@ export default class Wrapper extends Component {
                                     content={<SideBar
                                         changeScreenByType={(d) => this.changeScreenByType(d)}/>}
                                 >
+                                    {this.loadMessageBar(context.toast)}
                                     {this.loadActivityIndicator(context.loading)}
                                     <Text> Token : {context.token}</Text>
                                     {this.loadScreenByType(context.screenType)}

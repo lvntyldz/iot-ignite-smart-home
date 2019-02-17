@@ -105,6 +105,8 @@ export class SensorTypeContext extends Component {
         });
 
         if (isSensorExist === true) {
+            this.setState({modalVisible: false});
+            context.showMessage("Sensor Zaten Ekli!").warn();
             return;
         }
 
