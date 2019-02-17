@@ -63,11 +63,9 @@ export class SensorTypeContext extends Component {
 
     componentDidMount = () => {
         this.loadSesnsorListFromApi();
-        console.warn("componentDidMount");
     }
 
     componentDidUpdate = (prevProps, prevState) => {
-        console.warn("componentDidUpdate");
         if (this.state.rerender != prevState.rerender) {
             this.loadSesnsorListFromApi();
         }
