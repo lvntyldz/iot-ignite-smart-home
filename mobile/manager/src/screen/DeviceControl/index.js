@@ -14,7 +14,6 @@ import {
     Text,
     Title,
 } from 'native-base';
-
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 
@@ -74,45 +73,56 @@ export class DeviceControlContext extends Component {
     componentWillMount = () => {
 
         const {context} = this.props;
+        context.showLoading();
 
         workingset.addDevice(context.token, context.workingset, context.device).then(count => {
             console.info("add device to workingset operation is success");
+            context.hideLoading();
         });
     }
 
     handleStartRingClick = () => {
 
         const {context} = this.props;
+        context.showLoading();
 
         workingset.startRing(context.token, context.workingset).then(response => {
             console.info("ring started...");
+            context.hideLoading();
         });
     }
 
     handleStopRingClick = () => {
 
         const {context} = this.props;
+        context.showLoading();
 
         workingset.ringstop(context.token, context.workingset).then(response => {
             console.info("ring stopped...");
+            context.hideLoading();
         });
     }
 
     handleRestartClick = () => {
 
         const {context} = this.props;
+        context.showLoading();
 
         workingset.restartDevice(context.token, context.workingset).then(response => {
             console.info("device rebooted...");
+            context.hideLoading();
+
         });
     }
 
     handleDetailClick = () => {
 
         const {context} = this.props;
+        context.showLoading();
 
         device.getDetail(context.token, context.device).then(device => {
             this.setState({device, modalVisible: true});
+            context.hideLoading();
         });
     }
 
