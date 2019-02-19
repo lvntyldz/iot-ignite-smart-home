@@ -93,7 +93,8 @@ export default class SideBar extends Component {
                                 </ListItem>
 
 
-                                <ListItem icon style={context.screenType === "DeviceDetail" ? activeStyle : {}}>
+                                <ListItem icon
+                                          style={context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData" ? activeStyle : {}}>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("DeviceDetail")}
                                                 style={{backgroundColor: "#007AFF"}}>
@@ -106,7 +107,8 @@ export default class SideBar extends Component {
                                 </ListItem>
 
 
-                                <ListItem icon style={context.screenType === "DeviceControl" ? activeStyle : {}}>
+                                <ListItem icon
+                                          style={context.screenType === "DeviceControl" || context.screenType === "DeviceControlData" ? activeStyle : {}}>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("DeviceControl")}
                                                 style={{backgroundColor: "#007AFF"}}>
