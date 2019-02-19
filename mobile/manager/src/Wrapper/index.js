@@ -4,11 +4,15 @@ import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import Drawer from 'react-native-drawer'
 
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
-import DeviceControl from 'MgrScreen/DeviceControl';
-import DeviceList from 'MgrScreen/DeviceList';
 import SensorType from 'MgrScreen/SensorType';
 import Dashboard from 'MgrScreen/Dashboard';
-import DeviceDetail from 'MgrScreen/DeviceDetail';
+
+import DeviceControl from 'MgrScreen/Device/Control';
+import DeviceControlData from 'MgrScreen/Device/Control/Data';
+import DeviceList from 'MgrScreen/Device/List';
+import DeviceDetail from 'MgrScreen/Device/Detail';
+import DeviceDetailData from 'MgrScreen/Device/Detail/Data';
+
 import CreateSensorType from 'MgrScreen/CreateSensorType';
 import ImportSensorType from 'MgrScreen/ImportSensorType';
 import CreateCloudRule from 'MgrScreen/CreateCloudRule';
@@ -32,7 +36,7 @@ class AppProvider extends Component {
             workingset: null,
             token: null,
             screenType: "Login",
-            sideBarOpen: true,
+            sideBarOpen: false,
             loading: false,
             toast: {
                 active: true,
@@ -144,8 +148,16 @@ export default class Wrapper extends Component {
             return <DeviceControl/>;
         }
 
+        if (screenType === "DeviceControlData") {
+            return <DeviceControlData/>;
+        }
+
         if (screenType === "DeviceDetail") {
             return <DeviceDetail/>;
+        }
+
+        if (screenType === "DeviceDetailData") {
+            return <DeviceDetailData/>;
         }
 
         if (screenType === "SendConfiguration") {

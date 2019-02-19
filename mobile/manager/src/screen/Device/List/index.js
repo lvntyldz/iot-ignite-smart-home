@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, ListItem, Right, Text, Title,} from 'native-base';
+import {Body, Container, Content, ListItem, Right, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as device from 'MgrLib/device';
@@ -10,7 +10,7 @@ export default class DeviceList extends Component {
         return (
             <CtxConsumer>
                 {(context) => {
-                    return <DeviceListContext context={context}/>;
+                    return <DeviceListContext goTo={this.props.goTo} context={context}/>;
                 }}
             </CtxConsumer>
         );//return
@@ -33,7 +33,7 @@ export class DeviceListContext extends Component {
         workingset.empty(context.token).then(code => {
             context.setWorkingset(code);
             context.setDevice(d);
-            context.setActivePage("DeviceControl");
+            context.setActivePage(this.props.goTo || "DeviceDetail");
         });
 
     }
@@ -57,20 +57,7 @@ export class DeviceListContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>DeviceList</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
-
                 <Content>
-
                     {
                         devices.content.map((v) => {
                             return (
@@ -84,7 +71,6 @@ export class DeviceListContext extends Component {
                             )
                         })
                     }
-
                 </Content>
             </Container>
         );//return
