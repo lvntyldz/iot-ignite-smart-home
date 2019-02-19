@@ -10,7 +10,6 @@ import DeviceList from 'MgrScreen/DeviceList';
 import SensorType from 'MgrScreen/SensorType';
 import Dashboard from 'MgrScreen/Dashboard';
 import Login from '../screen/Login';
-import ListHeader from 'MgrScreen/ListHeader';
 import * as db from 'MgrLib/db';
 import SideBar from './SideBar';
 
@@ -107,10 +106,6 @@ class AppProvider extends Component {
 export default class Wrapper extends Component {
 
     loadScreenByType = (screenType) => {
-
-        if (screenType === "ListHeader") {
-            return <ListHeader/>;
-        }
 
         if (screenType === "Dashboard") {
             return <Dashboard/>;
