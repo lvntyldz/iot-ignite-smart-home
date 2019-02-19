@@ -37,21 +37,6 @@ export default class SensorType extends Component {
 }
 
 export class SensorTypeContext extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            modalContentType: null,
-            selectedDataType: "",
-            sensorType: null,
-            sensorVendor: null,
-            modalVisible: false,
-            rerender: false,
-            sensors: [],
-            preDefinedSensors: []
-        }
-    }
-
     loadSesnsorListFromApi = () => {
         const {context} = this.props;
         context.showLoading();
@@ -60,38 +45,23 @@ export class SensorTypeContext extends Component {
             context.hideLoading();
         });
     }
-
     componentDidMount = () => {
         this.loadSesnsorListFromApi();
     }
-
     componentDidUpdate = (prevProps, prevState) => {
         if (this.state.rerender != prevState.rerender) {
             this.loadSesnsorListFromApi();
         }
     }
-
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible, rerender: !this.state.rerender});
-    }
-
     handleAddSensorClick = () => {
         this.setState({modalVisible: true, modalContentType: "create"});
     }
-
     handleImportSensorClick = () => {
 
         sensor.getPreDefinedList(this.props.context.token).then(preDefinedSensors => {
             this.setState({preDefinedSensors, modalVisible: true, modalContentType: "import"});
         });
     }
-
-    onValueChange(value: string) {
-        this.setState({
-            selectedDataType: value
-        });
-    }
-
     handleSaveSensorClick = () => {
 
         const {context} = this.props;
@@ -119,7 +89,6 @@ export class SensorTypeContext extends Component {
             this.setModalVisible(false);
         });
     }
-
     handleDeleteSensorClick = (sensorId) => {
 
         const {context} = this.props;
@@ -129,7 +98,6 @@ export class SensorTypeContext extends Component {
             this.setState({rerender: !this.state.rerender});
         });
     }
-
     createSensorForm = () => {
         return <Container>
             <Header>
@@ -184,7 +152,6 @@ export class SensorTypeContext extends Component {
 
         </Container>
     }
-
     importPreDefinedSensor = () => {
         const {preDefinedSensors} = this.state;
         const {context} = this.props;
@@ -230,7 +197,6 @@ export class SensorTypeContext extends Component {
             </Content>
         </Container>
     }
-
     handleImportDefinedSensorClick = (id) => {
 
         const {context} = this.props;
@@ -240,7 +206,6 @@ export class SensorTypeContext extends Component {
             this.setModalVisible(false);
         });
     }
-
     loadModalContentBy = () => {
 
         if (this.state.modalContentType === "create") {
@@ -250,6 +215,31 @@ export class SensorTypeContext extends Component {
         if (this.state.modalContentType === "import") {
             return this.importPreDefinedSensor();
         }
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            modalContentType: null,
+            selectedDataType: "",
+            sensorType: null,
+            sensorVendor: null,
+            modalVisible: false,
+            rerender: false,
+            sensors: [],
+            preDefinedSensors: []
+        }
+    }
+
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible, rerender: !this.state.rerender});
+    }
+
+    onValueChange(value: string) {
+        this.setState({
+            selectedDataType: value
+        });
     }
 
     render() {

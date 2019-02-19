@@ -17,7 +17,6 @@ import {
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as device from 'MgrLib/device';
-import * as workingset from 'MgrLib/workingset';
 
 export default class Dashboard extends Component {
     render() {
@@ -32,17 +31,6 @@ export default class Dashboard extends Component {
 }
 
 export class DashboardContext extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            rerender: false,
-            summary: {},
-            model: [],
-            os: []
-        }
-    }
-
     componentWillMount = () => {
         const {context} = this.props;
 
@@ -60,6 +48,17 @@ export class DashboardContext extends Component {
             this.setState({os});
             context.hideLoading();
         });
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            rerender: false,
+            summary: {},
+            model: [],
+            os: []
+        }
     }
 
     render() {

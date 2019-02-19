@@ -1,17 +1,26 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 
 import Drawer from 'react-native-drawer'
-import {Spinner} from 'native-base';
 
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
 import DeviceControl from 'MgrScreen/DeviceControl';
 import DeviceList from 'MgrScreen/DeviceList';
 import SensorType from 'MgrScreen/SensorType';
 import Dashboard from 'MgrScreen/Dashboard';
+import DeviceDetail from 'MgrScreen/DeviceDetail';
+import CreateSensorType from 'MgrScreen/CreateSensorType';
+import ImportSensorType from 'MgrScreen/ImportSensorType';
+import CreateCloudRule from 'MgrScreen/CreateCloudRule';
+import CreateGatewayRule from 'MgrScreen/CreateGatewayRule';
+import ActionLog from 'MgrScreen/ActionLog';
+import SendConfiguration from 'MgrScreen/SendConfiguration';
+import SendMessage from 'MgrScreen/SendMessage';
 import Login from '../screen/Login';
 import * as db from 'MgrLib/db';
 import SideBar from './SideBar';
+
+//import DeviceDetail from "../screen/DeviceDetail";
 
 class AppProvider extends Component {
 
@@ -23,7 +32,7 @@ class AppProvider extends Component {
             workingset: null,
             token: null,
             screenType: "Login",
-            sideBarOpen: false,
+            sideBarOpen: true,
             loading: false,
             toast: {
                 active: true,
@@ -109,6 +118,42 @@ export default class Wrapper extends Component {
 
         if (screenType === "Dashboard") {
             return <Dashboard/>;
+        }
+
+        if (screenType === "CreateSensorType") {
+            return <CreateSensorType/>;
+        }
+
+        if (screenType === "ImportSensorType") {
+            return <ImportSensorType/>;
+        }
+
+        if (screenType === "ActionLog") {
+            return <ActionLog/>;
+        }
+
+        if (screenType === "CreateGatewayRule") {
+            return <CreateGatewayRule/>;
+        }
+
+        if (screenType === "CreateCloudRule") {
+            return <CreateCloudRule/>;
+        }
+
+        if (screenType === "DeviceControl") {
+            return <DeviceControl/>;
+        }
+
+        if (screenType === "DeviceDetail") {
+            return <DeviceDetail/>;
+        }
+
+        if (screenType === "SendConfiguration") {
+            return <SendConfiguration/>;
+        }
+
+        if (screenType === "SendMessage") {
+            return <SendMessage/>;
         }
 
         if (screenType === "DeviceList") {

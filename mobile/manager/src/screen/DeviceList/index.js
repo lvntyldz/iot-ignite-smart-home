@@ -1,19 +1,5 @@
 import React, {Component} from 'react';
-import {
-    Badge,
-    Body,
-    Button,
-    Container,
-    Content,
-    Header,
-    Icon,
-    Left,
-    ListItem,
-    Right,
-    Separator,
-    Text,
-    Title,
-} from 'native-base';
+import {Body, Button, Container, Content, Header, Icon, Left, ListItem, Right, Text, Title,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as device from 'MgrLib/device';
@@ -32,15 +18,6 @@ export default class DeviceList extends Component {
 }
 
 export class DeviceListContext extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            rerender: false,
-            devices: {}
-        }
-    }
-
     componentWillMount = () => {
         const {context} = this.props;
 
@@ -51,7 +28,6 @@ export class DeviceListContext extends Component {
             context.hideLoading();
         });
     }
-
     handleClickDevice = (d) => {
         const {context} = this.props;
         workingset.empty(context.token).then(code => {
@@ -60,6 +36,15 @@ export class DeviceListContext extends Component {
             context.setActivePage("DeviceControl");
         });
 
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            rerender: false,
+            devices: {}
+        }
     }
 
     render() {

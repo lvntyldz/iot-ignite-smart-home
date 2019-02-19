@@ -1,7 +1,8 @@
-import React, {Component } from 'react';
+import React from 'react';
+
 const {Provider, Consumer} = React.createContext();
 
 const CtxProvider = Provider;
 const CtxConsumer = Consumer;
 
-export { CtxProvider, CtxConsumer }
+export {CtxProvider, CtxConsumer}

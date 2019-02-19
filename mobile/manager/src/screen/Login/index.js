@@ -19,14 +19,6 @@ import * as userDb from 'MgrLib/db/user';
 import {CtxConsumer} from 'MgrBoot/Container';
 
 export default class Login extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            email: null,
-            password: null
-        }
-    }
-
     componentWillMount = () => {
         userDb.getLastRemembered().then(r => {
             if (!r) {
@@ -35,7 +27,6 @@ export default class Login extends Component {
             this.setState({email: r.email, password: r.password});
         });
     }
-
     handleLoginClick = (context) => {
 
         context.showLoading();
@@ -47,6 +38,14 @@ export default class Login extends Component {
             context.hideSideBar();
             context.hideLoading();
         });
+    }
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: null,
+            password: null
+        }
     }
 
     render() {
