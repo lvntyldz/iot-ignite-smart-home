@@ -4,17 +4,16 @@ import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import Drawer from 'react-native-drawer'
 
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
-import SensorType from 'MgrScreen/SensorType';
 import Dashboard from 'MgrScreen/Dashboard';
+
+import CreateSensorType from 'MgrScreen/SensorType/Create';
+import ImportSensorType from 'MgrScreen/SensorType/Import';
 
 import DeviceControl from 'MgrScreen/Device/Control';
 import DeviceControlData from 'MgrScreen/Device/Control/Data';
-import DeviceList from 'MgrScreen/Device/List';
 import DeviceDetail from 'MgrScreen/Device/Detail';
 import DeviceDetailData from 'MgrScreen/Device/Detail/Data';
 
-import CreateSensorType from 'MgrScreen/CreateSensorType';
-import ImportSensorType from 'MgrScreen/ImportSensorType';
 import CreateCloudRule from 'MgrScreen/CreateCloudRule';
 import CreateGatewayRule from 'MgrScreen/CreateGatewayRule';
 import ActionLog from 'MgrScreen/ActionLog';
@@ -124,6 +123,22 @@ export default class Wrapper extends Component {
             return <Dashboard/>;
         }
 
+        if (screenType === "DeviceControl") {
+            return <DeviceControl/>;
+        }
+
+        if (screenType === "DeviceControlData") {
+            return <DeviceControlData/>;
+        }
+
+        if (screenType === "DeviceDetail") {
+            return <DeviceDetail/>;
+        }
+
+        if (screenType === "DeviceDetailData") {
+            return <DeviceDetailData/>;
+        }
+
         if (screenType === "CreateSensorType") {
             return <CreateSensorType/>;
         }
@@ -144,22 +159,6 @@ export default class Wrapper extends Component {
             return <CreateCloudRule/>;
         }
 
-        if (screenType === "DeviceControl") {
-            return <DeviceControl/>;
-        }
-
-        if (screenType === "DeviceControlData") {
-            return <DeviceControlData/>;
-        }
-
-        if (screenType === "DeviceDetail") {
-            return <DeviceDetail/>;
-        }
-
-        if (screenType === "DeviceDetailData") {
-            return <DeviceDetailData/>;
-        }
-
         if (screenType === "SendConfiguration") {
             return <SendConfiguration/>;
         }
@@ -168,17 +167,6 @@ export default class Wrapper extends Component {
             return <SendMessage/>;
         }
 
-        if (screenType === "DeviceList") {
-            return <DeviceList/>;
-        }
-
-        if (screenType === "SensorType") {
-            return <SensorType/>;
-        }
-
-        if (screenType === "DeviceControl") {
-            return <DeviceControl/>;
-        }
 
         return <Login/>;
     }
