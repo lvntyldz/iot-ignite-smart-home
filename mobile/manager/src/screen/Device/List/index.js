@@ -32,7 +32,8 @@ export class DeviceListContext extends Component {
         const {context} = this.props;
         workingset.empty(context.token).then(code => {
             context.setWorkingset(code);
-            context.setDevice(d);
+            context.setDevice(d.code);
+            context.setDeviceId(d.deviceId);
             context.setActivePage(this.props.goTo || "DeviceDetail");
         });
 
@@ -61,7 +62,7 @@ export class DeviceListContext extends Component {
                     {
                         devices.content.map((v) => {
                             return (
-                                <ListItem key={v.code} button={true} onPress={(d) => this.handleClickDevice(v.code)}>
+                                <ListItem key={v.code} button={true} onPress={(d) => this.handleClickDevice(v)}>
                                     <Body>
                                     <Text>{v.model}</Text>
                                     <Text note>{v.deviceId}</Text>

@@ -56,7 +56,7 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem icon style={context.screenType === "ActionLog" ? activeStyle : {}}>
+                                <ListItem icon style={context.screenType === "ActionLog" || context.screenType === "ActionLogData" ? activeStyle : {}}>
                                     <Left>
                                         <Button onPress={() => context.changeScreenByType("ActionLog")}
                                                 style={{backgroundColor: "#007AFF"}}>

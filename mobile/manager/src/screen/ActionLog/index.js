@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title,} from 'native-base';
+import {Body, Button, Container, Content, Header, Icon, Left, Right, Title,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
+import DeviceList from 'MgrScreen/Device/List';
+
 
 export default class ActionLog extends Component {
     render() {
@@ -42,7 +44,7 @@ export class ActionLogContext extends Component {
                 </Header>
 
                 <Content>
-                    <Text>ActionLog will be here</Text>
+                    <DeviceList goTo="ActionLogData"/>
                 </Content>
             </Container>
         );//return

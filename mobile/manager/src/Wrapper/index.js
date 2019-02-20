@@ -6,6 +6,9 @@ import Drawer from 'react-native-drawer'
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
 import Dashboard from 'MgrScreen/Dashboard';
 
+import ActionLog from 'MgrScreen/ActionLog';
+import ActionLogData from 'MgrScreen/ActionLog/Data';
+
 import CreateSensorType from 'MgrScreen/SensorType/Create';
 import ImportSensorType from 'MgrScreen/SensorType/Import';
 
@@ -16,7 +19,6 @@ import DeviceDetailData from 'MgrScreen/Device/Detail/Data';
 
 import CreateCloudRule from 'MgrScreen/CreateCloudRule';
 import CreateGatewayRule from 'MgrScreen/CreateGatewayRule';
-import ActionLog from 'MgrScreen/ActionLog';
 import SendConfiguration from 'MgrScreen/SendConfiguration';
 import SendMessage from 'MgrScreen/SendMessage';
 import Login from '../screen/Login';
@@ -32,6 +34,7 @@ class AppProvider extends Component {
 
         this.state = {
             device: null,
+            deviceId: null,
             workingset: null,
             token: null,
             screenType: "Login",
@@ -73,6 +76,9 @@ class AppProvider extends Component {
             },
             setDevice: (d) => {
                 this.setState({device: d});
+            },
+            setDeviceId: (d) => {
+                this.setState({deviceId: d});
             },
             setWorkingset: (d) => {
                 this.setState({workingset: d});
@@ -123,6 +129,14 @@ export default class Wrapper extends Component {
             return <Dashboard/>;
         }
 
+        if (screenType === "ActionLog") {
+            return <ActionLog/>;
+        }
+
+        if (screenType === "ActionLogData") {
+            return <ActionLogData/>;
+        }
+
         if (screenType === "DeviceControl") {
             return <DeviceControl/>;
         }
@@ -145,10 +159,6 @@ export default class Wrapper extends Component {
 
         if (screenType === "ImportSensorType") {
             return <ImportSensorType/>;
-        }
-
-        if (screenType === "ActionLog") {
-            return <ActionLog/>;
         }
 
         if (screenType === "CreateGatewayRule") {
