@@ -20,7 +20,10 @@ import DeviceDetailData from 'MgrScreen/Device/Detail/Data';
 import CreateCloudRule from 'MgrScreen/CreateCloudRule';
 import CreateGatewayRule from 'MgrScreen/CreateGatewayRule';
 import SendConfiguration from 'MgrScreen/SendConfiguration';
+
 import SendMessage from 'MgrScreen/SendMessage';
+import SendMessageData from 'MgrScreen/SendMessage/Data';
+
 import Login from '../screen/Login';
 import * as db from 'MgrLib/db';
 import SideBar from './SideBar';
@@ -177,6 +180,9 @@ export default class Wrapper extends Component {
             return <SendMessage/>;
         }
 
+        if (screenType === "SendMessageData") {
+            return <SendMessageData/>;
+        }
 
         return <Login/>;
     }

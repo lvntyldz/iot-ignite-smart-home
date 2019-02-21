@@ -93,3 +93,18 @@ export const restartDevice = (token, workingset) => {
             });
     });
 }
+
+export const sendMessage = (token, workingset, data) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/workingset/" + workingset + "/control/message", data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post(true)
+            .then(r => {
+                console.log("send message  Workingset Response   : ", r);
+                resolve(r);
+            });
+    });
+}

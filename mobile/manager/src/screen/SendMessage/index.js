@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title,} from 'native-base';
+import {Body, Button, Container, Content, Header, Icon, Left, Right, Title,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
+import DeviceList from 'MgrScreen/Device/List';
 
 export default class SendMessage extends Component {
     render() {
@@ -42,7 +43,7 @@ export class SendMessageContext extends Component {
                 </Header>
 
                 <Content>
-                    <Text>SendMessage will be here</Text>
+                    <DeviceList goTo="SendMessageData"/>
                 </Content>
             </Container>
         );//return
