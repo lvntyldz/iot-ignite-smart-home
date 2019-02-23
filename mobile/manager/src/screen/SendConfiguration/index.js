@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
+import DeviceList from 'MgrScreen/Device/List';
 
 export default class SendConfiguration extends Component {
     render() {
@@ -42,7 +43,7 @@ export class SendConfigurationContext extends Component {
                 </Header>
 
                 <Content>
-                    <Text>SendConfiguration will be here</Text>
+                    <DeviceList goTo="SendConfigurationData"/>
                 </Content>
             </Container>
         );//return

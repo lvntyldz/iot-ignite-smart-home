@@ -19,7 +19,9 @@ import DeviceDetailData from 'MgrScreen/Device/Detail/Data';
 
 import CreateCloudRule from 'MgrScreen/CreateCloudRule';
 import CreateGatewayRule from 'MgrScreen/CreateGatewayRule';
+
 import SendConfiguration from 'MgrScreen/SendConfiguration';
+import SendConfigurationData from 'MgrScreen/SendConfiguration/Data';
 
 import SendMessage from 'MgrScreen/SendMessage';
 import SendMessageData from 'MgrScreen/SendMessage/Data';
@@ -174,6 +176,10 @@ export default class Wrapper extends Component {
 
         if (screenType === "SendConfiguration") {
             return <SendConfiguration/>;
+        }
+
+        if (screenType === "SendConfigurationData") {
+            return <SendConfigurationData/>;
         }
 
         if (screenType === "SendMessage") {

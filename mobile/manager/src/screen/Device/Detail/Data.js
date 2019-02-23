@@ -15,7 +15,7 @@ import {
 } from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
-import * as device from "../../../lib/device";
+import * as device from "MgrLib/device";
 
 
 export default class DeviceDetailData extends Component {
