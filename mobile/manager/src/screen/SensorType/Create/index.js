@@ -82,6 +82,7 @@ export class CreateSensorTypeContext extends Component {
             console.info("add sensor operation is success");
             this.setModalVisible(false);
             SensorTypeListRef.setState({rerender: !SensorTypeListRef.state.rerender});
+            context.showMessage("Sensor Başarıyla Eklendi!").succes();
         });
     }
 

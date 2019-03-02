@@ -41,9 +41,9 @@ export default class SensorTypeList extends Component {
         sensor.remove(context.token, sensorId).then(response => {
             console.info("delete sensor operation is success");
             this.setState({rerender: !this.state.rerender});
+            context.showMessage("Sensor Başarıyla Silindi!").succes();
         });
     }
-
 
     render() {
         const {sensors} = this.state;

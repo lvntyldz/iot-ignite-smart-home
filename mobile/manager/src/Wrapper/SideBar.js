@@ -92,7 +92,7 @@ export default class SideBar extends Component {
                                     <Text>Send Conf(Mode/Policy)</Text>
                                     </Body>
                                 </ListItem>
-                                
+
                                 <ListItem button={true} onPress={() => context.changeScreenByType("DeviceDetail")} icon
                                           style={context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData" ? activeStyle : {}}>
                                     <Left>
