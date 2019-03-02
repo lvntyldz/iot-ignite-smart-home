@@ -38,6 +38,7 @@ export class DeviceControlDataContext extends Component {
         workingset.startRing(context.token, context.workingset).then(response => {
             console.info("ring started...");
             context.hideLoading();
+            context.showMessage("Start Ring Komutu Cihaza Başarıyla Gönderildi!").succes();
         });
     }
     handleStopRingClick = () => {
@@ -48,6 +49,7 @@ export class DeviceControlDataContext extends Component {
         workingset.ringstop(context.token, context.workingset).then(response => {
             console.info("ring stopped...");
             context.hideLoading();
+            context.showMessage("Stop Ring Komutu Cihaza Başarıyla Gönderildi!").succes();
         });
     }
     handleRestartClick = () => {
@@ -58,7 +60,7 @@ export class DeviceControlDataContext extends Component {
         workingset.restartDevice(context.token, context.workingset).then(response => {
             console.info("device rebooted...");
             context.hideLoading();
-
+            context.showMessage("Reboot Komutu Cihaza Başarıyla Gönderildi!").succes();
         });
     }
 
