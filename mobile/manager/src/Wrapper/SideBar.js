@@ -169,6 +169,19 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
+                                <ListItem button={true} onPress={() => context.changeScreenByType("CreateSensorDataConf")}
+                                          icon
+                                          style={context.screenType === "CreateSensorDataConf" ? activeStyle : {}}>
+                                    <Left>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                            <Icon active name="wifi"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>CreateSensorDataConf</Text>
+                                    </Body>
+                                </ListItem>
+
                             </Content>
 
                             <Footer style={{bottom: 10}}>

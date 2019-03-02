@@ -74,3 +74,36 @@ export const remove = (token, sensorId) => {
             });
     });
 }
+
+
+
+export const createConfig = (token, data) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device-config/type", data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post()
+            .then(r => {
+                console.log("Api Create Sensor Configuration Response  : ", r);
+                resolve(r);
+            });
+    });
+}
+
+
+export const listConfig = (token) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device-config/type?sensorType=", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                console.log("Api Sensor Configurations Response  : ", r);
+                resolve(r);
+            });
+    });
+}

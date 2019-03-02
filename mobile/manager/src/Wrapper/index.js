@@ -12,6 +12,8 @@ import ActionLogData from 'MgrScreen/ActionLog/Data';
 import CreateSensorType from 'MgrScreen/SensorType/Create';
 import ImportSensorType from 'MgrScreen/SensorType/Import';
 
+import CreateSensorDataConf from 'MgrScreen/SensorDataConf/Create';
+
 import DeviceControl from 'MgrScreen/Device/Control';
 import DeviceControlData from 'MgrScreen/Device/Control/Data';
 import DeviceDetail from 'MgrScreen/Device/Detail';
@@ -164,6 +166,10 @@ export default class Wrapper extends Component {
 
         if (screenType === "ImportSensorType") {
             return <ImportSensorType/>;
+        }
+
+        if (screenType === "CreateSensorDataConf") {
+            return <CreateSensorDataConf/>;
         }
 
         if (screenType === "CreateGatewayRule") {
