@@ -44,10 +44,10 @@ export default class SideBar extends Component {
 
                             <Content>
 
-                                <ListItem icon style={context.screenType === "Dashboard" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("Dashboard")} icon
+                                          style={context.screenType === "Dashboard" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("Dashboard")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="pie"/>
                                         </Button>
                                     </Left>
@@ -56,10 +56,10 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem icon style={context.screenType === "ActionLog" || context.screenType === "ActionLogData" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("ActionLog")} icon
+                                          style={context.screenType === "ActionLog" || context.screenType === "ActionLogData" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("ActionLog")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
@@ -68,10 +68,10 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem icon style={context.screenType === "SendMessage" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("SendMessage")} icon
+                                          style={context.screenType === "SendMessage" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("SendMessage")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
@@ -80,10 +80,11 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem icon style={context.screenType === "SendConfiguration" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("SendConfiguration")}
+                                          icon
+                                          style={context.screenType === "SendConfiguration" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("SendConfiguration")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
@@ -91,13 +92,11 @@ export default class SideBar extends Component {
                                     <Text>Send Conf(Mode/Policy)</Text>
                                     </Body>
                                 </ListItem>
-
-
-                                <ListItem icon
+                                
+                                <ListItem button={true} onPress={() => context.changeScreenByType("DeviceDetail")} icon
                                           style={context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("DeviceDetail")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="phone-portrait"/>
                                         </Button>
                                     </Left>
@@ -106,12 +105,10 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-
-                                <ListItem icon
+                                <ListItem button={true} onPress={() => context.changeScreenByType("DeviceControl")} icon
                                           style={context.screenType === "DeviceControl" || context.screenType === "DeviceControlData" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("DeviceControl")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="phone-portrait"/>
                                         </Button>
                                     </Left>
@@ -120,11 +117,11 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-
-                                <ListItem icon style={context.screenType === "CreateSensorType" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("CreateSensorType")}
+                                          icon
+                                          style={context.screenType === "CreateSensorType" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("CreateSensorType")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="wifi"/>
                                         </Button>
                                     </Left>
@@ -133,11 +130,11 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-
-                                <ListItem icon style={context.screenType === "ImportSensorType" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("ImportSensorType")}
+                                          icon
+                                          style={context.screenType === "ImportSensorType" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("ImportSensorType")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="wifi"/>
                                         </Button>
                                     </Left>
@@ -146,11 +143,11 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-
-                                <ListItem icon style={context.screenType === "CreateCloudRule" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("CreateCloudRule")}
+                                          icon
+                                          style={context.screenType === "CreateCloudRule" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("CreateCloudRule")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
@@ -159,11 +156,11 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-
-                                <ListItem icon style={context.screenType === "CreateGatewayRule" ? activeStyle : {}}>
+                                <ListItem button={true} onPress={() => context.changeScreenByType("CreateGatewayRule")}
+                                          icon
+                                          style={context.screenType === "CreateGatewayRule" ? activeStyle : {}}>
                                     <Left>
-                                        <Button onPress={() => context.changeScreenByType("CreateGatewayRule")}
-                                                style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
