@@ -75,8 +75,6 @@ export const remove = (token, sensorId) => {
     });
 }
 
-
-
 export const createConfig = (token, data) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/device-config/type", data)
@@ -92,7 +90,6 @@ export const createConfig = (token, data) => {
     });
 }
 
-
 export const listConfig = (token) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/device-config/type?sensorType=", {})
@@ -103,6 +100,21 @@ export const listConfig = (token) => {
             .get()
             .then(r => {
                 console.log("Api Sensor Configurations Response  : ", r);
+                resolve(r);
+            });
+    });
+}
+
+export const removeConfig = (token, confId) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device-config/type/" + confId, {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .delete(true)
+            .then(r => {
+                console.log("Api Remove Sensor Configuration Response  : ", r);
                 resolve(r);
             });
     });

@@ -34,11 +34,11 @@ export default class SensorDataConfList extends Component {
         }
     }
 
-    handleDeleteSensorClick = (sensorId) => {
+    handleDeleteSensorConfClick = (confId) => {
 
         const {context} = this.props;
 
-        sensor.remove(context.token, sensorId).then(response => {
+        sensor.removeConfig(context.token, confId).then(response => {
             console.info("delete sensor operation is success");
             this.setState({rerender: !this.state.rerender});
             context.showMessage("Sensor Başarıyla Silindi!").succes();
@@ -64,7 +64,7 @@ export default class SensorDataConfList extends Component {
                                         <Text note numberOfLines={1}>{v.config}</Text>
                                         </Body>
                                         <Right>
-                                            <Button transparent onPress={(d) => this.handleDeleteSensorClick(v.id)}>
+                                            <Button transparent onPress={(d) => this.handleDeleteSensorConfClick(v.id)}>
                                                 <Badge danger>
                                                     <Icon name="trash"
                                                           style={{fontSize: 22, color: "#fff", lineHeight: 20}}/>
