@@ -42,14 +42,16 @@ export class SendMessageDataContext extends Component {
         }
     }
 
-    handleLoginClick = () => {
+    handleSendMessageClick = () => {
         const {context} = this.props;
-        
+
         context.showLoading();
 
         workingset.sendMessage(context.token, context.workingset, {message: this.state.message}).then(count => {
             console.info("send message to workingset operation is success");
             context.hideLoading();
+            context.showMessage("Mesajınız Cihaza Başarıyla Gönderildi!").succes();
+            this.setState({message:null});
         });
     }
 
@@ -84,7 +86,7 @@ export class SendMessageDataContext extends Component {
                         </FormItem>
 
                         <Button full primary style={{paddingBottom: 4}}
-                                onPress={(c) => this.handleLoginClick(context)}>
+                                onPress={(c) => this.handleSendMessageClick(context)}>
                             <Text> Send Message </Text>
                         </Button>
 
