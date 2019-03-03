@@ -17,7 +17,7 @@ import {
 } from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
-import * as sensor from 'MgrLib/sensor';
+import * as profile from 'MgrLib/profile';
 import ModeSensorTypeConfList from 'MgrScreen/Mode/SensorTypeConf/List';
 
 export default class ImportModeSensorTypeConf extends Component {
@@ -39,19 +39,35 @@ export class ImportModeSensorTypeConfContext extends Component {
         this.state = {
             modalVisible: false,
             rerender: false,
-            preDefinedSensors: []
+            notInSensors: []
         }
+    }
+
+    componentDidMount = async () => {
+        const {context} = this.props;
+        const mode = await profile.getDefaultMode(context.token);
+        console.info("mode : ", mode);
+        this.setState({mode});
     }
 
     handleImportSensorClick = () => {
 
-        sensor.getPreDefinedList(this.props.context.token).then(preDefinedSensors => {
-            this.setState({preDefinedSensors, modalVisible: true});
+        //getNotInSensorTypeConfig
+        const {context} = this.props;
+        const {mode} = this.state;
+        context.showLoading();
+
+        profile.getNotInSensorTypeConfig(context.token, mode.code).then(notInSensors => {
+            console.info(notInSensors);
+
+            this.setState({notInSensors,modalVisible: true});
+            context.hideLoading();
         });
+        
     }
 
     importPreDefinedSensor = () => {
-        const {preDefinedSensors} = this.state;
+        const {notInSensors} = this.state;
         const {context} = this.props;
 
         return <Container>
@@ -70,7 +86,7 @@ export class ImportModeSensorTypeConfContext extends Component {
             <Content>
                 <List>
                     {
-                        preDefinedSensors.map((v, k) => {
+                        notInSensors.map((v, k) => {
 
                             return (
                                 <ListItem key={v.id} thumbnail>

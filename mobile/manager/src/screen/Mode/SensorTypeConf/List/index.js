@@ -3,6 +3,7 @@ import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
 //custom
 import * as sensor from 'MgrLib/sensor';
+import * as profile from 'MgrLib/profile';
 
 export default class ModeSensorTypeConfList extends Component {
 
@@ -11,20 +12,32 @@ export default class ModeSensorTypeConfList extends Component {
 
         this.state = {
             rerender: false,
+            mode: {
+                name: null,
+                code: null
+            },
             sensors: [],
         }
     }
 
     loadSesnsorListFromApi = () => {
         const {context} = this.props;
+        const {mode} = this.state;
         context.showLoading();
-        sensor.getList(context.token).then(sensors => {
+
+        profile.getSensorTypeConfig(context.token, mode.code).then(sensors => {
+            console.info(sensors);
+
             this.setState({sensors});
             context.hideLoading();
         });
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
+        const {context} = this.props;
+        const mode = await profile.getDefaultMode(context.token);
+        console.info("mode : ", mode);
+        this.setState({mode});
         this.loadSesnsorListFromApi();
     }
 
@@ -47,7 +60,6 @@ export default class ModeSensorTypeConfList extends Component {
 
     render() {
         const {sensors} = this.state;
-        const {context} = this.props;
 
         return (
             <Container>
@@ -76,7 +88,7 @@ export default class ModeSensorTypeConfList extends Component {
                             })
                         }
                     </List>
-                    
+
                 </Content>
             </Container>
         );//return
