@@ -24,7 +24,9 @@ export default class Login extends Component {
             if (!r) {
                 return;
             }
-            this.setState({email: r.email, password: r.password});
+            //TODO:Remove
+            //this.setState({email: r.email, password: r.password});
+            this.setState({email: "zxfvttxf@sharklasers.com", password: r.password});
         });
     }
     handleLoginClick = (context) => {
@@ -34,7 +36,9 @@ export default class Login extends Component {
             tokenDb.addToken(token);
             userDb.updateLoginUser(this.state.email, this.state.password);
             context.setToken(token);
-            context.setActivePage("Dashboard");
+            //TODO:Remove
+            context.setActivePage("DeviceControl");
+            //context.setActivePage("Dashboard");
             context.hideSideBar();
             context.hideLoading();
         });
