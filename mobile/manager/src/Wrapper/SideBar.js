@@ -169,7 +169,8 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem button={true} onPress={() => context.changeScreenByType("CreateSensorDataConf")}
+                                <ListItem button={true}
+                                          onPress={() => context.changeScreenByType("CreateSensorDataConf")}
                                           icon
                                           style={context.screenType === "CreateSensorDataConf" ? activeStyle : {}}>
                                     <Left>
@@ -182,7 +183,8 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem button={true} onPress={() => context.changeScreenByType("ImportModeSensorTypeConf")}
+                                <ListItem button={true}
+                                          onPress={() => context.changeScreenByType("ImportModeSensorTypeConf")}
                                           icon
                                           style={context.screenType === "ImportModeSensorTypeConf" ? activeStyle : {}}>
                                     <Left>
@@ -192,6 +194,20 @@ export default class SideBar extends Component {
                                     </Left>
                                     <Body>
                                     <Text>ImportModeSensorTypeConf</Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem button={true}
+                                          onPress={() => context.changeScreenByType("ImportModeSensorInventoryConf")}
+                                          icon
+                                          style={context.screenType === "ImportModeSensorInventoryConf" ? activeStyle : {}}>
+                                    <Left>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                            <Icon active name="wifi"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>ImportModeSensorInventoryConf</Text>
                                     </Body>
                                 </ListItem>
 

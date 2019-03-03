@@ -13,6 +13,7 @@ import CreateSensorType from 'MgrScreen/SensorType/Create';
 import ImportSensorType from 'MgrScreen/SensorType/Import';
 
 import ImportModeSensorTypeConf from 'MgrScreen/Mode/SensorTypeConf/Import';
+import ImportModeSensorInventoryConf from 'MgrScreen/Mode/SensorTypeConf/Import';
 
 import CreateSensorDataConf from 'MgrScreen/SensorDataConf/Create';
 
@@ -172,6 +173,10 @@ export default class Wrapper extends Component {
 
         if (screenType === "ImportModeSensorTypeConf") {
             return <ImportModeSensorTypeConf/>;
+        }
+
+        if (screenType === "ImportModeSensorInventoryConf") {
+            return <ImportModeSensorInventoryConf/>;
         }
 
         if (screenType === "CreateSensorDataConf") {
