@@ -15,23 +15,23 @@ import {
     Title,
 } from 'native-base';
 //custom
-import {CtxConsumer} from 'MgrBoot/Container';
-import * as profile from "MgrLib/profile";
+import {CtxConsumer} from '../../../boot/Container/index';
+import * as profile from "../../../lib/profile/index";
 
 
-export default class SendConfigurationData extends Component {
+export default class SendProfileData extends Component {
     render() {
         return (
             <CtxConsumer>
                 {(context) => {
-                    return <SendConfigurationDataContext context={context}/>;
+                    return <SendProfileDataContext context={context}/>;
                 }}
             </CtxConsumer>
         );//return
     }//render
 }
 
-export class SendConfigurationDataContext extends Component {
+export class SendProfileDataContext extends Component {
     constructor(props) {
         super(props)
 

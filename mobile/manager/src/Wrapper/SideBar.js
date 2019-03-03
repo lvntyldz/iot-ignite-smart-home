@@ -80,9 +80,9 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
-                                <ListItem button={true} onPress={() => context.changeScreenByType("SendConfiguration")}
+                                <ListItem button={true} onPress={() => context.changeScreenByType("SendProfile")}
                                           icon
-                                          style={context.screenType === "SendConfiguration" ? activeStyle : {}}>
+                                          style={context.screenType === "SendProfile" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#007AFF"}}>
                                             <Icon active name="cog"/>

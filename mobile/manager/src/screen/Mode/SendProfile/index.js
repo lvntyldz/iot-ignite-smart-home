@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
 import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title,} from 'native-base';
 //custom
-import {CtxConsumer} from 'MgrBoot/Container';
-import DeviceList from 'MgrScreen/Device/List';
+import {CtxConsumer} from '../../../boot/Container/index';
+import DeviceList from '../../Device/List/index';
 
-export default class SendConfiguration extends Component {
+export default class SendProfile extends Component {
     render() {
         return (
             <CtxConsumer>
                 {(context) => {
-                    return <SendConfigurationContext context={context}/>;
+                    return <SendProfileContext context={context}/>;
                 }}
             </CtxConsumer>
         );//return
     }//render
 }
 
-export class SendConfigurationContext extends Component {
+export class SendProfileContext extends Component {
     constructor(props) {
         super(props)
 
@@ -32,7 +32,7 @@ export class SendConfigurationContext extends Component {
             <Container>
                 <Header>
                     <Body>
-                    <Title>SendConfiguration</Title>
+                    <Title>SendProfile</Title>
                     </Body>
                     <Left/>
                     <Right>
@@ -43,7 +43,7 @@ export class SendConfigurationContext extends Component {
                 </Header>
 
                 <Content>
-                    <DeviceList goTo="SendConfigurationData"/>
+                    <DeviceList goTo="SendProfileData"/>
                 </Content>
             </Container>
         );//return
