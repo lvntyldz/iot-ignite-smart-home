@@ -182,6 +182,19 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
+                                <ListItem button={true} onPress={() => context.changeScreenByType("ImportModeSensorTypeConf")}
+                                          icon
+                                          style={context.screenType === "ImportModeSensorTypeConf" ? activeStyle : {}}>
+                                    <Left>
+                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                            <Icon active name="wifi"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>ImportModeSensorTypeConf</Text>
+                                    </Body>
+                                </ListItem>
+
                             </Content>
 
                             <Footer style={{bottom: 10}}>
