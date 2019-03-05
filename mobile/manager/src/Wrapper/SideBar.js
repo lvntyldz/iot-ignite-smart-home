@@ -47,7 +47,7 @@ export default class SideBar extends Component {
                                 <ListItem button={true} onPress={() => context.changeScreenByType("Dashboard")} icon
                                           style={context.screenType === "Dashboard" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="pie"/>
                                         </Button>
                                     </Left>
@@ -59,7 +59,7 @@ export default class SideBar extends Component {
                                 <ListItem button={true} onPress={() => context.changeScreenByType("ActionLog")} icon
                                           style={context.screenType === "ActionLog" || context.screenType === "ActionLogData" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
@@ -71,7 +71,7 @@ export default class SideBar extends Component {
                                 <ListItem button={true} onPress={() => context.changeScreenByType("SendMessage")} icon
                                           style={context.screenType === "SendMessage" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
@@ -84,7 +84,7 @@ export default class SideBar extends Component {
                                           icon
                                           style={context.screenType === "SendProfile" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="cog"/>
                                         </Button>
                                     </Left>
@@ -96,7 +96,7 @@ export default class SideBar extends Component {
                                 <ListItem button={true} onPress={() => context.changeScreenByType("DeviceDetail")} icon
                                           style={context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="phone-portrait"/>
                                         </Button>
                                     </Left>
@@ -108,7 +108,7 @@ export default class SideBar extends Component {
                                 <ListItem button={true} onPress={() => context.changeScreenByType("DeviceControl")} icon
                                           style={context.screenType === "DeviceControl" || context.screenType === "DeviceControlData" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="phone-portrait"/>
                                         </Button>
                                     </Left>
@@ -121,7 +121,7 @@ export default class SideBar extends Component {
                                           icon
                                           style={context.screenType === "CreateSensorType" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="wifi"/>
                                         </Button>
                                     </Left>
@@ -134,7 +134,7 @@ export default class SideBar extends Component {
                                           icon
                                           style={context.screenType === "ImportSensorType" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="wifi"/>
                                         </Button>
                                     </Left>
@@ -174,7 +174,7 @@ export default class SideBar extends Component {
                                           icon
                                           style={context.screenType === "CreateSensorDataConf" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="wifi"/>
                                         </Button>
                                     </Left>
@@ -188,7 +188,7 @@ export default class SideBar extends Component {
                                           icon
                                           style={context.screenType === "ImportModeSensorTypeConf" ? activeStyle : {}}>
                                     <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
+                                        <Button style={{backgroundColor: "#60B760"}}>
                                             <Icon active name="wifi"/>
                                         </Button>
                                     </Left>
