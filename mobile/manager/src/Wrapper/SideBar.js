@@ -60,7 +60,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "ActionLog" || context.screenType === "ActionLogData" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#60B760"}}>
-                                            <Icon active name="cog"/>
+                                            <Icon active name="ios-analytics"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -72,7 +72,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "SendMessage" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#60B760"}}>
-                                            <Icon active name="cog"/>
+                                            <Icon active name="ios-mail"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -85,7 +85,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "SendProfile" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#60B760"}}>
-                                            <Icon active name="cog"/>
+                                            <Icon active name="ios-construct"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -97,7 +97,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#60B760"}}>
-                                            <Icon active name="phone-portrait"/>
+                                            <Icon active name="md-search"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -122,7 +122,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "CreateSensorType" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#60B760"}}>
-                                            <Icon active name="wifi"/>
+                                            <Icon active name="ios-thermometer"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -148,7 +148,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "CreateCloudRule" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#007AFF"}}>
-                                            <Icon active name="cog"/>
+                                            <Icon active name="md-alarm"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -161,7 +161,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "CreateGatewayRule" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#007AFF"}}>
-                                            <Icon active name="cog"/>
+                                            <Icon active name="md-notifications-outline"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -175,7 +175,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "CreateSensorDataConf" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#60B760"}}>
-                                            <Icon active name="wifi"/>
+                                            <Icon active name="md-settings"/>
                                         </Button>
                                     </Left>
                                     <Body>
@@ -189,7 +189,7 @@ export default class SideBar extends Component {
                                           style={context.screenType === "ImportModeSensorTypeConf" ? activeStyle : {}}>
                                     <Left>
                                         <Button style={{backgroundColor: "#60B760"}}>
-                                            <Icon active name="wifi"/>
+                                            <Icon active name="md-planet"/>
                                         </Button>
                                     </Left>
                                     <Body>
