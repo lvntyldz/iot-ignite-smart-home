@@ -199,7 +199,11 @@ export class ActionLogDataContext extends Component {
 
     render() {
         const {context} = this.props;
-        const {content} = this.state.summary;
+        let {content} = this.state.summary;
+
+        if (!content) {
+            content = [];
+        }
 
         return (
             <Container>

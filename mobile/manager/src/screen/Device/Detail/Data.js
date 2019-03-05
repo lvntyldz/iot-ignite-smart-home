@@ -36,29 +36,34 @@ export class DeviceDetailDataContext extends Component {
 
         this.state = {
             rerender: false,
-            device: {
-                code: null,
-                id: null,
-                presence: {},
-                location: {},
-                battery: {},
-                network: {
-                    wifi: {},
-                    bluetooth: {}
-                },
-                storage: {},
-                osProfile: {},
-                currentUser: {
-                    profile: {
-                        policy: {}
-                    }
-                },
-                users: [],
-                adminArea: {},
-                activePolicy: {},
-                links: []
+            device: this.getDefaultDeviceState()
+        }
+    }
 
-            }
+    getDefaultDeviceState = () => {
+        return {
+            code: null,
+            id: null,
+            presence: {},
+            location: {},
+            battery: {},
+            network: {
+                wifi: {},
+                bluetooth: {}
+            },
+            storage: {},
+            osProfile: {},
+            currentUser: {
+                profile: {
+                    policy: {}
+                }
+            },
+            users: [],
+            adminArea: {},
+            activePolicy: {},
+            links: []
+
+
         }
     }
 
@@ -74,11 +79,12 @@ export class DeviceDetailDataContext extends Component {
 
     render() {
         const {context} = this.props;
-        const {device} = this.state;
-        const {osProfile} = device;
+        let {device} = this.state;
+        let {osProfile} = device;
 
-        if (!device) {
-            return null;
+        if (!device || !osProfile) {
+            device = this.getDefaultDeviceState();
+            osProfile = device.osProfile;
         }
 
         return (

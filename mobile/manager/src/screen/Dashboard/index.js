@@ -37,15 +37,15 @@ export class DashboardContext extends Component {
         context.showLoading();
 
         device.getDeviceSummary(context.token).then(summary => {
-            this.setState({summary});
+            this.setState({summary: summary || {}});
         });
 
         device.getDeviceModels(context.token).then(model => {
-            this.setState({model});
+            this.setState({model: model || []});
         });
 
         device.getDeviceOsList(context.token).then(os => {
-            this.setState({os});
+            this.setState({os: os || []});
             context.hideLoading();
         });
     }

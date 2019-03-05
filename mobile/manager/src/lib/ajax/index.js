@@ -120,7 +120,7 @@ export const fetchWrapper = (url, fetchOptions, timeout) => {
             console.info("api JSON response  : ", responseJson);
             return responseJson;
         }).catch((error) => {
-            console.error("something went wrong while http request! error : ", error);
+            console.warn("something went wrong while http request! error : ", error);
         });
 }
 
