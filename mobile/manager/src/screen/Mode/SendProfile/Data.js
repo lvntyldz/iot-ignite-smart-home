@@ -100,6 +100,8 @@ export class SendProfileDataContext extends Component {
 
             this.setState({policy})
             context.hideLoading();
+        }).catch(e => {
+            context.hideLoading();
         });
     }
 
