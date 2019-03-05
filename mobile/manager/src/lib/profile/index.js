@@ -98,9 +98,44 @@ export const getDefaultMode = (token) => {
                             code: v.code
                         }
                     }
-
                 });
                 resolve(mode);
             });
     });
 }
+
+export const addSensorConfigToMode = (token, sensorConfCode, mode, data) => {
+
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile/" + mode + "/sensor-type-configuration/" + sensorConfCode, data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .put(true)
+            .then(r => {
+                console.log("Add sensor type configuration to Mode Response   : ", r);
+                resolve(r);
+            });
+    });
+}
+
+
+export const removeSensorTypeConf = (token, sensorConfCode, mode, data) => {
+
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile/" + mode + "/sensor-type-configuration/" + sensorConfCode, data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .delete(true)
+            .then(r => {
+                console.log("Remove sensor type configuration to Mode Response   : ", r);
+                resolve(r);
+            });
+    });
+}
+
+
+///profile/827577FE-1E05-474E-AEA7-5F0B3A7E2B8D/sensor-type-configuration/9139edad-5dca-4e57-8547-407044b62573

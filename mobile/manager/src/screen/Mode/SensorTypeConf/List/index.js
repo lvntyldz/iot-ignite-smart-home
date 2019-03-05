@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
 //custom
-import * as sensor from 'MgrLib/sensor';
 import * as profile from 'MgrLib/profile';
 
 export default class ModeSensorTypeConfList extends Component {
@@ -50,12 +49,14 @@ export default class ModeSensorTypeConfList extends Component {
     handleDeleteSensorClick = (sensorId) => {
 
         const {context} = this.props;
+        const {mode} = this.state;
 
-        sensor.remove(context.token, sensorId).then(response => {
+        profile.removeSensorTypeConf(context.token, sensorId, mode.code, {}).then(count => {
             console.info("delete sensor operation is success");
             this.setState({rerender: !this.state.rerender});
-            context.showMessage("Sensor Başarıyla Silindi!").succes();
+            context.showMessage("Sensor Configurasyonu Başarıyla Silindi!").succes();
         });
+
     }
 
     render() {

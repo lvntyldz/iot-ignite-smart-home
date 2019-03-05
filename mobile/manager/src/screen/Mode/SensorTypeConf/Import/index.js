@@ -60,10 +60,10 @@ export class ImportModeSensorTypeConfContext extends Component {
         profile.getNotInSensorTypeConfig(context.token, mode.code).then(notInSensors => {
             console.info(notInSensors);
 
-            this.setState({notInSensors,modalVisible: true});
+            this.setState({notInSensors, modalVisible: true});
             context.hideLoading();
         });
-        
+
     }
 
     importPreDefinedSensor = () => {
@@ -116,8 +116,9 @@ export class ImportModeSensorTypeConfContext extends Component {
 
         const {context} = this.props;
         const {ModeSensorTypeConfListRef} = this.refs;
+        const {mode} = this.state;
 
-        sensor.addPreDefined(context.token, {id}).then(count => {
+        profile.addSensorConfigToMode(context.token, id, mode.code, {}).then(count => {
             console.info("add preDefined sensor operation is success");
             this.setModalVisible(false);
             ModeSensorTypeConfListRef.setState({rerender: !ModeSensorTypeConfListRef.state.rerender});
