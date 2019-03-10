@@ -31,6 +31,9 @@ import SendProfileData from 'MgrScreen/Mode/SendProfile/Data';
 import SendMessage from 'MgrScreen/SendMessage';
 import SendMessageData from 'MgrScreen/SendMessage/Data';
 
+import Reports1 from 'MgrScreen/Reports1';
+import Reports1Data from 'MgrScreen/Reports1/Data';
+
 import Login from 'MgrScreen/Login';
 import * as db from 'MgrLib/db';
 import SideBar from './SideBar';
@@ -205,6 +208,14 @@ export default class Wrapper extends Component {
 
         if (screenType === "SendMessageData") {
             return <SendMessageData/>;
+        }
+
+        if (screenType === "Reports1") {
+            return <Reports1/>;
+        }
+
+        if (screenType === "Reports1Data") {
+            return <Reports1Data/>;
         }
 
         return <Login/>;
