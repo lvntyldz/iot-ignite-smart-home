@@ -25,6 +25,7 @@ import {
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as sensor from 'MgrLib/sensor';
 import SensorDataConfList from 'MgrScreen/SensorDataConf/List';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class CreateSensorDataConf extends Component {
     render() {
@@ -206,17 +207,7 @@ export class CreateSensorDataConfContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>CreateSensorDataConf</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+                <SideBarNav pageTitle="CreateSensorDataConf"/>
 
                 <Content>
                     <List>

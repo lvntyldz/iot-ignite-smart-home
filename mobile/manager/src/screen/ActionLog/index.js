@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Title,} from 'native-base';
+import {Container, Content,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import DeviceList from 'MgrScreen/Device/List';
-
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class ActionLog extends Component {
     render() {
@@ -31,17 +31,7 @@ export class ActionLogContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>ActionLog</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+                <SideBarNav pageTitle="Action Logo"/>
 
                 <Content>
                     <DeviceList goTo="ActionLogData"/>

@@ -19,6 +19,7 @@ import {
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as sensor from 'MgrLib/sensor';
 import SensorTypeList from 'MgrScreen/SensorType/List';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class ImportSensorType extends Component {
     render() {
@@ -55,17 +56,8 @@ export class ImportSensorTypeContext extends Component {
         const {context} = this.props;
 
         return <Container>
-            <Header>
-                <Left/>
-                <Body>
-                <Title>Import Sensor Type</Title>
-                </Body>
-                <Right>
-                    <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
-                        <Text>X</Text>
-                    </Button>
-                </Right>
-            </Header>
+
+            <SideBarNav pageTitle="Import Sensor Type"/>
 
             <Content>
                 <List>
@@ -119,17 +111,7 @@ export class ImportSensorTypeContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>ImportSensorType</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+                <SideBarNav pageTitle="ImportSensorType"/>
 
                 <Content>
                     <List>

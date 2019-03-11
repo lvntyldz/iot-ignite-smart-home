@@ -1,21 +1,9 @@
 import React, {Component} from 'react';
-import {
-    Body,
-    Button,
-    Container,
-    Content,
-    Header,
-    Icon,
-    Left,
-    ListItem,
-    Right,
-    Separator,
-    Text,
-    Title,
-} from 'native-base';
+import {Container, Content, Left, ListItem, Separator, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as device from "MgrLib/device";
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 
 export default class DeviceDetailData extends Component {
@@ -89,17 +77,8 @@ export class DeviceDetailDataContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>Device Detail Data</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+
+                <SideBarNav pageTitle="Device Detail Data"/>
 
                 <Content>
                     <Separator bordered>

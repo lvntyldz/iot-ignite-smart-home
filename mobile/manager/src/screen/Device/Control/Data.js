@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
-import {Body, Button, Container, Content, Header, Icon, Right, Separator, Text, Title,} from 'native-base';
+import {Button, Container, Content, Separator, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 
 import * as workingset from 'MgrLib/workingset';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class DeviceControlData extends Component {
     render() {
@@ -91,16 +92,7 @@ export class DeviceControlDataContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>Device Control</Title>
-                    </Body>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+                <SideBarNav pageTitle="Device Control"/>
 
                 <Content style={{paddingLeft: 10, paddingRight: 10}}>
 

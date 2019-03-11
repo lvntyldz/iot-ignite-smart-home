@@ -19,6 +19,7 @@ import {
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as profile from 'MgrLib/profile';
 import ModeSensorTypeConfList from 'MgrScreen/Mode/SensorTypeConf/List';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class ImportModeSensorTypeConf extends Component {
     render() {
@@ -136,17 +137,7 @@ export class ImportModeSensorTypeConfContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>ImportModeSensorTypeConf</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+                <SideBarNav pageTitle="ImportModeSensorTypeConf"/>
 
                 <Content>
                     <List>

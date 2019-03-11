@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title,} from 'native-base';
+import {Container, Content, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class ImportSensorType extends Component {
     render() {
@@ -29,17 +30,7 @@ export class ImportSensorTypeContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>ImportSensorType</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+                <SideBarNav pageTitle="Import Sensor Type"/>
 
                 <Content>
                     <Text>ImportSensorType will be here</Text>

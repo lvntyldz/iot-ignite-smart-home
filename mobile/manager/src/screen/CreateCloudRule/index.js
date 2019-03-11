@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title,} from 'native-base';
+import {Container, Content, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class CreateCloudRule extends Component {
     render() {
@@ -29,17 +30,8 @@ export class CreateCloudRuleContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>CreateCloudRule</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+
+                <SideBarNav pageTitle="Create Cloud Rule"/>
 
                 <Content>
                     <Text>CreateCloudRule will be here</Text>

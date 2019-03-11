@@ -14,9 +14,11 @@ import {
     Text,
     Title,
 } from 'native-base';
+
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as actionLog from 'MgrLib/actionLog';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class ActionLogData extends Component {
     render() {
@@ -207,17 +209,8 @@ export class ActionLogDataContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>ActionLogData</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+
+                <SideBarNav pageTitle="ActionLogData"/>
 
                 <Content>
                     <Separator bordered>

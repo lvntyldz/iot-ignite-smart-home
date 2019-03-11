@@ -1,24 +1,9 @@
 import React, {Component} from 'react';
-import {
-    Body,
-    Button,
-    Container,
-    Content,
-    Form,
-    Header,
-    Icon,
-    Input,
-    Item as FormItem,
-    Label,
-    Left,
-    Right,
-    Text,
-    Title
-} from 'native-base';
-//custom
+import {Button, Container, Content, Form, Input, Item as FormItem, Label, Text} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as workingset from 'MgrLib/workingset';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 
 export default class SendMessageData extends Component {
@@ -51,7 +36,7 @@ export class SendMessageDataContext extends Component {
             console.info("send message to workingset operation is success");
             context.hideLoading();
             context.showMessage("Mesajınız Cihaza Başarıyla Gönderildi!").succes();
-            this.setState({message:null});
+            this.setState({message: null});
         });
     }
 
@@ -60,17 +45,8 @@ export class SendMessageDataContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>Device Detail Data</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+
+                <SideBarNav pageTitle="Device Detail Data"/>
 
                 <Content>
 

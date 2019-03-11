@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Title} from 'native-base';
+import {Container, Content} from 'native-base';
 
 import {AreaChart, Grid} from 'react-native-svg-charts'
 import * as shape from 'd3-shape'
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 
 export default class Reports1Data extends Component {
@@ -33,17 +34,8 @@ export class Reports1DataContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>Device Detail Data</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+
+                <SideBarNav pageTitle="Reports1 Graph"/>
 
                 <Content>
 

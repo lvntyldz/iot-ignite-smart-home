@@ -1,22 +1,9 @@
 import React, {Component} from 'react';
-import {
-    Body,
-    Button,
-    Container,
-    Content,
-    Header,
-    Icon,
-    Input,
-    Item,
-    Label,
-    Left,
-    Right,
-    Text,
-    Title,
-} from 'native-base';
+import {Button, Container, Content, Icon, Input, Item, Label, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from '../../../boot/Container/index';
 import * as profile from "../../../lib/profile/index";
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 
 export default class SendProfileData extends Component {
@@ -109,17 +96,7 @@ export class SendProfileDataContext extends Component {
         const {context} = this.props;
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>Send Mode And Policy</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+                <SideBarNav pageTitle="Send Mode And Policy"/>
 
                 <Content style={{marginTop: 20, padding: 4}}>
 

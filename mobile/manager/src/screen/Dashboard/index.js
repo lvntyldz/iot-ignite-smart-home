@@ -1,22 +1,9 @@
 import React, {Component} from 'react';
-import {
-    Badge,
-    Body,
-    Button,
-    Container,
-    Content,
-    Header,
-    Icon,
-    Left,
-    ListItem,
-    Right,
-    Separator,
-    Text,
-    Title,
-} from 'native-base';
+import {Badge, Container, Content, Left, ListItem, Right, Separator, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as device from 'MgrLib/device';
+import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class Dashboard extends Component {
     render() {
@@ -69,17 +56,8 @@ export class DashboardContext extends Component {
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                    <Title>Dashboard</Title>
-                    </Body>
-                    <Left/>
-                    <Right>
-                        <Button onPress={() => context.showSideBar()} iconLeft light>
-                            <Icon name='list'/>
-                        </Button>
-                    </Right>
-                </Header>
+
+                <SideBarNav pageTitle="Dashboard"/>
 
                 <Content>
                     <Separator bordered>
@@ -192,7 +170,6 @@ export class DashboardContext extends Component {
                         <Left/>
                         <Right/>
                     </ListItem>
-
 
                 </Content>
             </Container>
