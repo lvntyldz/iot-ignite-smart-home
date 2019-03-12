@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Body, Container, Content, ListItem, Right, Text,} from 'native-base';
 //custom
-import {CtxConsumer} from 'MgrBoot/Container';
-import * as device from 'MgrLib/device';
-import * as workingset from 'MgrLib/workingset';
+import {CtxConsumer} from '../../../boot/Container/index';
+import * as device from '../../../lib/device/index';
+import * as workingset from '../../../lib/workingset/index';
 
 export default class DeviceList extends Component {
     render() {

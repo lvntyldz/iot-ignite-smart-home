@@ -3,7 +3,7 @@ import {Container, Content,} from 'native-base';
 
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
-import DeviceList from 'MgrScreen/Device/List';
+import DeviceList from '../Inventory/Device';
 import SideBarNav from 'MgrComponent/SideBarNav';
 
 export default class SendMessage extends Component {
