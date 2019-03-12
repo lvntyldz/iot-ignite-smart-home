@@ -105,6 +105,21 @@ export const listConfig = (token) => {
     });
 }
 
+export const nodeList = (token, deviceId) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device/" + deviceId + "/device-node-inventory", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                console.log("Api Node Inventory Response  : ", r);
+                resolve(r.extras.nodes);
+            });
+    });
+}
+
 export const removeConfig = (token, confId) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/device-config/type/" + confId, {})

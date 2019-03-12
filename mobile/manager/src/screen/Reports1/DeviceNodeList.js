@@ -2,22 +2,22 @@ import React, {Component} from 'react';
 import {Container, Content,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
-import DeviceList from '../Inventory/Device';
+import NodeList from 'MgrScreen/Inventory/Node';
 import SideBarNav from 'MgrComponent/SideBarNav';
 
-export default class Reports1 extends Component {
+export default class DeviceNodeList extends Component {
     render() {
         return (
             <CtxConsumer>
                 {(context) => {
-                    return <Reports1Context context={context}/>;
+                    return <DeviceNodeListContext context={context}/>;
                 }}
             </CtxConsumer>
         );//return
     }//render
 }
 
-export class Reports1Context extends Component {
+export class DeviceNodeListContext extends Component {
     constructor(props) {
         super(props)
 
@@ -31,10 +31,10 @@ export class Reports1Context extends Component {
 
         return (
             <Container>
-                <SideBarNav pageTitle="Reports1"/>
+                <SideBarNav pageTitle="DeviceNodeList"/>
 
                 <Content>
-                    <DeviceList goTo="DeviceNodeList"/>
+                    <NodeList goTo="NodeSensorList"/>
                 </Content>
             </Container>
         );//return

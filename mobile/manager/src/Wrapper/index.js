@@ -31,6 +31,8 @@ import SendProfileData from 'MgrScreen/Mode/SendProfile/Data';
 import SendMessage from 'MgrScreen/SendMessage';
 import SendMessageData from 'MgrScreen/SendMessage/Data';
 
+import NodeSensorList from 'MgrScreen/Reports1/NodeSensorList';
+import DeviceNodeList from 'MgrScreen/Reports1/DeviceNodeList';
 import Reports1 from 'MgrScreen/Reports1';
 import Reports1Data from 'MgrScreen/Reports1/Data';
 
@@ -46,6 +48,8 @@ class AppProvider extends Component {
         super(props);
 
         this.state = {
+            sensor: null,
+            node: null,
             device: null,
             deviceId: null,
             workingset: null,
@@ -92,6 +96,12 @@ class AppProvider extends Component {
             },
             setDeviceId: (d) => {
                 this.setState({deviceId: d});
+            },
+            setNode: (d) => {
+                this.setState({node: d});
+            },
+            setSensor: (d) => {
+                this.setState({sensor: d});
             },
             setWorkingset: (d) => {
                 this.setState({workingset: d});
@@ -208,6 +218,14 @@ export default class Wrapper extends Component {
 
         if (screenType === "SendMessageData") {
             return <SendMessageData/>;
+        }
+
+        if (screenType === "NodeSensorList") {
+            return <NodeSensorList/>;
+        }
+
+        if (screenType === "DeviceNodeList") {
+            return <DeviceNodeList/>;
         }
 
         if (screenType === "Reports1") {
