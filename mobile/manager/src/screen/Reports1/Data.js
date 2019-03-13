@@ -7,6 +7,8 @@ import * as shape from 'd3-shape'
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import * as sensor from 'MgrLib/sensor';
+import * as moment from "MgrLib/moment";
 
 
 export default class Reports1Data extends Component {
@@ -26,7 +28,29 @@ export class Reports1DataContext extends Component {
         super(props)
         this.state = {
             rerender: false,
+            chartsData: []
         }
+    }
+
+    componentWillMount = () => {
+        const {context} = this.props;
+        const self = this;
+        context.showLoading();
+
+        const endDate = moment.currTime();
+        const startDate = moment.lastYear();
+        let chartsData = [];
+
+        sensor.getSensorHistory(context.token, context.deviceId, context.node.nodeId, context.sensor.id, startDate, endDate).then(d => {
+
+            d.map((v, k) => {
+                const sensorData = JSON.parse(v.data);
+                chartsData.push(parseInt(sensorData[0]));
+            });
+
+            self.setState({chartsData});
+            context.hideLoading();
+        });
     }
 
     render() {
@@ -76,7 +100,7 @@ export class Reports1DataContext extends Component {
 
         const randomColor = () => ('#' + (Math.random() * 0xFFFFFF << 0).toString(16) + '000000').slice(0, 7)
 
-        const pieData = data
+        const pieData = this.state.chartsData
             .filter(value => value > 0)
             .map((value, index) => ({
                 value,
@@ -97,7 +121,7 @@ export class Reports1DataContext extends Component {
                     <View style={{height: 200, padding: 20}}>
                         <LineChart
                             style={{flex: 1}}
-                            data={data}
+                            data={this.state.chartsData || []}
                             gridMin={0}
                             contentInset={{top: 10, bottom: 10}}
                             svg={{stroke: 'rgb(134, 65, 244)'}}
@@ -106,7 +130,7 @@ export class Reports1DataContext extends Component {
                         </LineChart>
                         <XAxis
                             style={{marginHorizontal: -10}}
-                            data={data}
+                            data={this.state.chartsData || []}
                             formatLabel={(value, index) => index}
                             contentInset={{left: 10, right: 10}}
                             svg={{fontSize: 10, fill: 'black'}}
@@ -114,7 +138,7 @@ export class Reports1DataContext extends Component {
                     </View>
 
                     <YAxis
-                        data={data}
+                        data={this.state.chartsData || []}
                         contentInset={contentInset}
                         svg={{
                             fill: 'grey',
@@ -125,7 +149,7 @@ export class Reports1DataContext extends Component {
                     />
                     <LineChart
                         style={{flex: 1, marginLeft: 16}}
-                        data={data}
+                        data={this.state.chartsData || []}
                         svg={{stroke: 'rgb(134, 65, 244)'}}
                         contentInset={contentInset}
                     >
@@ -139,7 +163,7 @@ export class Reports1DataContext extends Component {
 
                     <AreaChart
                         style={{height: 200}}
-                        data={data}
+                        data={this.state.chartsData || []}
                         contentInset={{top: 30, bottom: 30}}
                         curve={shape.curveNatural}
                         svg={{fill: 'rgba(134, 65, 244, 0.8)'}}
@@ -168,7 +192,7 @@ export class Reports1DataContext extends Component {
 
                     <LineChart
                         style={{height: 200}}
-                        data={data}
+                        data={this.state.chartsData || []}
                         svg={{stroke: 'rgb(134, 65, 244)'}}
                         contentInset={{top: 20, bottom: 20}}
                     >

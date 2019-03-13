@@ -134,3 +134,21 @@ export const removeConfig = (token, confId) => {
             });
     });
 }
+
+
+//https://api.ardich.com/api/v3/device/14:1f:78:2e:ae:d8@iotigniteagent/sensor-data-history?nodeId=testNodeId1&sensorId=MQ6+GAS+Sensor&startDate=1530471640000&endDate=1552503640000&pageSize=1000
+export const getSensorHistory = (token, deviceId, nodeId, sensorId, startDate, endDate) => {
+    const url = "/device/" + deviceId + "/sensor-data-history?nodeId=" + nodeId + "&sensorId=" + sensorId + "&startDate=" + startDate + "&endDate=" + endDate + "&pageSize=10";
+    return new Promise((resolve, reject) => {
+        ajax.doFetch(url, {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                console.log("Api Sensor Hisitory  Response  : ", r);
+                resolve(r.list);
+            });
+    });
+}
