@@ -31,10 +31,19 @@ import SendProfileData from 'MgrScreen/Mode/SendProfile/Data';
 import SendMessage from 'MgrScreen/SendMessage';
 import SendMessageData from 'MgrScreen/SendMessage/Data';
 
-import NodeSensorList from 'MgrScreen/Reports1/NodeSensorList';
-import DeviceNodeList from 'MgrScreen/Reports1/DeviceNodeList';
 import Reports1 from 'MgrScreen/Reports1';
 import Reports1Data from 'MgrScreen/Reports1/Data';
+
+import NodeSensorList from 'MgrScreen/Reports/NodeSensorList';
+import DeviceNodeList from 'MgrScreen/Reports/DeviceNodeList';
+import YearlyGraph from 'MgrScreen/Reports/Yearly';
+import YearlyGraphData from 'MgrScreen/Reports/Yearly/Data';
+import MonthlyGraph from 'MgrScreen/Reports/Monthly';
+import MonthlyGraphData from 'MgrScreen/Reports/Monthly/Data';
+import WeeklyGraph from 'MgrScreen/Reports/Weekly';
+import WeeklyGraphData from 'MgrScreen/Reports/Weekly/Data';
+import DailyGraph from 'MgrScreen/Reports/Daily';
+import DailyGraphData from 'MgrScreen/Reports/Daily/Data';
 
 import Login from 'MgrScreen/Login';
 import * as db from 'MgrLib/db';
@@ -48,6 +57,7 @@ class AppProvider extends Component {
         super(props);
 
         this.state = {
+            graphReportRange: null,
             sensor: null,
             node: null,
             device: null,
@@ -87,6 +97,9 @@ class AppProvider extends Component {
             },
             hideLoading: () => {
                 this.setState({loading: false});
+            },
+            setGraphReportRange: (d) => {
+                this.setState({graphReportRange: d});
             },
             setToken: (d) => {
                 this.setState({token: d});
@@ -234,6 +247,38 @@ export default class Wrapper extends Component {
 
         if (screenType === "Reports1Data") {
             return <Reports1Data/>;
+        }
+
+        if (screenType === "YearlyGraph") {
+            return <YearlyGraph/>;
+        }
+
+        if (screenType === "YearlyGraphData") {
+            return <YearlyGraphData/>;
+        }
+
+        if (screenType === "MonthlyGraph") {
+            return <MonthlyGraph/>;
+        }
+
+        if (screenType === "MonthlyGraphData") {
+            return <MonthlyGraphData/>;
+        }
+
+        if (screenType === "WeeklyGraph") {
+            return <WeeklyGraph/>;
+        }
+
+        if (screenType === "WeeklyGraphData") {
+            return <WeeklyGraphData/>;
+        }
+
+        if (screenType === "DailyGraph") {
+            return <DailyGraph/>;
+        }
+
+        if (screenType === "DailyGraphData") {
+            return <DailyGraphData/>;
         }
 
         return <Login/>;

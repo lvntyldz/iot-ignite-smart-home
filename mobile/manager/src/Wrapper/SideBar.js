@@ -223,6 +223,54 @@ export default class SideBar extends Component {
                                     </Body>
                                 </ListItem>
 
+                                <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")} icon
+                                          style={context.screenType === "YearlyGraph" ? activeStyle : {}}>
+                                    <Left>
+                                        <Button style={{backgroundColor: "#c4c"}}>
+                                            <Icon active name="ios-mail"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>YearlyGraph</Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem button={true} onPress={() => context.changeScreenByType("MonthlyGraph")} icon
+                                          style={context.screenType === "MonthlyGraph" ? activeStyle : {}}>
+                                    <Left>
+                                        <Button style={{backgroundColor: "#c4c"}}>
+                                            <Icon active name="ios-mail"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>MonthlyGraph</Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem button={true} onPress={() => context.changeScreenByType("WeeklyGraph")} icon
+                                          style={context.screenType === "WeeklyGraph" ? activeStyle : {}}>
+                                    <Left>
+                                        <Button style={{backgroundColor: "#c4c"}}>
+                                            <Icon active name="ios-mail"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>WeeklyGraph</Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem button={true} onPress={() => context.changeScreenByType("DailyGraph")} icon
+                                          style={context.screenType === "DailyGraph" ? activeStyle : {}}>
+                                    <Left>
+                                        <Button style={{backgroundColor: "#c4c"}}>
+                                            <Icon active name="ios-mail"/>
+                                        </Button>
+                                    </Left>
+                                    <Body>
+                                    <Text>DailyGraph</Text>
+                                    </Body>
+                                </ListItem>
+
                             </Content>
 
                             <Footer style={{bottom: 10}}>
