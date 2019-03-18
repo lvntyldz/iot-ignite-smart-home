@@ -76,7 +76,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>SendMessage</Text>
+                                    <Text>Send Message</Text>
                                     </Body>
                                 </ListItem>
 
@@ -101,7 +101,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>DeviceDetail</Text>
+                                    <Text>Device Detail</Text>
                                     </Body>
                                 </ListItem>
 
@@ -113,7 +113,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>DeviceControl</Text>
+                                    <Text>Device Control</Text>
                                     </Body>
                                 </ListItem>
 
@@ -126,7 +126,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>CreateSensorType</Text>
+                                    <Text>Create Sensor Type</Text>
                                     </Body>
                                 </ListItem>
 
@@ -139,7 +139,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>ImportSensorType</Text>
+                                    <Text>Import Sensor Type</Text>
                                     </Body>
                                 </ListItem>
 
@@ -152,22 +152,24 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>CreateCloudRule</Text>
+                                    <Text>Create Cloud Rule</Text>
                                     </Body>
                                 </ListItem>
 
+                                {/*
                                 <ListItem button={true} onPress={() => context.changeScreenByType("CreateGatewayRule")}
-                                          icon
-                                          style={context.screenType === "CreateGatewayRule" ? activeStyle : {}}>
-                                    <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
-                                            <Icon active name="md-notifications-outline"/>
-                                        </Button>
-                                    </Left>
-                                    <Body>
-                                    <Text>CreateGatewayRule</Text>
-                                    </Body>
+                                icon
+                                style={context.screenType === "CreateGatewayRule" ? activeStyle : {}}>
+                                <Left>
+                                <Button style={{backgroundColor: "#007AFF"}}>
+                                <Icon active name="md-notifications-outline"/>
+                                </Button>
+                                </Left>
+                                <Body>
+                                <Text>Create Gateway Rule</Text>
+                                </Body>
                                 </ListItem>
+                                */}
 
                                 <ListItem button={true}
                                           onPress={() => context.changeScreenByType("CreateSensorDataConf")}
@@ -179,7 +181,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>CreateSensorDataConf</Text>
+                                    <Text>Create Sensor Data Conf</Text>
                                     </Body>
                                 </ListItem>
 
@@ -193,35 +195,39 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>ImportModeSensorTypeConf</Text>
+                                    <Text>Import Mode Sensor Type Conf</Text>
                                     </Body>
                                 </ListItem>
 
+                                {/*
                                 <ListItem button={true}
-                                          onPress={() => context.changeScreenByType("ImportModeSensorInventoryConf")}
-                                          icon
-                                          style={context.screenType === "ImportModeSensorInventoryConf" ? activeStyle : {}}>
-                                    <Left>
-                                        <Button style={{backgroundColor: "#007AFF"}}>
-                                            <Icon active name="wifi"/>
-                                        </Button>
-                                    </Left>
-                                    <Body>
-                                    <Text>ImportModeSensorInventoryConf</Text>
-                                    </Body>
+                                onPress={() => context.changeScreenByType("ImportModeSensorInventoryConf")}
+                                icon
+                                style={context.screenType === "ImportModeSensorInventoryConf" ? activeStyle : {}}>
+                                <Left>
+                                <Button style={{backgroundColor: "#007AFF"}}>
+                                <Icon active name="wifi"/>
+                                </Button>
+                                </Left>
+                                <Body>
+                                <Text>Import Mode Sensor Inventory Conf</Text>
+                                </Body>
                                 </ListItem>
+                                */}
 
+                                {/*
                                 <ListItem button={true} onPress={() => context.changeScreenByType("Reports1")} icon
-                                          style={context.screenType === "Reports1" ? activeStyle : {}}>
-                                    <Left>
-                                        <Button style={{backgroundColor: "#c4c"}}>
-                                            <Icon active name="ios-mail"/>
-                                        </Button>
-                                    </Left>
-                                    <Body>
-                                    <Text>Reports1</Text>
-                                    </Body>
+                                style={context.screenType === "Reports1" ? activeStyle : {}}>
+                                <Left>
+                                <Button style={{backgroundColor: "#c4c"}}>
+                                <Icon active name="ios-mail"/>
+                                </Button>
+                                </Left>
+                                <Body>
+                                <Text>Reports1</Text>
+                                </Body>
                                 </ListItem>
+                                */}
 
                                 <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")} icon
                                           style={context.screenType === "YearlyGraph" ? activeStyle : {}}>
