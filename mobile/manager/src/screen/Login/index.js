@@ -19,11 +19,25 @@ import * as userDb from 'MgrLib/db/user';
 import {CtxConsumer} from 'MgrBoot/Container';
 
 export default class Login extends Component {
+    render() {
+        return (
+            <CtxConsumer>
+                {(context) => {
+                    return <LoginContext context={context}/>;
+                }}
+            </CtxConsumer>
+        );//return
+    }//render
+}
+
+export class LoginContext extends Component {
+
     componentWillMount = () => {
         userDb.getLastRemembered().then(r => {
             if (!r) {
                 return;
             }
+
             //TODO:Remove
             //this.setState({email: r.email, password: r.password});
             this.setState({email: "zxfvttxf@sharklasers.com", password: r.password});
@@ -52,48 +66,47 @@ export default class Login extends Component {
         }
     }
 
+
     render() {
+        const {context} = this.props;
+        const {summary} = this.state;
+        const {model} = this.state;
+        const {os} = this.state;
+
         return (
-            <CtxConsumer>
-                {(context) => {
-                    return (
-                        <Container style={{paddingTop: 100}}>
-                            <Header>
-                                <Body>
-                                <Title>Login Smart Home Manager</Title>
-                                </Body>
-                            </Header>
-                            <Form>
-                                <FormItem floatingLabel>
-                                    <Label>Email</Label>
-                                    <Input onChangeText={(d) => {
-                                        this.setState({email: d})
-                                    }} value={this.state.email}/>
-                                </FormItem>
-                                <FormItem floatingLabel last>
-                                    <Label>Password</Label>
-                                    <Input secureTextEntry={true} onChangeText={(d) => {
-                                        this.setState({password: d})
-                                    }} value={this.state.password}/>
-                                </FormItem>
+            <Container style={{paddingTop: 100}}>
+                <Header>
+                    <Body>
+                    <Title>Login Smart Home Manager</Title>
+                    </Body>
+                </Header>
+                <Form>
+                    <FormItem floatingLabel>
+                        <Label>Email</Label>
+                        <Input onChangeText={(d) => {
+                            this.setState({email: d})
+                        }} value={this.state.email}/>
+                    </FormItem>
+                    <FormItem floatingLabel last>
+                        <Label>Password</Label>
+                        <Input secureTextEntry={true} onChangeText={(d) => {
+                            this.setState({password: d})
+                        }} value={this.state.password}/>
+                    </FormItem>
 
-                                <Button full primary style={{paddingBottom: 4}}
-                                        onPress={(c) => this.handleLoginClick(context)}>
-                                    <Text> Login </Text>
-                                </Button>
+                    <Button full primary style={{paddingBottom: 4}}
+                            onPress={(c) => this.handleLoginClick(context)}>
+                        <Text> Login </Text>
+                    </Button>
 
-                                <Separator bordered/>
+                    <Separator bordered/>
 
-                                <Button full light primary onPress={context.decrease}>
-                                    <Text> Sign Up </Text>
-                                </Button>
-                            </Form>
-                        </Container>
-                    )
-                }
+                    <Button full light primary onPress={context.decrease}>
+                        <Text> Sign Up </Text>
+                    </Button>
+                </Form>
+            </Container>
+        )
+    }//render
 
-                }
-            </CtxConsumer>
-        );
-    }
 }
