@@ -31,6 +31,24 @@
         "noMessage":"Mesaj Bulunamadı!",
         "noResult":"Sonuç Bulunamadı!"
       }
+    },
+
+    "dashboard": {
+      "title":"Kontrol Göstergeleri",
+      "gateways":"Cihazlar",
+      "users":"Kullanıcılar",
+      "deviceModel":"Cihaz Model",
+      "deviceOs":"İşletim Sistemleri",
+      "device":{
+        "online":"Çevrimiçi",
+        "offline":"Çevrimdışı",
+        "total":"Toplam"
+      },
+      "user":{
+        "active":"Aktif",
+        "passive":"Pasif",
+        "total":"Toplam",
+      }
     }
 
 

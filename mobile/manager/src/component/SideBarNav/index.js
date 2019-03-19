@@ -22,7 +22,7 @@ export class SideBarNavContext extends Component {
 
         return (
             <Header>
-                <Body>
+                <Body style={{left: 0, right: 0, minWidth: 200}}>
                 <Title>{this.props.pageTitle || ""}</Title>
                 </Body>
                 <Left/>

@@ -4,6 +4,7 @@ import {Badge, Container, Content, Left, ListItem, Right, Separator, Text,} from
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as device from 'MgrLib/device';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class Dashboard extends Component {
     render() {
@@ -50,6 +51,7 @@ export class DashboardContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
         const {summary} = this.state;
         const {model} = this.state;
         const {os} = this.state;
@@ -57,15 +59,15 @@ export class DashboardContext extends Component {
         return (
             <Container>
 
-                <SideBarNav pageTitle="Dashboard"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.dashboard.title")}/>
 
                 <Content>
                     <Separator bordered>
-                        <Text>Gateways</Text>
+                        <Text>{lang(locale).getLabel("screen.dashboard.gateways")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
-                            <Text>Online</Text>
+                            <Text>{lang(locale).getLabel("screen.dashboard.device.online")}</Text>
                         </Left>
                         <Right>
                             <Badge success>
@@ -75,7 +77,7 @@ export class DashboardContext extends Component {
                     </ListItem>
                     <ListItem>
                         <Left>
-                            <Text>Offline</Text>
+                            <Text>{lang(locale).getLabel("screen.dashboard.device.offline")}</Text>
                         </Left>
                         <Right>
                             <Badge warning>
@@ -85,7 +87,7 @@ export class DashboardContext extends Component {
                     </ListItem>
                     <ListItem>
                         <Left>
-                            <Text>Total</Text>
+                            <Text>{lang(locale).getLabel("screen.dashboard.device.total")}</Text>
                         </Left>
                         <Right>
                             <Badge primary>
@@ -95,11 +97,11 @@ export class DashboardContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>User</Text>
+                        <Text>{lang(locale).getLabel("screen.dashboard.users")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
-                            <Text>Active</Text>
+                            <Text>{lang(locale).getLabel("screen.dashboard.user.active")}</Text>
                         </Left>
                         <Right>
                             <Badge success>
@@ -109,7 +111,7 @@ export class DashboardContext extends Component {
                     </ListItem>
                     <ListItem>
                         <Left>
-                            <Text>Passive</Text>
+                            <Text>{lang(locale).getLabel("screen.dashboard.user.passive")}</Text>
                         </Left>
                         <Right>
                             <Badge warning>
@@ -119,7 +121,7 @@ export class DashboardContext extends Component {
                     </ListItem>
                     <ListItem>
                         <Left>
-                            <Text>Total</Text>
+                            <Text>{lang(locale).getLabel("screen.dashboard.user.total")}</Text>
                         </Left>
                         <Right>
                             <Badge primary>
@@ -129,7 +131,7 @@ export class DashboardContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Devices Model</Text>
+                        <Text>{lang(locale).getLabel("screen.dashboard.deviceModel")}</Text>
                     </Separator>
 
                     {model.map((v, k) => {
@@ -148,7 +150,7 @@ export class DashboardContext extends Component {
                     })}
 
                     <Separator bordered>
-                        <Text>Devices OS</Text>
+                        <Text>{lang(locale).getLabel("screen.dashboard.deviceOs")}</Text>
                     </Separator>
 
                     {os.map((v, k) => {

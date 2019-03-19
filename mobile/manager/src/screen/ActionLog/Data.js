@@ -204,6 +204,7 @@ export class ActionLogDataContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
         let {content} = this.state.summary;
 
         if (!content) {
@@ -213,7 +214,7 @@ export class ActionLogDataContext extends Component {
         return (
             <Container>
 
-                <SideBarNav pageTitle="ActionLogData"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.actionLog.title")}/>
 
                 <Content>
                     <Separator bordered>
