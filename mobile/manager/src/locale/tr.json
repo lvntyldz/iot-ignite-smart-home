@@ -7,6 +7,7 @@
   },
 
   "button": {
+    "logout": "Çıkış Yap",
     "login": "Giriş Yap",
     "signup": "Üye Ol"
   },
@@ -15,9 +16,38 @@
     "login": "Giriş Ekranı"
   },
 
-
   "menu": {
+    "title":"Menü",
     "dashboard": "Kontrol Paneli",
-    "actionLog": "Log Kayıtları"
+    "actionLog": "Log Kayıtları",
+    "sendMessage": "Mesaj Gönder",
+    "sendMode": "Ayar Gönder",
+
+    "device":{
+      "detail":"Cihaz Bilgileri",
+      "control":"Cihaz Komutları"
+    },
+
+    "sensorType":{
+      "create":"Sensor Oluşturma",
+      "import":"Sensor Yükleme"
+    },
+
+    "sensorDataConf":{
+      "create":"Sensor Kofigürasyonu Oluşturma",
+      "import":"Sensor Konfigürasyonu Yükleme"
+    },
+
+    "rule":{
+      "create":"Kural Oluşturma"
+    },
+
+    "reports":{
+      "yearly":"Yıllık Veriler",
+      "monthly":"Aylık Veriler",
+      "weekly":"Haftalık Veriler",
+      "daily":"Günlük Veriler"
+    }
+
   }
 }

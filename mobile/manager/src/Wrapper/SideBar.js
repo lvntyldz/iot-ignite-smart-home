@@ -17,6 +17,7 @@ import {
 } from 'native-base';
 
 import {CtxConsumer} from 'MgrBoot/Container';
+import {lang} from 'MgrLocale';
 
 export default class SideBar extends Component {
 
@@ -36,7 +37,7 @@ export default class SideBar extends Component {
                                     </Button>
                                 </Left>
                                 <Body>
-                                <Title>Menu</Title>
+                                <Title>{lang(context.locale).getLabel("menu.title")}</Title>
                                 <Subtitle>...</Subtitle>
                                 </Body>
                                 <Right/>
@@ -52,7 +53,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Dashboard</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.dashboard")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -64,7 +65,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Action Logs</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.actionLog")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -76,7 +77,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Send Message</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.sendMessage")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -89,7 +90,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Send Conf(Mode/Policy)</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.sendMode")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -101,7 +102,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Device Detail</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.device.detail")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -113,7 +114,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Device Control</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.device.control")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -126,7 +127,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Create Sensor Type</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.sensorType.create")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -139,7 +140,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Import Sensor Type</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.sensorType.import")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -152,7 +153,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Create Cloud Rule</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.rule.create")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -181,7 +182,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Create Sensor Data Conf</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.sensorDataConf.create")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -195,7 +196,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>Import Mode Sensor Type Conf</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.sensorDataConf.import")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -237,7 +238,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>YearlyGraph</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.reports.yearly")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -249,7 +250,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>MonthlyGraph</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.reports.monthly")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -261,7 +262,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>WeeklyGraph</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.reports.weekly")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -273,7 +274,7 @@ export default class SideBar extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Text>DailyGraph</Text>
+                                    <Text>{lang(context.locale).getLabel("menu.reports.daily")}</Text>
                                     </Body>
                                 </ListItem>
 
@@ -283,7 +284,7 @@ export default class SideBar extends Component {
                                 <Left>
                                     <Button iconLeft transparent danger onPress={() => context.logut()}>
                                         <Icon active name="ios-log-out"/>
-                                        <Text>Logout</Text>
+                                        <Text>{lang(context.locale).getLabel("button.logout")}</Text>
                                     </Button>
                                 </Left>
                                 <Right/>
