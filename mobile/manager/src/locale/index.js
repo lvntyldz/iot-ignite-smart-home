@@ -1,18 +1,14 @@
 import _ from 'lodash';
+import {ENGLISH, TURKISH} from 'MgrEnum/Locale';
 
 import * as en from './en.json';
 import * as tr from './tr.json';
 
-export const locales = {
-    tr: tr,
-    en: en
-}
-
 export const lang = (lang) => {
 
-    if (!lang) {
-        return "";
-    }
+    let locales = {};
+    locales[ENGLISH] = en;
+    locales[TURKISH] = tr;
 
     return {
         getLabel: (label) => {
@@ -21,7 +17,7 @@ export const lang = (lang) => {
                 return "";
             }
 
-            return _.property(label)(locales[lang]);
+            return _.property(label)(locales[lang]) || label;
         }
     }
 }

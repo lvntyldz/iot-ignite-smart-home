@@ -1,5 +1,21 @@
 {
   "name": "İsim",
+
+  "input": {
+    "email": "E-Posta",
+    "password": "Şifre"
+  },
+
+  "button": {
+    "login": "Giriş Yap",
+    "signup": "Üye Ol"
+  },
+
+  "screen": {
+    "login": "Giriş Ekranı"
+  },
+
+
   "menu": {
     "dashboard": "Kontrol Paneli",
     "actionLog": "Log Kayıtları"

@@ -1,5 +1,16 @@
 {
   "name": "Name",
+  "input": {
+    "email": "E-Mail",
+    "password": "Password"
+  },
+  "button": {
+    "login": "Login",
+    "signup": "SignUp"
+  },
+  "screen": {
+    "login": "Login Screen"
+  },
   "menu": {
     "dashboard": "Dashboard",
     "actionLog": "Action Log"
