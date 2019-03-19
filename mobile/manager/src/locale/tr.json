@@ -13,7 +13,27 @@
   },
 
   "screen": {
-    "login": "Giriş Ekranı"
+    "login": "Giriş Ekranı",
+
+    "actionLog": {
+      "title":"Log Kayıtları",
+      "logDetail":"Log Detayı",
+      "cloudToDevice":"Buluttan Cihaza",
+      "msgBody":"İçerik",
+      "cmdStatus":"İçerik",
+      "tryCount":"Deneme Sayısı",
+      "sentDate":"Gönderme Zamanı",
+      "deviceToCloud":"Cihazdan Buluta",
+      "message":"Mesaj",
+      "execResult":"Çalıştırma Sonucu",
+      "result":"Sonucu",
+      "msg":{
+        "noMessage":"Mesaj Bulunamadı!",
+        "noResult":"Sonuç Bulunamadı!"
+      }
+    }
+
+
   },
 
   "menu": {

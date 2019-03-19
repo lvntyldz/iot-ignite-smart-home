@@ -19,6 +19,7 @@ import {
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as actionLog from 'MgrLib/actionLog';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from "../../locale";
 
 export default class ActionLogData extends Component {
     render() {
@@ -44,8 +45,8 @@ export class ActionLogDataContext extends Component {
                 sendToDeviceStatus: {
                     status: "1",
                     tryCount: "0",
-                    body: "[ { \"params\" : [ ] , \"type\" : \"reboot\"}]",
-                    sentDate: "1970-01-01T02:00:00.000+02:00"
+                    body: "[ { \"params\" : [ ] , \"type\" : \"\"}]",
+                    sentDate: ""
                 },
                 deliveryFromDeviceStatus: {
                     desc: null,
@@ -106,11 +107,13 @@ export class ActionLogDataContext extends Component {
         const {sendToDeviceStatus} = this.state.detail;
         const {deliveryFromDeviceStatus} = this.state.detail;
         const {executionInDeviceStatus} = this.state.detail;
+        const {context} = this.props;
+        const {locale} = context;
 
         const header = <Header>
             <Left/>
             <Body>
-            <Title>Log Detail</Title>
+            <Title>{lang(locale).getLabel("screen.actionLog.logDetail")}</Title>
             </Body>
             <Right>
                 <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
@@ -128,11 +131,11 @@ export class ActionLogDataContext extends Component {
             <Content>
 
                 <Separator bordered>
-                    <Text>Cloud To Device</Text>
+                    <Text>{lang(locale).getLabel("screen.actionLog.cloudToDevice")}</Text>
                 </Separator>
                 <ListItem>
                     <Left>
-                        <Text> BODY</Text>
+                        <Text> {lang(locale).getLabel("screen.actionLog.msgBody")}</Text>
                     </Left>
                     <Body>
                     <Text>{sendToDeviceStatus.body}</Text>
@@ -140,7 +143,7 @@ export class ActionLogDataContext extends Component {
                 </ListItem>
                 <ListItem>
                     <Left>
-                        <Text> STATUS</Text>
+                        <Text> {lang(locale).getLabel("screen.actionLog.cmdStatus")}</Text>
                     </Left>
                     <Body>
                     <Text>{sendToDeviceStatus.status}</Text>
@@ -148,7 +151,7 @@ export class ActionLogDataContext extends Component {
                 </ListItem>
                 <ListItem>
                     <Left>
-                        <Text> TRY COUNT</Text>
+                        <Text> {lang(locale).getLabel("screen.actionLog.tryCount")}</Text>
                     </Left>
                     <Body>
                     <Text>{sendToDeviceStatus.tryCount}</Text>
@@ -156,7 +159,7 @@ export class ActionLogDataContext extends Component {
                 </ListItem>
                 <ListItem>
                     <Left>
-                        <Text> SENT DATE </Text>
+                        <Text> {lang(locale).getLabel("screen.actionLog.sentDate")} </Text>
                     </Left>
                     <Body>
                     <Text>{this.dateAndTime(sendToDeviceStatus.sentDate).dateAndTime}</Text>
@@ -164,14 +167,14 @@ export class ActionLogDataContext extends Component {
                 </ListItem>
 
                 <Separator bordered>
-                    <Text>Device To Cloud</Text>
+                    <Text>{lang(locale).getLabel("screen.actionLog.deviceToCloud")}</Text>
                 </Separator>
                 <ListItem>
                     <Left>
-                        <Text> MESSAGE </Text>
+                        <Text> {lang(locale).getLabel("screen.actionLog.message")} </Text>
                     </Left>
                     <Body>
-                    <Text>{deliveryFromDeviceStatus.desc || "There are no message!"}</Text>
+                    <Text>{deliveryFromDeviceStatus.desc ||lang(locale).getLabel("screen.actionLog.msg.noMessage")}</Text>
                     </Body>
                 </ListItem>
                 <ListItem>
@@ -179,14 +182,14 @@ export class ActionLogDataContext extends Component {
                 </ListItem>
 
                 <Separator bordered>
-                    <Text>Execution Result</Text>
+                    <Text>{lang(locale).getLabel("screen.actionLog.execResult")}</Text>
                 </Separator>
                 <ListItem>
                     <Left>
-                        <Text> RESULT </Text>
+                        <Text> {lang(locale).getLabel("screen.actionLog.result")} </Text>
                     </Left>
                     <Body>
-                    <Text>{executionInDeviceStatus.result || "No result found!"}</Text>
+                    <Text>{executionInDeviceStatus.result || lang(locale).getLabel("screen.actionLog.msg.noResult")}</Text>
                     </Body>
                 </ListItem>
 

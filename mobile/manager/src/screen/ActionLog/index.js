@@ -4,6 +4,7 @@ import {Container, Content,} from 'native-base';
 import {CtxConsumer} from 'MgrBoot/Container';
 import DeviceList from '../Inventory/Device';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class ActionLog extends Component {
     render() {
@@ -28,10 +29,11 @@ export class ActionLogContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
-                <SideBarNav pageTitle="Action Logo"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.actionLog.title")}/>
 
                 <Content>
                     <DeviceList goTo="ActionLogData"/>
