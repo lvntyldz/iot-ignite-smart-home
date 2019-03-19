@@ -1,0 +1,7 @@
+{
+  "name": "İsim",
+  "menu": {
+    "dashboard": "Kontrol Paneli",
+    "actionLog": "Log Kayıtları"
+  }
+}

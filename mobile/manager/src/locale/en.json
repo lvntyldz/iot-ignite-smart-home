@@ -1,0 +1,7 @@
+{
+  "name": "Name",
+  "menu": {
+    "dashboard": "Dashboard",
+    "actionLog": "Action Log"
+  }
+}

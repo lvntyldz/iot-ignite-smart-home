@@ -67,6 +67,7 @@ class AppProvider extends Component {
             screenType: "Login",
             sideBarOpen: false,
             loading: false,
+            locale: "tr",
             toast: {
                 active: true,
                 message: null,
@@ -91,6 +92,13 @@ class AppProvider extends Component {
                         this.setState({toast: {active: true, message: msg, bgColor: '#E43C45'}});
                     }
                 }
+            },
+            setLocale: (locale) => {
+                if (!locale) {
+                    locale = "tr";
+                }
+
+                this.setState({locale:locale});
             },
             showLoading: () => {
                 this.setState({loading: true});
