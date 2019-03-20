@@ -19,11 +19,12 @@ import {
     Text,
     Title,
 } from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as sensor from 'MgrLib/sensor';
 import SensorTypeList from 'MgrScreen/SensorType/List';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class CreateSensorType extends Component {
     render() {
@@ -59,6 +60,7 @@ export class CreateSensorTypeContext extends Component {
     handleSaveSensorClick = () => {
 
         const {context} = this.props;
+        const {locale} = context;
         const {SensorTypeListRef} = this.refs;
         const {sensors} = SensorTypeListRef.state;
         let isSensorExist = false;
@@ -71,7 +73,7 @@ export class CreateSensorTypeContext extends Component {
 
         if (isSensorExist === true) {
             this.setState({modalVisible: false});
-            context.showMessage("Sensor Zaten Ekli!").warn();
+            context.showMessage(lang(locale).getLabel("screen.sensorType.message.sensorAlreadyExists")).warn();
             return;
         }
 
@@ -83,16 +85,19 @@ export class CreateSensorTypeContext extends Component {
             console.info("add sensor operation is success");
             this.setModalVisible(false);
             SensorTypeListRef.setState({rerender: !SensorTypeListRef.state.rerender});
-            context.showMessage("Sensor Başarıyla Eklendi!").succes();
+            context.showMessage(lang(locale).getLabel("screen.sensorType.message.addSensorSuccess")).succes();
         });
     }
 
     createSensorForm = () => {
+        const {context} = this.props;
+        const {locale} = context;
+
         return <Container>
             <Header>
                 <Left/>
                 <Body>
-                <Title>Create Sensor Type</Title>
+                <Title>{lang(locale).getLabel("screen.sensorType.createTitle")}</Title>
                 </Body>
                 <Right>
                     <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
@@ -104,13 +109,13 @@ export class CreateSensorTypeContext extends Component {
             <Content>
                 <Form>
                     <FormItem floatingLabel>
-                        <Label>Type</Label>
+                        <Label>{lang(locale).getLabel("screen.sensorType.type")}</Label>
                         <Input onChangeText={(d) => {
                             this.setState({sensorType: d})
                         }} value={this.state.sensorType}/>
                     </FormItem>
                     <FormItem floatingLabel>
-                        <Label>Vendor</Label>
+                        <Label>{lang(locale).getLabel("screen.sensorType.vendor")}</Label>
                         <Input onChangeText={(d) => {
                             this.setState({sensorVendor: d})
                         }} value={this.state.sensorVendor}/>
@@ -124,7 +129,7 @@ export class CreateSensorTypeContext extends Component {
                         selectedValue={this.state.selectedDataType}
                         onValueChange={this.onValueChange.bind(this)}
                     >
-                        <Picker.Item label="Select Data Type" value=""/>
+                        <Picker.Item label={lang(locale).getLabel("screen.sensorType.dataType")} value=""/>
                         <Picker.Item label="INTEGER" value="INTEGER"/>
                         <Picker.Item label="FLOAT" value="FLOAT"/>
                         <Picker.Item label="STRING" value="STRING"/>
@@ -133,7 +138,7 @@ export class CreateSensorTypeContext extends Component {
 
                     <Button full primary style={{paddingBottom: 4}}
                             onPress={() => this.handleSaveSensorClick()}>
-                        <Text> Save </Text>
+                        <Text> {lang(locale).getLabel("button.save")} </Text>
                     </Button>
 
                 </Form>
@@ -155,10 +160,11 @@ export class CreateSensorTypeContext extends Component {
     render() {
         const {sensors} = this.state;
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
-                <SideBarNav pageTitle="Create Sensor Type"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.sensorType.createTitle")}/>
 
                 <Content>
                     <List>

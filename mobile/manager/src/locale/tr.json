@@ -13,10 +13,23 @@
     "signup": "Üye Ol",
     "sendMessage": "Mesaj Gönder",
     "createConfiguration": "Konfigürasyon Oluştur",
+    "save": "Kaydet",
+    "create": "Oluştur",
   },
 
   "screen": {
     "login": "Giriş Ekranı",
+
+    "sensorType":{
+      "createTitle":"Sensor Tipi Ekle",
+      "type":"Sensor Tipi ",
+      "vendor":"Üretici ",
+      "dataType":"Veri Tipi ",
+      "message":{
+        "addSensorSuccess":"Sensor Başarıyla Eklendi",
+        "senorAlreadyExists":"Sensor Zaten Ekli!",
+      }
+    },
 
     "sensorDataConf":{
       "createSensorTypeTitle":"Sensör Tipi Oluştur",
