@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Button, Container, Content, Icon, Input, Item, Label, Text,} from 'native-base';
-//custom
-import {CtxConsumer} from '../../../boot/Container/index';
-import * as profile from "../../../lib/profile/index";
+
+import {CtxConsumer} from 'MgrBoot/Container';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
+import * as profile from "MgrLib/profile/index";
 
 
 export default class SendProfileData extends Component {
@@ -94,27 +95,29 @@ export class SendProfileDataContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
+
         return (
             <Container>
-                <SideBarNav pageTitle="Send Mode And Policy"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.mode.sendProfileTitle")}/>
 
                 <Content style={{marginTop: 20, padding: 4}}>
 
 
                     <Item disabled inlineLabel>
-                        <Label>Mode</Label>
+                        <Label>{lang(locale).getLabel("screen.mode.label")}</Label>
                         <Input disabled placeholder={this.state.mode.name}/>
                         <Icon name='information-circle'/>
                     </Item>
 
                     <Item disabled>
-                        <Label>Policy</Label>
+                        <Label>{lang(locale).getLabel("screen.mode.policy")}</Label>
                         <Input disabled placeholder={this.state.policy.name}/>
                         <Icon name='information-circle'/>
                     </Item>
 
                     <Button block style={{marginTop: 20}} onPress={() => this.handleSendModeClick()}>
-                        <Text>Send Mode And Policy</Text>
+                        <Text>{lang(locale).getLabel("screen.mode.sendModeBtn")}</Text>
                     </Button>
 
                 </Content>

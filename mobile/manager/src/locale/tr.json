@@ -55,6 +55,14 @@
       }
     },
 
+
+    "mode": {
+      "sendProfileTitle":"Ayarları Gönder(Mode)",
+      "label":"Mode",
+      "policy":"Kural",
+      "sendModeBtn":"Mode Gönder",
+    },
+
     "dashboard": {
       "title":"Kontrol Göstergeleri",
       "gateways":"Cihazlar",
