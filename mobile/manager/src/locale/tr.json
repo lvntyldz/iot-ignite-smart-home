@@ -3,13 +3,15 @@
 
   "input": {
     "email": "E-Posta",
-    "password": "Şifre"
+    "password": "Şifre",
+    "message": "Mesaj",
   },
 
   "button": {
     "logout": "Çıkış Yap",
     "login": "Giriş Yap",
-    "signup": "Üye Ol"
+    "signup": "Üye Ol",
+    "sendMessage": "Mesaj Gönder",
   },
 
   "screen": {
@@ -70,6 +72,11 @@
       "yearlyTitle":"Yıllık Rapor",
       "nodeList":"Node Listesi",
       "sensorList":"Sensör Listesi",
+    },
+
+    "sendMessage": {
+      "title":"Mesaj Gönder",
+      "messageSentSuccess":"Mesajınız Cihaza Başarıyla Gönderildi!",
     },
 
     "dashboard": {

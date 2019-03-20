@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Container, Content,} from 'native-base';
 
-//custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import DeviceList from '../Inventory/Device';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class SendMessage extends Component {
     render() {
@@ -29,11 +29,12 @@ export class SendMessageContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
 
-                <SideBarNav pageTitle="Send Message"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.sendMessage.title")}/>
 
                 <Content>
                     <DeviceList goTo="SendMessageData"/>
