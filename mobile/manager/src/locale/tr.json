@@ -22,12 +22,14 @@
 
     "sensorType":{
       "createTitle":"Sensor Tipi Ekle",
+      "importTitle":"Sensor Tipi İndir",
       "type":"Sensor Tipi ",
       "vendor":"Üretici ",
       "dataType":"Veri Tipi ",
       "message":{
         "addSensorSuccess":"Sensor Başarıyla Eklendi",
         "senorAlreadyExists":"Sensor Zaten Ekli!",
+        "sensorDeletedSuccess":"Sensor Başarıyla Silindi!",
       }
     },
 

@@ -1,25 +1,12 @@
 import React, {Component} from 'react';
 import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
-import {
-    Badge,
-    Body,
-    Button,
-    Container,
-    Content,
-    Header,
-    Icon,
-    Left,
-    List,
-    ListItem,
-    Right,
-    Text,
-    Title,
-} from 'native-base';
-//custom
+import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as sensor from 'MgrLib/sensor';
 import SensorTypeList from 'MgrScreen/SensorType/List';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class ImportSensorType extends Component {
     render() {
@@ -54,10 +41,11 @@ export class ImportSensorTypeContext extends Component {
     importPreDefinedSensor = () => {
         const {preDefinedSensors} = this.state;
         const {context} = this.props;
+        const {locale} = context;
 
         return <Container>
 
-            <SideBarNav pageTitle="Import Sensor Type"/>
+            <SideBarNav pageTitle={lang(locale).getLabel("screen.sensorType.importTitle")}/>
 
             <Content>
                 <List>
@@ -91,13 +79,14 @@ export class ImportSensorTypeContext extends Component {
     handleImportDefinedSensorClick = (id) => {
 
         const {context} = this.props;
+        const {locale} = context;
         const {SensorTypeListRef} = this.refs;
 
         sensor.addPreDefined(context.token, {id}).then(count => {
             console.info("add preDefined sensor operation is success");
             this.setModalVisible(false);
             SensorTypeListRef.setState({rerender: !SensorTypeListRef.state.rerender});
-            context.showMessage("Sensor Başarıyla Eklendi!").succes();
+            context.showMessage(lang(locale).getLabel("screen.sensorType.message.addSensorSuccess")).succes();
         });
     }
 
@@ -108,10 +97,11 @@ export class ImportSensorTypeContext extends Component {
     render() {
         const {sensors} = this.state;
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
-                <SideBarNav pageTitle="ImportSensorType"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.sensorType.importTitle")}/>
 
                 <Content>
                     <List>

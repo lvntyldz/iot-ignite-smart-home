@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
-//custom
+
 import * as sensor from 'MgrLib/sensor';
+import {lang} from 'MgrLocale';
 
 export default class SensorTypeList extends Component {
 
@@ -37,11 +38,12 @@ export default class SensorTypeList extends Component {
     handleDeleteSensorClick = (sensorId) => {
 
         const {context} = this.props;
+        const {locale} = context;
 
         sensor.remove(context.token, sensorId).then(response => {
             console.info("delete sensor operation is success");
             this.setState({rerender: !this.state.rerender});
-            context.showMessage("Sensor Başarıyla Silindi!").succes();
+            context.showMessage(lang(locale).getLabel("screen.sensorType.message.sensorDeletedSuccess")).succes();
         });
     }
 
@@ -76,7 +78,7 @@ export default class SensorTypeList extends Component {
                             })
                         }
                     </List>
-                    
+
                 </Content>
             </Container>
         );//return
