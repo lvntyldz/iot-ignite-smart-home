@@ -26,6 +26,7 @@
       "message":{
         "sensorTypeRequired":"Önce SensorType seçmelisiniz!",
         "sensorAddedSuccess":"Sensor Konfigurasyonu Başarıyla Eklendi!",
+        "sensorDeletedSuccess":"Sensor Konfigurasyonu Başarıyla Silindi!",
       }
     },
 
