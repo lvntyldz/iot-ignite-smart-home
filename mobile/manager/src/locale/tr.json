@@ -12,10 +12,22 @@
     "login": "Giriş Yap",
     "signup": "Üye Ol",
     "sendMessage": "Mesaj Gönder",
+    "createConfiguration": "Konfigürasyon Oluştur",
   },
 
   "screen": {
     "login": "Giriş Ekranı",
+
+    "sensorDataConf":{
+      "createSensorTypeTitle":"Sensör Tipi Oluştur",
+      "sensorName":"Sensor Adı",
+      "offlineDataTime":"Çevrimdışı Veri Okuma (Sn)",
+      "dataThreshold":"Veri Eşik değeri (Sn)",
+      "message":{
+        "sensorTypeRequired":"Önce SensorType seçmelisiniz!",
+        "sensorAddedSuccess":"Sensor Konfigurasyonu Başarıyla Eklendi!",
+      }
+    },
 
     "actionLog": {
       "title":"Log Kayıtları",

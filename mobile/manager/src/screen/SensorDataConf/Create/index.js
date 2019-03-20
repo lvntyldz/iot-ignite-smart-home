@@ -21,11 +21,12 @@ import {
     Text,
     Title,
 } from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as sensor from 'MgrLib/sensor';
 import SensorDataConfList from 'MgrScreen/SensorDataConf/List';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class CreateSensorDataConf extends Component {
     render() {
@@ -81,12 +82,13 @@ export class CreateSensorDataConfContext extends Component {
 
     handleSaveConfigurationBtnClick = () => {
         const {context} = this.props;
+        const {locale} = context;
         const {state} = this;
         const {SensorDataConfListRef} = this.refs;
 
         if (!state.selectedSensorType) {
             this.setModalVisible(false);
-            context.showMessage("Önce SensorType seçmelisiniz!").warn();
+            context.showMessage(lang(locale).getLabel("screen.sensorDataConf.message.sensorTypeRequired")).warn();
             return;
         }
 
@@ -110,19 +112,21 @@ export class CreateSensorDataConfContext extends Component {
             console.info("add sensor configuration is success");
             this.setModalVisible(false);
             SensorDataConfListRef.setState({rerender: !SensorDataConfListRef.state.rerender});
-            context.showMessage("Sensor Konfigurasyonu Başarıyla Eklendi!").succes();
+            context.showMessage(lang(locale).getLabel("screen.sensorDataConf.message.sensorAddedSuccess")).succes();
             context.hideLoading();
         });
     }
 
     createSensorForm = () => {
         const {sensors} = this.state;
+        const {context} = this.props;
+        const {locale} = context;
 
         return <Container>
             <Header>
                 <Left/>
                 <Body>
-                <Title>Create Sensor Type</Title>
+                <Title>{lang(locale).getLabel("screen.sensorDataConf.createSensorTypeTitle")}</Title>
                 </Body>
                 <Right>
                     <Button hasText transparent onPress={(d) => this.setModalVisible(false)}>
@@ -156,21 +160,21 @@ export class CreateSensorDataConfContext extends Component {
                     </Item>
 
                     <Item floatingLabel>
-                        <Label>Name</Label>
+                        <Label>{lang(locale).getLabel("screen.sensorDataConf.sensorName")}</Label>
                         <Input onChangeText={(d) => {
                             this.setState({name: d})
                         }} value={this.state.name}/>
                     </Item>
 
                     <Item floatingLabel>
-                        <Label>Offline Data Time (Sec)</Label>
+                        <Label>{lang(locale).getLabel("screen.sensorDataConf.offlineDataTime")}</Label>
                         <Input onChangeText={(d) => {
                             this.setState({offlineDataTime: d})
                         }} value={this.state.offlineDataTime}/>
                     </Item>
 
                     <Item floatingLabel>
-                        <Label>Data Threshold Time (Sec) </Label>
+                        <Label>{lang(locale).getLabel("screen.sensorDataConf.dataThreshold")} </Label>
                         <Input onChangeText={(d) => {
                             this.setState({dataThreshold: d})
                         }} value={this.state.dataThreshold}/>
@@ -183,7 +187,7 @@ export class CreateSensorDataConfContext extends Component {
 
                 <Button full primary style={{paddingBottom: 4}}
                         onPress={() => this.handleSaveConfigurationBtnClick()}>
-                    <Text> Create Configuration </Text>
+                    <Text> {lang(locale).getLabel("button.createConfiguration")}</Text>
                 </Button>
 
             </Content>
@@ -204,10 +208,11 @@ export class CreateSensorDataConfContext extends Component {
     render() {
         const {sensors} = this.state;
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
-                <SideBarNav pageTitle="CreateSensorDataConf"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.sensorDataConf.createSensorTypeTitle")}/>
 
                 <Content>
                     <List>
