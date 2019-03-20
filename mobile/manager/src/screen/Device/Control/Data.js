@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {Button, Container, Content, Separator, Text,} from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 
 import * as workingset from 'MgrLib/workingset';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class DeviceControlData extends Component {
     render() {
@@ -20,6 +21,18 @@ export default class DeviceControlData extends Component {
 }//class
 
 export class DeviceControlDataContext extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            modalVisible: false,
+            rerender: false,
+            device: {
+                code: null,
+                id: null,
+            }
+        }
+    }
 
     componentWillMount = () => {
 
@@ -34,48 +47,38 @@ export class DeviceControlDataContext extends Component {
     handleStartRingClick = () => {
 
         const {context} = this.props;
+        const {locale} = context;
         context.showLoading();
 
         workingset.startRing(context.token, context.workingset).then(response => {
             console.info("ring started...");
             context.hideLoading();
-            context.showMessage("Start Ring Komutu Cihaza Başarıyla Gönderildi!").succes();
+            context.showMessage(lang(locale).getLabel("screen.device.message.startRingSuccess")).succes();
         });
     }
     handleStopRingClick = () => {
 
         const {context} = this.props;
+        const {locale} = context;
         context.showLoading();
 
         workingset.ringstop(context.token, context.workingset).then(response => {
             console.info("ring stopped...");
             context.hideLoading();
-            context.showMessage("Stop Ring Komutu Cihaza Başarıyla Gönderildi!").succes();
+            context.showMessage(lang(locale).getLabel("screen.device.message.stopRingSuccess")).succes();
         });
     }
     handleRestartClick = () => {
 
         const {context} = this.props;
+        const {locale} = context;
         context.showLoading();
 
         workingset.restartDevice(context.token, context.workingset).then(response => {
             console.info("device rebooted...");
             context.hideLoading();
-            context.showMessage("Reboot Komutu Cihaza Başarıyla Gönderildi!").succes();
+            context.showMessage(lang(locale).getLabel("screen.device.message.rebootSuccess")).succes();
         });
-    }
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            modalVisible: false,
-            rerender: false,
-            device: {
-                code: null,
-                id: null,
-            }
-        }
     }
 
     setModalVisible(visible) {
@@ -84,6 +87,7 @@ export class DeviceControlDataContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
         const {device} = this.state;
 
         if (!device) {
@@ -92,24 +96,24 @@ export class DeviceControlDataContext extends Component {
 
         return (
             <Container>
-                <SideBarNav pageTitle="Device Control"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.device.controlTitle")}/>
 
                 <Content style={{paddingLeft: 10, paddingRight: 10}}>
 
                     <Button block danger onPress={() => this.handleStopRingClick()}>
-                        <Text>Stop Ring</Text>
+                        <Text>{lang(locale).getLabel("screen.device.stopRingBtn")}</Text>
                     </Button>
 
                     <Separator/>
 
                     <Button block success onPress={() => this.handleStartRingClick()}>
-                        <Text>Start Ring</Text>
+                        <Text>{lang(locale).getLabel("screen.device.startRingBtn")}</Text>
                     </Button>
 
                     <Separator/>
 
                     <Button block warning onPress={() => this.handleRestartClick()}>
-                        <Text>Restart Device</Text>
+                        <Text>{lang(locale).getLabel("screen.device.restart")}</Text>
                     </Button>
 
                     <Separator/>

@@ -33,6 +33,18 @@
       }
     },
 
+    "device": {
+      "controlTitle":"Cihaz Kontrolü",
+      "stopRingBtn":"Zil Çal",
+      "startRingBtn":"Zili Durdur",
+      "restart":"Cihazı Yeniden Başlat",
+      "message":{
+        "rebootSuccess":"Reboot Komutu Cihaza Başarıyla Gönderildi!",
+        "stopRingSuccess":"Stop Ring Komutu Cihaza Başarıyla Gönderildi!",
+        "startRingSuccess":"Start Ring Komutu Cihaza Başarıyla Gönderildi!",
+      }
+    },
+
     "dashboard": {
       "title":"Kontrol Göstergeleri",
       "gateways":"Cihazlar",

@@ -19,7 +19,7 @@ import {
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as actionLog from 'MgrLib/actionLog';
 import SideBarNav from 'MgrComponent/SideBarNav';
-import {lang} from "../../locale";
+import {lang} from 'MgrLocale';
 
 export default class ActionLogData extends Component {
     render() {
