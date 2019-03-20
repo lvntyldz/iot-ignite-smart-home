@@ -34,10 +34,20 @@
     },
 
     "device": {
+      "detailTitle":"Cihaz Bilgileri",
       "controlTitle":"Cihaz Kontrolü",
       "stopRingBtn":"Zil Çal",
       "startRingBtn":"Zili Durdur",
       "restart":"Cihazı Yeniden Başlat",
+      "gatewayId":"Cihaz ID",
+      "model":"Model",
+      "serial":"Seri No",
+      "osVersion":"İşletim Sistemi Versiyonu",
+      "connectionStatus":"Bağlantı Durumu",
+      "publicIp":"Dış Ip",
+      "localIp":"İç Ip",
+      "batteryInfo":"Şarj Durumu",
+      "lastPresenceDate":"Son Bilgi Gönderme Zamanı",
       "message":{
         "rebootSuccess":"Reboot Komutu Cihaza Başarıyla Gönderildi!",
         "stopRingSuccess":"Stop Ring Komutu Cihaza Başarıyla Gönderildi!",

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Container, Content,} from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import DeviceList from '../../Inventory/Device';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 
 export default class DeviceDetail extends Component {
@@ -29,10 +30,11 @@ export class DeviceDetailContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
-                <SideBarNav pageTitle="Device Detail"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.device.detailTitle")}/>
 
                 <Content>
                     <DeviceList goTo="DeviceDetailData"/>

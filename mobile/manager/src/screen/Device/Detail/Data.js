@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Container, Content, Left, ListItem, Separator, Text,} from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as device from "MgrLib/device";
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 
 export default class DeviceDetailData extends Component {
@@ -67,6 +68,7 @@ export class DeviceDetailDataContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
         let {device} = this.state;
         let {osProfile} = device;
 
@@ -78,11 +80,11 @@ export class DeviceDetailDataContext extends Component {
         return (
             <Container>
 
-                <SideBarNav pageTitle="Device Detail Data"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.device.detailTitle")}/>
 
                 <Content>
                     <Separator bordered>
-                        <Text>Gateway ID</Text>
+                        <Text>{lang(locale).getLabel("screen.device.gatewayId")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -91,7 +93,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Serial</Text>
+                        <Text>{lang(locale).getLabel("screen.device.serial")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -100,7 +102,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Model</Text>
+                        <Text>{lang(locale).getLabel("screen.device.model")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -109,7 +111,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>OS Version</Text>
+                        <Text>{lang(locale).getLabel("screen.device.osVersion")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -118,7 +120,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Connection Status</Text>
+                        <Text>{lang(locale).getLabel("screen.device.connectionStatus")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -127,7 +129,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Public Ip</Text>
+                        <Text>{lang(locale).getLabel("screen.device.publicIp")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -136,7 +138,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Local Ip</Text>
+                        <Text>{lang(locale).getLabel("screen.device.localIp")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -145,7 +147,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Battery Info</Text>
+                        <Text>{lang(locale).getLabel("screen.device.batteryInfo")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
@@ -154,7 +156,7 @@ export class DeviceDetailDataContext extends Component {
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>Last Presence Date</Text>
+                        <Text>{lang(locale).getLabel("screen.device.lastPresenceDate")}</Text>
                     </Separator>
                     <ListItem>
                         <Left>
