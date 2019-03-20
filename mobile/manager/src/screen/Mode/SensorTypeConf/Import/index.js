@@ -1,3 +1,4 @@
+//TODO:Development[Multilanguage support]
 import React, {Component} from 'react';
 import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {

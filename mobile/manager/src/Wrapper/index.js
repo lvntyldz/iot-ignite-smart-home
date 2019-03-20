@@ -31,9 +31,6 @@ import SendProfileData from 'MgrScreen/Mode/SendProfile/Data';
 import SendMessage from 'MgrScreen/SendMessage';
 import SendMessageData from 'MgrScreen/SendMessage/Data';
 
-import Reports1 from 'MgrScreen/Reports1';
-import Reports1Data from 'MgrScreen/Reports1/Data';
-
 import NodeSensorList from 'MgrScreen/Reports/NodeSensorList';
 import DeviceNodeList from 'MgrScreen/Reports/DeviceNodeList';
 import YearlyGraph from 'MgrScreen/Reports/Yearly';
@@ -247,14 +244,6 @@ export default class Wrapper extends Component {
 
         if (screenType === "DeviceNodeList") {
             return <DeviceNodeList/>;
-        }
-
-        if (screenType === "Reports1") {
-            return <Reports1/>;
-        }
-
-        if (screenType === "Reports1Data") {
-            return <Reports1Data/>;
         }
 
         if (screenType === "YearlyGraph") {

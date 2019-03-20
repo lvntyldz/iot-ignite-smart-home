@@ -215,21 +215,7 @@ export default class SideBar extends Component {
                                 </Body>
                                 </ListItem>
                                 */}
-
-                                {/*
-                                <ListItem button={true} onPress={() => context.changeScreenByType("Reports1")} icon
-                                style={context.screenType === "Reports1" ? activeStyle : {}}>
-                                <Left>
-                                <Button style={{backgroundColor: "#c4c"}}>
-                                <Icon active name="ios-mail"/>
-                                </Button>
-                                </Left>
-                                <Body>
-                                <Text>Reports1</Text>
-                                </Body>
-                                </ListItem>
-                                */}
-
+                                
                                 <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")} icon
                                           style={context.screenType === "YearlyGraph" ? activeStyle : {}}>
                                     <Left>
