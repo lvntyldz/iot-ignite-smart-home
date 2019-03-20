@@ -215,7 +215,7 @@ export default class SideBar extends Component {
                                 </Body>
                                 </ListItem>
                                 */}
-                                
+
                                 <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")} icon
                                           style={context.screenType === "YearlyGraph" ? activeStyle : {}}>
                                     <Left>

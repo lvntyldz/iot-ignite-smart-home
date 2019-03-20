@@ -63,6 +63,15 @@
       "sendModeBtn":"Mode Gönder",
     },
 
+    "reports": {
+      "dailyTitle":"Günlük Rapor",
+      "weeklyTitle":"Haftalık Rapor",
+      "monthlyTitle":"Aylık Rapor",
+      "yearlyTitle":"Yıllık Rapor",
+      "nodeList":"Node Listesi",
+      "sensorList":"Sensör Listesi",
+    },
+
     "dashboard": {
       "title":"Kontrol Göstergeleri",
       "gateways":"Cihazlar",

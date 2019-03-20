@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Container, Content,} from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import SensorList from '../Inventory/Sensor';
 import SideBarNav from 'MgrComponent/SideBarNav';
 import YearlyGraphData from "./Yearly/Data";
+import {lang} from 'MgrLocale';
 
 export default class NodeSensorList extends Component {
     render() {
@@ -29,7 +30,9 @@ export class NodeSensorListContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
         const {graphReportRange} = context;
+
         let goTo = null;
 
         if (graphReportRange === "yearly") {
@@ -44,9 +47,13 @@ export class NodeSensorListContext extends Component {
             goTo = "WeeklyGraphData";
         }
 
+        if (graphReportRange === "daily") {
+            goTo = "DailyGraphData";
+        }
+
         return (
             <Container>
-                <SideBarNav pageTitle="NodeSensorList"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.reports.sensorList")}/>
 
                 <Content>
                     <SensorList goTo={goTo}/>

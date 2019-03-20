@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Container, Content,} from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import NodeList from 'MgrScreen/Inventory/Node';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class DeviceNodeList extends Component {
     render() {
@@ -28,10 +29,11 @@ export class DeviceNodeListContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
-                <SideBarNav pageTitle="DeviceNodeList"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.reports.nodeList")}/>
 
                 <Content>
                     <NodeList goTo="NodeSensorList"/>

@@ -4,11 +4,12 @@ import {Container, Content} from 'native-base';
 
 import {AreaChart, BarChart, Grid, LineChart, PieChart} from 'react-native-svg-charts'
 import * as shape from 'd3-shape'
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import SideBarNav from 'MgrComponent/SideBarNav';
 import * as sensor from 'MgrLib/sensor';
 import * as moment from "MgrLib/moment";
+import {lang} from 'MgrLocale';
 
 
 const fill = 'rgb(134, 65, 244)'
@@ -144,11 +145,12 @@ export class WeeklyGraphDataContext extends Component {
     render() {
 
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
 
-                <SideBarNav pageTitle="Weekly Graph"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.reports.weeklyTitle")}/>
 
                 <Content>
                     {this.loadBarChart()}

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Container, Content,} from 'native-base';
-//custom
+
 import {CtxConsumer} from 'MgrBoot/Container';
 import DeviceList from 'MgrScreen/Inventory/Device';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import {lang} from 'MgrLocale';
 
 export default class MonthlyGraph extends Component {
     render() {
@@ -33,10 +34,11 @@ export class MonthlyGraphContext extends Component {
 
     render() {
         const {context} = this.props;
+        const {locale} = context;
 
         return (
             <Container>
-                <SideBarNav pageTitle="MonthlyGraph"/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.reports.monthlyTitle")}/>
 
                 <Content>
                     <DeviceList goTo="DeviceNodeList"/>
