@@ -63,9 +63,7 @@ export class LoginContext extends Component {
             tokenDb.addToken(token);
             userDb.updateLoginUser(this.state.email, this.state.password);
             context.setToken(token);
-            //TODO:Remove
-            context.setActivePage("DeviceControl");
-            //context.setActivePage("Dashboard");
+            context.setActivePage("Role");
             context.hideSideBar();
             context.hideLoading();
         });

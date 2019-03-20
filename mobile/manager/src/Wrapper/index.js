@@ -6,6 +6,8 @@ import Drawer from 'react-native-drawer'
 import {CtxConsumer, CtxProvider} from 'MgrBoot/Container';
 import Dashboard from 'MgrScreen/Dashboard';
 
+import Role from 'MgrScreen/Role';
+
 import ActionLog from 'MgrScreen/ActionLog';
 import ActionLogData from 'MgrScreen/ActionLog/Data';
 
@@ -64,6 +66,7 @@ class AppProvider extends Component {
             screenType: "Login",
             sideBarOpen: false,
             loading: false,
+            role: 0,
             locale: 0,
             toast: {
                 active: true,
@@ -96,6 +99,13 @@ class AppProvider extends Component {
                 }
 
                 this.setState({locale: locale});
+            },
+            setRole: (d) => {
+                if (!d) {
+                    d = 0;
+                }
+
+                this.setState({role: d});
             },
             showLoading: () => {
                 this.setState({loading: true});
@@ -168,6 +178,10 @@ export default class Wrapper extends Component {
 
         if (screenType === "Dashboard") {
             return <Dashboard/>;
+        }
+
+        if (screenType === "Role") {
+            return <Role/>;
         }
 
         if (screenType === "ActionLog") {

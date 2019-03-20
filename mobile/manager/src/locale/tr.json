@@ -107,6 +107,12 @@
       "messageSentSuccess":"Mesajınız Cihaza Başarıyla Gönderildi!",
     },
 
+    "role": {
+      "title":"Rol Seçimi",
+      "smartUsage":"Menü",
+      "easySetup":"Kurulum",
+    },
+
     "dashboard": {
       "title":"Kontrol Göstergeleri",
       "gateways":"Cihazlar",
@@ -124,8 +130,6 @@
         "total":"Toplam",
       }
     }
-
-
   },
 
   "menu": {
