@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Body, Card, CardItem, Container, DeckSwiper, Header, Left, Text, View} from 'native-base';
+import {Body, Card, CardItem, Container, DeckSwiper, Left, Text, View} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import {Dimensions, ScrollView} from 'react-native';
@@ -116,7 +116,6 @@ export class GraphContext extends Component {
 
         return (
             <Container>
-                <Header/>
                 <View>
                     <DeckSwiper
                         dataSource={cards}

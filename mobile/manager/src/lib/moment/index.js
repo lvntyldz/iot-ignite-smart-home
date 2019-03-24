@@ -1,5 +1,13 @@
 import moment from 'moment';
 
+export const getMonthOfYear = (value) => {
+    return moment(value).format("MM");
+}
+
+export const getHumanDate = (value) => {
+    return moment(value).format("DD-MM-YYYY h:mm:ss");
+}
+
 export const currTime = () => {
     return moment().toDate().getTime();
 }
