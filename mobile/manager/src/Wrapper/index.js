@@ -356,7 +356,7 @@ export default class Wrapper extends Component {
                                 >
                                     {this.loadMessageBar(context.toast)}
                                     {this.loadActivityIndicator(context.loading)}
-                                    <Text> Token : {context.token}</Text>
+                                    <Text style={{color:'#FFF'}}> Token : {context.token}</Text>
                                     {this.loadScreenByType(context.screenType)}
                                 </Drawer>
                             )//return

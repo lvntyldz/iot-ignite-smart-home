@@ -27,7 +27,7 @@ export class SideBarNavContext extends Component {
                 </Body>
                 <Left/>
                 <Right>
-                    <Button style={{backgroundColor: 'red'}} onPress={() => context.showSideBar()} icon light>
+                    <Button onPress={() => context.showSideBar()} icon light>
                         <Icon name='list'/>
                     </Button>
                 </Right>
