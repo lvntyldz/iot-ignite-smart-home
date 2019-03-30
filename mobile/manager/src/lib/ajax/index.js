@@ -124,7 +124,7 @@ export const fetchWrapper = (url, fetchOptions, timeout) => {
             return response.json();
         })
         .then((responseJson) => {
-            console.info("api JSON response  : ", responseJson);
+            LOG("api JSON response : ").succes(responseJson);
             return responseJson;
         }).catch((error) => {
             console.warn("something went wrong while http request! error : ", error);
