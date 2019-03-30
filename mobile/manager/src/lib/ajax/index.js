@@ -1,4 +1,5 @@
 import * as config from 'MgrConfig';
+import {LOG} from 'MgrLib/log';
 
 export const _PUT = "PUT";
 export const _DELETE = "DELETE";
@@ -59,6 +60,12 @@ export const doHeader = (headers, url, params, timeout) => {
 }
 
 export const doRequest = (url, fetchOptions, params, timeout) => {
+
+    LOG("url").succes(url);
+    LOG("fetchOptions : ").succes(fetchOptions);
+    LOG("params : ").succes(params);
+    LOG("timeout : ").succes(timeout);
+
     return {
         get: () => {
             fetchOptions.method = _GET;
