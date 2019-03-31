@@ -61,10 +61,10 @@ export const doHeader = (headers, url, params, timeout) => {
 
 export const doRequest = (url, fetchOptions, params, timeout) => {
 
-    LOG("url").succes(url);
-    LOG("fetchOptions : ").succes(fetchOptions);
-    LOG("params : ").succes(params);
-    LOG("timeout : ").succes(timeout);
+    LOG("url").success(url);
+    LOG("fetchOptions : ").success(fetchOptions);
+    LOG("params : ").success(params);
+    LOG("timeout : ").success(timeout);
 
     return {
         get: () => {
@@ -124,7 +124,7 @@ export const fetchWrapper = (url, fetchOptions, timeout) => {
             return response.json();
         })
         .then((responseJson) => {
-            LOG("api JSON response : ").succes(responseJson);
+            LOG("api JSON response : ").success(responseJson);
             return responseJson;
         }).catch((error) => {
             console.warn("something went wrong while http request! error : ", error);

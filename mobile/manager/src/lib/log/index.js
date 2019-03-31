@@ -11,7 +11,7 @@ export const LOG = (msg) => {
         "warn": (obj) => {
             printLine(msg, obj, '#efdc04');
         },
-        "succes": (obj) => {
+        "success": (obj) => {
             printLine(msg, obj, '#10ea59');
         }
     }
