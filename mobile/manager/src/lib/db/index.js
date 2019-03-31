@@ -6,6 +6,7 @@ export const createScripts = () => {
     db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS token (id INTEGER PRIMARY KEY AUTOINCREMENT, acces_token TEXT)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS user( id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS sensorData( id INTEGER PRIMARY KEY AUTOINCREMENT, deviceId TEXT NOT NULL, nodeId TEXT NOT NULL , sensorId TEXT NOT NULL  , sensorCreateDate TEXT NOT NULL,data TEXT NOT NULL ,formattedSensorCreateDate date , unique (deviceId,nodeId,sensorId,sensorCreateDate))');
     });
 }
 
