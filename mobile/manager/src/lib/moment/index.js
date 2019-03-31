@@ -5,7 +5,15 @@ export const getMonthOfYear = (value) => {
 }
 
 export const getHumanDate = (value) => {
-    return moment(value).format("DD-MM-YYYY h:mm:ss");
+    return moment(value).format("YYYY-MM-DD");
+}
+
+export const getHumanTime = (value) => {
+    return moment(value).format("hh:mm:ss");
+}
+
+export const getHumanDateAndTime = (value) => {
+    return moment(value).format("YYYY-MM-DD hh:mm:ss");
 }
 
 export const currTime = () => {
