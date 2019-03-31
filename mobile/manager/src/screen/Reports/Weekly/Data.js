@@ -10,6 +10,7 @@ import SideBarNav from 'MgrComponent/SideBarNav';
 import * as sensor from 'MgrLib/sensor';
 import * as moment from "MgrLib/moment";
 import {lang} from 'MgrLocale';
+import * as sensorDataDb from 'MgrLib/db/sensorData';
 
 
 const fill = 'rgb(134, 65, 244)'
@@ -45,11 +46,24 @@ export class WeeklyGraphDataContext extends Component {
         const startDate = moment.lastYear();
         let chartsData = [];
 
+
         const d = await sensor.getSensorHistory(context.token, context.deviceId, context.node.nodeId, context.sensor.id, startDate, endDate);
 
-        d.map((v, k) => {
-            const sensorData = JSON.parse(v.data);
-            chartsData.push(parseInt(sensorData[0]));
+        await sensorDataDb.deleteAllSensorData();
+
+        await d.map((v, k) => {
+            const formattedSensorCreateDate = moment.getHumanDateAndTime(v.createDate);
+            let sensorData = JSON.parse(v.data);
+            sensorData = parseInt(sensorData[0]);
+            sensorDataDb.addSensorData(v.deviceId, v.nodeId, v.sensorId, v.createDate, sensorData, formattedSensorCreateDate);
+        });
+
+
+        const dbData = await  sensorDataDb.getWeeklyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
+        console.warn("dbData : ", dbData);
+
+        dbData.map((v, k) => {
+            chartsData.push(v.average);
         });
 
         self.setState({chartsData});
