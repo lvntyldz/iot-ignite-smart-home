@@ -15,6 +15,7 @@ import {
 } from 'native-base';
 
 import MultiToggleSwitch from 'react-native-multi-toggle-switch';
+import validate from 'validate.js';
 //custom
 import {lang} from 'MgrLocale';
 import {ENGLISH, TURKISH} from 'MgrEnum/Locale';
@@ -22,6 +23,7 @@ import * as login from 'MgrLib/login';
 import * as tokenDb from 'MgrLib/db/token';
 import * as userDb from 'MgrLib/db/user';
 import {CtxConsumer} from 'MgrBoot/Container';
+import {constraints} from 'MgrUtil/ValidationRule';
 
 export default class Login extends Component {
     render() {
@@ -57,6 +59,16 @@ export class LoginContext extends Component {
     }
 
     handleLoginClick = (context) => {
+
+        const validationRes = validate.validate({
+            userEmail: this.state.email,
+            userPwd: this.state.password
+        }, constraints);
+
+        if (validationRes && (validationRes.userEmail || validationRes.userPwd)) {
+            context.showMessage("Kullanıcı Adı veya Şifre Hatalı!").warn();
+            return;
+        }
 
         context.showLoading();
         login.loginToCloud(this.state.email, this.state.password).then(token => {
