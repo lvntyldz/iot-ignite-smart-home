@@ -29,7 +29,7 @@ export const getDailyAverageBySensorType = (deviceId, nodeId, sensorId) => {
                              T.formattedDate
                            FROM (
                                   SELECT
-                                    strftime('%Y-%m-%d', formattedSensorCreateDate) as formattedDate,
+                                    strftime('%H', formattedSensorCreateDate) as formattedDate,
                                     count(*)                                        as count,
                                     sum(data)                                       as total
                                   FROM sensorData
