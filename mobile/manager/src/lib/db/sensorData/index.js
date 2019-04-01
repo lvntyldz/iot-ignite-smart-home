@@ -106,3 +106,47 @@ export const getMonthlyAverageBySensorType = (deviceId, nodeId, sensorId) => {
     });
 }
 
+
+export const getYearlyAverageBySensorType = (deviceId, nodeId, sensorId) => {
+    return new Promise((resolve, reject) => {
+        db.transaction((tx) => {
+
+            let sqlQuery = `SELECT
+                             (T.total / T.count) as average,
+                             T.formattedDate
+                           FROM (
+                                  SELECT
+                                    strftime('%Y-%m-%d', formattedSensorCreateDate) as formattedDate,
+                                    count(*)                                        as count,
+                                    sum(data)                                       as total
+                                  FROM sensorData
+                                  WHERE formattedDate is not null
+                                        AND deviceId = ?
+                                        AND nodeId = ?
+                                        AND sensorId = ?
+                                  GROUP BY formattedDate
+                                ) as T
+                           ORDER BY T.formattedDate
+                             ASC`
+
+            tx.executeSql(sqlQuery, [deviceId, nodeId, sensorId], (tx, results) => {
+
+                let len = results.rows.length;
+
+                if (len > 0) {
+                    let listRes = []
+
+                    for (let i = 0; i < len; i++) {
+                        listRes.push(results.rows.item(i));
+                    }
+
+                    resolve(listRes);
+                }
+
+                resolve(null);
+
+            });
+        });
+    });
+}
+
