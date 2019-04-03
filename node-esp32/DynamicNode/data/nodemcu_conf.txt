@@ -1,1 +1,1 @@
-{"nodeId":"testNodeId1","ssid":"<WIFI_SSID>","password":"<WIFI_PASS>","gatewayId":"<MAC_ID>@iotigniteagent","state":"SEARCH_GATEWAY_STA"}
+{"nodeId":"Guvenlik","ssid":"TurkTelekom_ZTTV7","password":"6Ef261756Cb6c","gatewayId":"141f782eaed8iotigniteagent","state":"SEARCH_GATEWAY_STA"}
