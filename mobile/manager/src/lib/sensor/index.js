@@ -90,6 +90,21 @@ export const createConfig = (token, data) => {
     });
 }
 
+export const createNodeSensorConfig = (token, data) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device-config/inventory", data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post()
+            .then(r => {
+                console.log("Api Create Node Sensor Configuration Response  : ", r);
+                resolve(r);
+            });
+    });
+}
+
 export const listConfig = (token) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/device-config/type?sensorType=", {})
@@ -100,6 +115,21 @@ export const listConfig = (token) => {
             .get()
             .then(r => {
                 console.log("Api Sensor Configurations Response  : ", r);
+                resolve(r);
+            });
+    });
+}
+
+export const listNodeSensorConfig = (token) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device-config/inventory?nodeId=&sensorId=", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                console.log("Api Node Sensor Configurations Response  : ", r);
                 resolve(r);
             });
     });

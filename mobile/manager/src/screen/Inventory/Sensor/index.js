@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Body, Container, Content, ListItem, Right, Text,} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
+import {LOG} from 'MgrLib/log';
+
 
 export default class SensorList extends Component {
     render() {
@@ -26,6 +28,10 @@ export class SensorListContext extends Component {
 
     handleClickSensor = (d) => {
         const {context} = this.props;
+
+        LOG("clicked sensor params  : ").info(d);
+        LOG("clicked sensor props  : ").info(this.props);
+
         context.setSensor(d);
         context.setActivePage(this.props.goTo || "Dashboard");
     }

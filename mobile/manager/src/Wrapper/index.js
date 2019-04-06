@@ -44,10 +44,16 @@ import WeeklyGraphData from 'MgrScreen/Reports/Weekly/Data';
 import DailyGraph from 'MgrScreen/Reports/Daily';
 import DailyGraphData from 'MgrScreen/Reports/Daily/Data';
 
+import NodeSensorConfCreate from 'MgrScreen/NodeSensorConf/Create';
+import NodeSensorConfCreateData from 'MgrScreen/NodeSensorConf/Create/Data';
+import NodeSensorListConf from 'MgrScreen/NodeSensorConf/NodeSensorList';
+import DeviceNodeListConf from 'MgrScreen/NodeSensorConf/DeviceNodeList';
+
 import Login from 'MgrScreen/Login';
 import SignUp from 'MgrScreen/SignUp';
 import * as db from 'MgrLib/db';
 import SideBar from './SideBar';
+import {LOG} from 'MgrLib/log';
 
 //import DeviceDetail from "../screen/DeviceDetail";
 
@@ -58,6 +64,7 @@ class AppProvider extends Component {
 
         this.state = {
             graphReportRange: null,
+            inventoryConfRange: null,
             sensor: null,
             node: null,
             device: null,
@@ -116,6 +123,9 @@ class AppProvider extends Component {
             },
             setGraphReportRange: (d) => {
                 this.setState({graphReportRange: d});
+            },
+            setInventoryConfRange: (d) => {
+                this.setState({inventoryConfRange: d});
             },
             setToken: (d) => {
                 this.setState({token: d});
@@ -261,6 +271,14 @@ export default class Wrapper extends Component {
             return <DeviceNodeList/>;
         }
 
+        if (screenType === "NodeSensorListConf") {
+            return <NodeSensorListConf/>;
+        }
+
+        if (screenType === "DeviceNodeListConf") {
+            return <DeviceNodeListConf/>;
+        }
+
         if (screenType === "YearlyGraph") {
             return <YearlyGraph/>;
         }
@@ -291,6 +309,14 @@ export default class Wrapper extends Component {
 
         if (screenType === "DailyGraphData") {
             return <DailyGraphData/>;
+        }
+
+        if (screenType === "NodeSensorConfCreate") {
+            return <NodeSensorConfCreate/>;
+        }
+
+        if (screenType === "NodeSensorConfCreateData") {
+            return <NodeSensorConfCreateData/>;
         }
 
         if (screenType === "SignUp") {
@@ -352,6 +378,9 @@ export default class Wrapper extends Component {
 
                     <CtxConsumer>
                         {(context) => {
+
+                            LOG("context : ").warn(context);
+
                             return (
                                 <Drawer
                                     openDrawerOffset={0.07}
@@ -361,7 +390,7 @@ export default class Wrapper extends Component {
                                 >
                                     {this.loadMessageBar(context.toast)}
                                     {this.loadActivityIndicator(context.loading)}
-                                    <Text style={{color:'#FFF'}}> Token : {context.token}</Text>
+                                    <Text style={{color: '#FFF'}}> Token : {context.token}</Text>
                                     {this.loadScreenByType(context.screenType)}
                                 </Drawer>
                             )//return

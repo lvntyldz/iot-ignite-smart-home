@@ -189,6 +189,29 @@ export default class SideBar extends Component {
         );
     }
 
+    loadNodeSensorConfCreateScreen = (context) => {
+
+        if (context.role !== EASY_SETUP) {
+            return null;
+        }
+
+        return (
+            <ListItem button={true} onPress={() => context.changeScreenByType("NodeSensorConfCreate")}
+                      icon
+                      style={context.screenType === "NodeSensorConfCreate" ? activeStyle : {}}>
+                <Left>
+                    <Button style={{backgroundColor: "#60B760"}}>
+                        <Icon active name="ios-thermometer"/>
+                    </Button>
+                </Left>
+                <Body>
+                <Text>{lang(context.locale).getLabel("menu.nodeDataConf.create")}</Text>
+                </Body>
+                {this.renderMenuOrderNumber(3)}
+            </ListItem>
+        );
+    }
+
 
     loadSensorTypeImportScreen = (context) => {
 
@@ -397,6 +420,7 @@ export default class SideBar extends Component {
                                 {this.loadSendModeScreen(context)}
                                 {this.loadDeviceDetailScreen(context)}
                                 {this.loadDeviceControlScreen(context)}
+                                {this.loadNodeSensorConfCreateScreen(context)}
                                 {this.loadSensorTypeCreateScreen(context)}
                                 {this.loadSensorTypeImportScreen(context)}
                                 {this.loadCreateCloudRuleScreen(context)}
@@ -406,6 +430,7 @@ export default class SideBar extends Component {
                                 {this.loadMonthlyReportsGraphScreen(context)}
                                 {this.loadWeeklyReportsGraphScreen(context)}
                                 {this.loadDailyReportsGraphScreen(context)}
+
 
 
                                 {/*

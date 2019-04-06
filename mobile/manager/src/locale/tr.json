@@ -156,8 +156,12 @@
     },
 
     "sensorDataConf":{
-      "create":"Sensor Kofigürasyonu Oluşturma",
-      "import":"Sensor Konfigürasyonu Yükleme"
+      "create":"Sensor Ayarı Oluşturma",
+      "import":"Sensor Ayarı Yükleme"
+    },
+
+    "nodeDataConf":{
+      "create":"Node/Sensor Ayarı Oluşturma",
     },
 
     "rule":{
