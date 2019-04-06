@@ -14,7 +14,8 @@ import {
     Right,
     Subtitle,
     Text,
-    Title
+    Title,
+    View
 } from 'native-base';
 
 import {CtxConsumer} from 'MgrBoot/Container';
@@ -95,7 +96,8 @@ export default class SideBar extends Component {
         const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "SendMessage");
 
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("SendMessage")} icon  {...customProps} >
+            <ListItem button={true} onPress={() => context.changeScreenByType("SendMessage")}
+                      icon  {...customProps} >
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="ios-mail"/>
@@ -117,16 +119,21 @@ export default class SideBar extends Component {
         const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "SendProfile");
 
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("SendProfile")} icon  {...customProps}>
-                <Left>
-                    <Button style={{backgroundColor: "#60B760"}}>
-                        <Icon active name="ios-construct"/>
-                    </Button>
-                </Left>
-                <Body>
-                <Text>{lang(context.locale).getLabel("menu.sendMode")}</Text>
-                </Body>
-            </ListItem>
+            <View>
+                {this.loadDividerWithLabel(lang(context.locale).getLabel("menu.mode"))}
+
+                <ListItem button={true} onPress={() => context.changeScreenByType("SendProfile")}
+                          icon  {...customProps}>
+                    <Left>
+                        <Button style={{backgroundColor: "#60B760"}}>
+                            <Icon active name="ios-construct"/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Text>{lang(context.locale).getLabel("menu.sendMode")}</Text>
+                    </Body>
+                </ListItem>
+            </View>
         );
     }
 
@@ -139,16 +146,21 @@ export default class SideBar extends Component {
         const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData");
 
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("DeviceDetail")} icon  {...customProps} >
-                <Left>
-                    <Button style={{backgroundColor: "#60B760"}}>
-                        <Icon active name="md-search"/>
-                    </Button>
-                </Left>
-                <Body>
-                <Text>{lang(context.locale).getLabel("menu.device.detail")}</Text>
-                </Body>
-            </ListItem>
+            <View>
+                {this.loadDividerWithLabel(lang(context.locale).getLabel("menu.gateway"))}
+
+                <ListItem button={true} onPress={() => context.changeScreenByType("DeviceDetail")}
+                          icon  {...customProps} >
+                    <Left>
+                        <Button style={{backgroundColor: "#60B760"}}>
+                            <Icon active name="md-search"/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Text>{lang(context.locale).getLabel("menu.device.detail")}</Text>
+                    </Body>
+                </ListItem>
+            </View>
         );
     }
 
@@ -194,7 +206,7 @@ export default class SideBar extends Component {
                 <Body>
                 <Text>{lang(context.locale).getLabel("menu.sensorType.create")}</Text>
                 </Body>
-                {this.renderMenuOrderNumber(1)}
+                {this.renderMenuOrderNumber(2)}
             </ListItem>
         );
     }
@@ -233,17 +245,21 @@ export default class SideBar extends Component {
         const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "ImportSensorType");
 
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("ImportSensorType")} icon  {...customProps}>
-                <Left>
-                    <Button style={{backgroundColor: "#60B760"}}>
-                        <Icon active name="wifi"/>
-                    </Button>
-                </Left>
-                <Body>
-                <Text>{lang(context.locale).getLabel("menu.sensorType.import")}</Text>
-                </Body>
-                {this.renderMenuOrderNumber(2)}
-            </ListItem>
+            <View>
+                {this.loadDividerWithLabel(lang(context.locale).getLabel("menu.nodeAndSensor"))}
+                <ListItem button={true} onPress={() => context.changeScreenByType("ImportSensorType")}
+                          icon  {...customProps}>
+                    <Left>
+                        <Button style={{backgroundColor: "#60B760"}}>
+                            <Icon active name="wifi"/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Text>{lang(context.locale).getLabel("menu.sensorType.import")}</Text>
+                    </Body>
+                    {this.renderMenuOrderNumber(1)}
+                </ListItem>
+            </View>
         );
     }
 
@@ -303,7 +319,7 @@ export default class SideBar extends Component {
 
         return (
             <ListItem button={true}
-                      onPress={() => context.changeScreenByType("ImportModeSensorTypeConf")}  icon  {...customProps}>
+                      onPress={() => context.changeScreenByType("ImportModeSensorTypeConf")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="md-planet"/>
@@ -326,16 +342,21 @@ export default class SideBar extends Component {
         const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "YearlyGraph");
 
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")} icon  {...customProps}>
-                <Left>
-                    <Button style={{backgroundColor: "#c4c"}}>
-                        <Icon active name="ios-mail"/>
-                    </Button>
-                </Left>
-                <Body>
-                <Text>{lang(context.locale).getLabel("menu.reports.yearly")}</Text>
-                </Body>
-            </ListItem>
+            <View>
+                {this.loadDividerWithLabel(lang(context.locale).getLabel("menu.graphs"))}
+
+                <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")}
+                          icon  {...customProps}>
+                    <Left>
+                        <Button style={{backgroundColor: "#c4c"}}>
+                            <Icon active name="ios-mail"/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Text>{lang(context.locale).getLabel("menu.reports.yearly")}</Text>
+                    </Body>
+                </ListItem>
+            </View>
         );
     }
 
@@ -437,22 +458,20 @@ export default class SideBar extends Component {
                                 <Right/>
                             </Header>
 
-                            <Content>
+                            <Content style={{marginBottom: 20}}>
 
                                 {this.loadDashboardScreen(context)}
                                 {this.loadActionLogScreen(context)}
-                                {this.loadSendModeScreen(context)}
-                                {this.loadDividerWithLabel("Ağ geçidi")}
-                                {this.loadSendMessageScreen(context)}
                                 {this.loadDeviceDetailScreen(context)}
                                 {this.loadDeviceControlScreen(context)}
-                                {this.loadDividerWithLabel("Node Sensor")}
-                                {this.loadSensorTypeCreateScreen(context)}
+                                {this.loadSendMessageScreen(context)}
                                 {this.loadSensorTypeImportScreen(context)}
+                                {this.loadSensorTypeCreateScreen(context)}
                                 {this.loadNodeSensorConfCreateScreen(context)}
                                 {this.loadCreateCloudRuleScreen(context)}
                                 {this.loadCreateSensorDataConfScreen(context)}
                                 {this.loadImportSensorDataConfScreen(context)}
+                                {this.loadSendModeScreen(context)}
                                 {this.loadYearlyReportsGraphScreen(context)}
                                 {this.loadMonthlyReportsGraphScreen(context)}
                                 {this.loadWeeklyReportsGraphScreen(context)}

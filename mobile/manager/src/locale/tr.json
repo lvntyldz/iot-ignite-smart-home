@@ -144,6 +144,10 @@
     "actionLog": "Log Kayıtları",
     "sendMessage": "Mesaj Gönder",
     "sendMode": "Ayar Gönder",
+    "gateway": "Ağ Geçidi",
+    "nodeAndSensor": "Node Ve Sensör",
+    "mode": "Mode İşlemleri",
+    "graphs": "Grafikler",
 
     "device":{
       "detail":"Cihaz Bilgileri",
