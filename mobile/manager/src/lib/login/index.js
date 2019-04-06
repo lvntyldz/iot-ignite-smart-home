@@ -37,7 +37,10 @@ export const loginToCloud = (username, password) => {
             .formData()
             .then(r => {
                 console.info("Api Login Response  : ", r);
-                resolve(r.access_token);
+                if (r && r.access_token) {
+                    resolve(r.access_token);
+                }
+                reject(r);
             });
     });
 }

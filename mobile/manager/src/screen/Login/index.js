@@ -58,7 +58,9 @@ export class LoginContext extends Component {
         });
     }
 
-    handleLoginClick = (context) => {
+    handleLoginClick = () => {
+        const {context} = this.props;
+        const {locale} = context;
 
         const validationRes = validate.validate({
             userEmail: this.state.email,
@@ -78,6 +80,10 @@ export class LoginContext extends Component {
             context.setActivePage("Role");
             context.hideSideBar();
             context.hideLoading();
+        }).catch(e => {
+            context.showMessage(lang(locale).getLabel("screen.login.message." + e.error)).warn();
+            context.hideLoading();
+            return;
         });
     }
 
@@ -101,7 +107,7 @@ export class LoginContext extends Component {
             <Container style={{paddingTop: 100}}>
                 <Header>
                     <Body>
-                    <Title>{lang(locale).getLabel("screen.login")}</Title>
+                    <Title>{lang(locale).getLabel("screen.login.title")}</Title>
                     </Body>
                 </Header>
                 <Form>
@@ -139,7 +145,7 @@ export class LoginContext extends Component {
                     </View>
 
                     <Button full primary style={{paddingBottom: 4}}
-                            onPress={(c) => this.handleLoginClick(context)}>
+                            onPress={() => this.handleLoginClick()}>
                         <Text> {lang(locale).getLabel("button.login")} </Text>
                     </Button>
 
