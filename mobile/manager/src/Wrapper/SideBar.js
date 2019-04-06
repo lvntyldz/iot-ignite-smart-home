@@ -21,8 +21,6 @@ import {CtxConsumer} from 'MgrBoot/Container';
 import {lang} from 'MgrLocale';
 import {EASY_SETUP, SMART_USAGE} from 'MgrEnum/Role';
 
-const activeStyle = {backgroundColor: '#F1F1F1'};
-
 export default class SideBar extends Component {
 
 
@@ -38,15 +36,22 @@ export default class SideBar extends Component {
         </Right>
     }
 
+    getCustomPropsWithSelectedItemList = (isSelected) => {
+        const customProps = {...this.props}
+        customProps["selected"] = isSelected;
+        return customProps;
+    }
+
     loadDashboardScreen = (context) => {
 
         if (context.role !== EASY_SETUP && context.role !== SMART_USAGE) {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "Dashboard");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("Dashboard")} icon
-                      style={context.screenType === "Dashboard" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("Dashboard")} icon {...customProps} >
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="pie"/>
@@ -65,9 +70,11 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "ActionLog" || context.screenType === "ActionLogData");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("ActionLog")} icon
-                      style={context.screenType === "ActionLog" || context.screenType === "ActionLogData" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("ActionLog")}
+                      icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="ios-analytics"/>
@@ -85,10 +92,10 @@ export default class SideBar extends Component {
         if (context.role !== EASY_SETUP) {
             return null;
         }
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "SendMessage");
 
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("SendMessage")} icon
-                      style={context.screenType === "SendMessage" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("SendMessage")} icon  {...customProps} >
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="ios-mail"/>
@@ -107,10 +114,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "SendProfile");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("SendProfile")}
-                      icon
-                      style={context.screenType === "SendProfile" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("SendProfile")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="ios-construct"/>
@@ -129,9 +136,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("DeviceDetail")} icon
-                      style={context.screenType === "DeviceDetail" || context.screenType === "DeviceDetailData" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("DeviceDetail")} icon  {...customProps} >
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="md-search"/>
@@ -150,9 +158,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "DeviceControl" || context.screenType === "DeviceControlData");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("DeviceControl")} icon
-                      style={context.screenType === "DeviceControl" || context.screenType === "DeviceControlData" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("DeviceControl")} icon  {...customProps} >
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="phone-portrait"/>
@@ -172,10 +181,11 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "CreateSensorType");
+
         return (
             <ListItem button={true} onPress={() => context.changeScreenByType("CreateSensorType")}
-                      icon
-                      style={context.screenType === "CreateSensorType" ? activeStyle : {}}>
+                      icon {...customProps} >
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="ios-thermometer"/>
@@ -195,10 +205,11 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "NodeSensorConfCreate");
+
         return (
             <ListItem button={true} onPress={() => context.changeScreenByType("NodeSensorConfCreate")}
-                      icon
-                      style={context.screenType === "NodeSensorConfCreate" ? activeStyle : {}}>
+                      icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="ios-thermometer"/>
@@ -219,10 +230,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "ImportSensorType");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("ImportSensorType")}
-                      icon
-                      style={context.screenType === "ImportSensorType" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("ImportSensorType")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="wifi"/>
@@ -242,10 +253,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "CreateCloudRule");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("CreateCloudRule")}
-                      icon
-                      style={context.screenType === "CreateCloudRule" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("CreateCloudRule")} icon {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#007AFF"}}>
                         <Icon active name="md-alarm"/>
@@ -265,11 +276,11 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "CreateSensorDataConf");
+
         return (
             <ListItem button={true}
-                      onPress={() => context.changeScreenByType("CreateSensorDataConf")}
-                      icon
-                      style={context.screenType === "CreateSensorDataConf" ? activeStyle : {}}>
+                      onPress={() => context.changeScreenByType("CreateSensorDataConf")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="md-settings"/>
@@ -288,11 +299,11 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "ImportModeSensorTypeConf");
+
         return (
             <ListItem button={true}
-                      onPress={() => context.changeScreenByType("ImportModeSensorTypeConf")}
-                      icon
-                      style={context.screenType === "ImportModeSensorTypeConf" ? activeStyle : {}}>
+                      onPress={() => context.changeScreenByType("ImportModeSensorTypeConf")}  icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#60B760"}}>
                         <Icon active name="md-planet"/>
@@ -312,9 +323,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "YearlyGraph");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")} icon
-                      style={context.screenType === "YearlyGraph" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("YearlyGraph")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#c4c"}}>
                         <Icon active name="ios-mail"/>
@@ -334,9 +346,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "MonthlyGraph");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("MonthlyGraph")} icon
-                      style={context.screenType === "MonthlyGraph" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("MonthlyGraph")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#c4c"}}>
                         <Icon active name="ios-mail"/>
@@ -355,9 +368,10 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "WeeklyGraph");
+
         return (
-            <ListItem button={true} onPress={() => context.changeScreenByType("WeeklyGraph")} icon
-                      style={context.screenType === "WeeklyGraph" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("WeeklyGraph")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#c4c"}}>
                         <Icon active name="ios-mail"/>
@@ -376,10 +390,11 @@ export default class SideBar extends Component {
             return null;
         }
 
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "DailyGraph");
+
         return (
 
-            <ListItem button={true} onPress={() => context.changeScreenByType("DailyGraph")} icon
-                      style={context.screenType === "DailyGraph" ? activeStyle : {}}>
+            <ListItem button={true} onPress={() => context.changeScreenByType("DailyGraph")} icon  {...customProps}>
                 <Left>
                     <Button style={{backgroundColor: "#c4c"}}>
                         <Icon active name="ios-mail"/>
@@ -390,6 +405,16 @@ export default class SideBar extends Component {
                 </Body>
             </ListItem>
         );
+    }
+
+    loadDividerWithLabel = (label) => {
+        if (!label) {
+            return null;
+        }
+        return <ListItem itemDivider>
+            <Text>{label}</Text>
+        </ListItem>
+
     }
 
     render() {
@@ -416,13 +441,15 @@ export default class SideBar extends Component {
 
                                 {this.loadDashboardScreen(context)}
                                 {this.loadActionLogScreen(context)}
-                                {this.loadSendMessageScreen(context)}
                                 {this.loadSendModeScreen(context)}
+                                {this.loadDividerWithLabel("Ağ geçidi")}
+                                {this.loadSendMessageScreen(context)}
                                 {this.loadDeviceDetailScreen(context)}
                                 {this.loadDeviceControlScreen(context)}
-                                {this.loadNodeSensorConfCreateScreen(context)}
+                                {this.loadDividerWithLabel("Node Sensor")}
                                 {this.loadSensorTypeCreateScreen(context)}
                                 {this.loadSensorTypeImportScreen(context)}
+                                {this.loadNodeSensorConfCreateScreen(context)}
                                 {this.loadCreateCloudRuleScreen(context)}
                                 {this.loadCreateSensorDataConfScreen(context)}
                                 {this.loadImportSensorDataConfScreen(context)}
@@ -430,7 +457,6 @@ export default class SideBar extends Component {
                                 {this.loadMonthlyReportsGraphScreen(context)}
                                 {this.loadWeeklyReportsGraphScreen(context)}
                                 {this.loadDailyReportsGraphScreen(context)}
-
 
 
                                 {/*

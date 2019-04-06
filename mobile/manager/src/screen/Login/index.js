@@ -54,7 +54,7 @@ export class LoginContext extends Component {
 
             //TODO:Remove
             //this.setState({email: r.email, password: r.password});
-            this.setState({email: "zxfvttxf@sharklasers.com", password: r.password});
+            this.setState({email: "lewenty@gmail.com", password: r.password});
         });
     }
 
