@@ -102,6 +102,7 @@ export const getNotInModeNodeConfig = (token, modeCode) => {
             .get()
             .then(r => {
                 console.log("Get Mode Node Configuration of Mode Response   : ", r);
+                r = (!r || r.result == "Error") ? ([]) : (r);
                 resolve(r);
             });
     });
