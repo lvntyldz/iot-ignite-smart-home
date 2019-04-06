@@ -46,9 +46,6 @@ export const sendMode = (token, workingset, mode, data) => {
     });
 }
 
-///profile/B16BB261-3850-4EBA-80C6-2B1746487010/sensor-type-configurations
-
-
 export const getSensorTypeConfig = (token, modeCode) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/profile/" + modeCode + "/sensor-type-configurations", {})
@@ -64,6 +61,22 @@ export const getSensorTypeConfig = (token, modeCode) => {
     });
 }
 
+export const getModeNodeConfig = (token, modeCode) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile/" + modeCode + "/inventory-configurations", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                console.log("Get Mode Node Configuration of Mode Response   : ", r);
+                r = (!r || r.result == "Error") ? ([]) : (r);
+                resolve(r);
+            });
+    });
+}
+
 export const getNotInSensorTypeConfig = (token, modeCode) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/profile/" + modeCode + "/sensor-type-configurations/notin", {})
@@ -74,6 +87,21 @@ export const getNotInSensorTypeConfig = (token, modeCode) => {
             .get()
             .then(r => {
                 console.log("Get Sensor Type Configuration of Mode Response   : ", r);
+                resolve(r);
+            });
+    });
+}
+
+export const getNotInModeNodeConfig = (token, modeCode) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile/" + modeCode + "/inventory-configurations/notin", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                console.log("Get Mode Node Configuration of Mode Response   : ", r);
                 resolve(r);
             });
     });
@@ -120,6 +148,21 @@ export const addSensorConfigToMode = (token, sensorConfCode, mode, data) => {
     });
 }
 
+export const addNodeConfigToMode = (token, sensorConfCode, mode, data) => {
+
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile/" + mode + "/inventory-configuration/" + sensorConfCode, data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .put(true)
+            .then(r => {
+                console.log("Add sensor type configuration to Mode Response   : ", r);
+                resolve(r);
+            });
+    });
+}
 
 export const removeSensorTypeConf = (token, sensorConfCode, mode, data) => {
 
@@ -137,5 +180,18 @@ export const removeSensorTypeConf = (token, sensorConfCode, mode, data) => {
     });
 }
 
+export const removeModeNodeConf = (token, sensorConfCode, mode, data) => {
 
-///profile/827577FE-1E05-474E-AEA7-5F0B3A7E2B8D/sensor-type-configuration/9139edad-5dca-4e57-8547-407044b62573
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile/" + mode + "/inventory-configuration/" + sensorConfCode, data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .delete(true)
+            .then(r => {
+                console.log("Remove sensor type configuration to Mode Response   : ", r);
+                resolve(r);
+            });
+    });
+}

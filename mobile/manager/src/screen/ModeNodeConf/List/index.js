@@ -1,9 +1,9 @@
-//TODO:Development[Multilanguage support]
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
-import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
+import {Alert, Modal, ScrollView, StyleSheet, TouchableHighlight, View} from 'react-native';
+import {Badge, Body, Button, Card, CardItem, Container, Content, Icon, Label, Right, Text} from 'native-base';
 //custom
 import * as profile from 'MgrLib/profile';
+import {LOG} from 'MgrLib/log';
 
 export default class ModeNodeConfList extends Component {
 
@@ -25,9 +25,8 @@ export default class ModeNodeConfList extends Component {
         const {mode} = this.state;
         context.showLoading();
 
-        profile.getSensorTypeConfig(context.token, mode.code).then(sensors => {
-            console.info(sensors);
-
+        profile.getModeNodeConfig(context.token, mode.code).then(sensors => {
+            LOG("sensors from API  : ").info(sensors);
             this.setState({sensors});
             context.hideLoading();
         });
@@ -36,7 +35,7 @@ export default class ModeNodeConfList extends Component {
     componentDidMount = async () => {
         const {context} = this.props;
         const mode = await profile.getDefaultMode(context.token);
-        console.info("mode : ", mode);
+        LOG("mode : ").warn(mode);
         this.setState({mode});
         this.loadSesnsorListFromApi();
     }
@@ -52,47 +51,72 @@ export default class ModeNodeConfList extends Component {
         const {context} = this.props;
         const {mode} = this.state;
 
-        profile.removeSensorTypeConf(context.token, sensorId, mode.code, {}).then(count => {
-            console.info("delete sensor operation is success");
+        profile.removeModeNodeConf(context.token, sensorId, mode.code, {}).then(count => {
+            LOG("delete sensor operation is success ").warn();
+
             this.setState({rerender: !this.state.rerender});
-            context.showMessage("Sensor Configurasyonu Başarıyla Silindi!").succes();
+            context.showMessage("Mode/Node Konfigurasyonu Başarıyla Silindi!").succes();
         });
 
     }
 
     render() {
         const {sensors} = this.state;
+        LOG("sensors : ").warn(sensors);
+
+        if (!sensors) {
+            return null;
+        }
 
         return (
             <Container>
                 <Content>
-                    <List>
+                    <Card>
                         {
                             sensors.map((v, k) => {
 
                                 return (
-                                    <ListItem key={v.id} thumbnail>
-                                        <Left/>
-                                        <Body>
-                                        <Text>{v.vendor}</Text>
-                                        <Text note numberOfLines={1}>{v.type}---{v.dataType}</Text>
-                                        </Body>
-                                        <Right>
-                                            <Button transparent onPress={(d) => this.handleDeleteSensorClick(v.id)}>
-                                                <Badge danger>
-                                                    <Icon name="trash"
-                                                          style={{fontSize: 22, color: "#fff", lineHeight: 20}}/>
-                                                </Badge>
-                                            </Button>
-                                        </Right>
-                                    </ListItem>
+                                    <View key={v.id} bordered style={{margin: 10, padding: 1, backgroundColor: '#000'}}>
+                                        <CardItem header bordered>
+                                            <Text>{v.name}</Text>
+                                            <Right>
+                                                <Button transparent onPress={(d) => this.handleDeleteSensorClick(v.id)}>
+                                                    <Badge danger>
+                                                        <Icon name="trash"
+                                                              style={{fontSize: 22, color: "#fff", lineHeight: 20}}/>
+                                                    </Badge>
+                                                </Button>
+                                            </Right>
+                                        </CardItem>
+                                        <CardItem bordered>
+                                            <Body>
+                                            <Text><Label style={s.listTitle}>Node : </Label> {v.nodeId}</Text>
+                                            </Body>
+                                        </CardItem>
+                                        <CardItem bordered>
+                                            <Body>
+                                            <Text><Label style={s.listTitle}>Sensör : </Label> {v.sensorId}</Text>
+                                            </Body>
+                                        </CardItem>
+                                        <CardItem bordered>
+                                            <Body>
+                                            <Text>{v.config}</Text>
+                                            </Body>
+                                        </CardItem>
+                                    </View>
                                 );
                             })
                         }
-                    </List>
-
+                    </Card>
                 </Content>
             </Container>
         );//return
     }//render
 }
+
+const s = StyleSheet.create({
+    listTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+});

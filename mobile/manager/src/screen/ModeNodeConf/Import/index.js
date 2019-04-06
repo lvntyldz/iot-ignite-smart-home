@@ -1,25 +1,29 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
+import {Alert, Modal, ScrollView, StyleSheet, TouchableHighlight, View} from 'react-native';
 import {
     Badge,
     Body,
     Button,
+    Card,
+    CardItem,
     Container,
     Content,
     Header,
     Icon,
+    Label,
     Left,
     List,
     ListItem,
     Right,
     Text,
-    Title,
+    Title
 } from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as profile from 'MgrLib/profile';
-import ModeSensorTypeConfList from 'MgrScreen/Mode/SensorTypeConf/List';
 import SideBarNav from 'MgrComponent/SideBarNav';
+import ModeNodeConfList from 'MgrScreen/ModeNodeConf/List';
+import {LOG} from 'MgrLib/log';
 
 export default class ModeNodeConfImport extends Component {
     render() {
@@ -58,8 +62,8 @@ export class ModeNodeConfImportContext extends Component {
         const {mode} = this.state;
         context.showLoading();
 
-        profile.getNotInSensorTypeConfig(context.token, mode.code).then(notInSensors => {
-            console.info(notInSensors);
+        profile.getNotInModeNodeConfig(context.token, mode.code).then(notInSensors => {
+            LOG("notInSensors  : ").info(notInSensors);
 
             this.setState({notInSensors, modalVisible: true});
             context.hideLoading();
@@ -85,30 +89,46 @@ export class ModeNodeConfImportContext extends Component {
             </Header>
 
             <Content>
-                <List>
+
+
+                <Card>
                     {
                         notInSensors.map((v, k) => {
 
                             return (
-                                <ListItem key={v.id} thumbnail>
-                                    <Left/>
-                                    <Body>
-                                    <Text>{v.vendor}</Text>
-                                    <Text note numberOfLines={1}>{v.type}---{v.dataType}</Text>
-                                    </Body>
-                                    <Right>
-                                        <Button transparent onPress={(d) => this.handleImportDefinedSensorClick(v.id)}>
-                                            <Badge success>
-                                                <Icon name="ios-checkmark"
-                                                      style={{fontSize: 30, color: "#fff", lineHeight: 25}}/>
-                                            </Badge>
-                                        </Button>
-                                    </Right>
-                                </ListItem>
+                                <View key={v.id} bordered style={{margin: 10, padding: 1, backgroundColor: '#000'}}>
+                                    <CardItem header bordered>
+                                        <Text>{v.name}</Text>
+                                        <Right>
+                                            <Button transparent
+                                                    onPress={(d) => this.handleImportDefinedSensorClick(v.id)}>
+                                                <Badge success>
+                                                    <Icon name="ios-checkmark"
+                                                          style={{fontSize: 30, color: "#fff", lineHeight: 25}}/>
+                                                </Badge>
+                                            </Button>
+                                        </Right>
+                                    </CardItem>
+                                    <CardItem bordered>
+                                        <Body>
+                                        <Text><Label style={s.listTitle}>Node : </Label> {v.nodeId}</Text>
+                                        </Body>
+                                    </CardItem>
+                                    <CardItem bordered>
+                                        <Body>
+                                        <Text><Label style={s.listTitle}>Sensör : </Label> {v.sensorId}</Text>
+                                        </Body>
+                                    </CardItem>
+                                    <CardItem bordered>
+                                        <Body>
+                                        <Text>{v.config}</Text>
+                                        </Body>
+                                    </CardItem>
+                                </View>
                             );
                         })
                     }
-                </List>
+                </Card>
             </Content>
         </Container>
     }
@@ -116,13 +136,13 @@ export class ModeNodeConfImportContext extends Component {
     handleImportDefinedSensorClick = (id) => {
 
         const {context} = this.props;
-        const {ModeSensorTypeConfListRef} = this.refs;
+        const {ModeNodeConfListRef} = this.refs;
         const {mode} = this.state;
 
-        profile.addSensorConfigToMode(context.token, id, mode.code, {}).then(count => {
+        profile.addNodeConfigToMode(context.token, id, mode.code, {}).then(count => {
             console.info("add preDefined sensor operation is success");
             this.setModalVisible(false);
-            ModeSensorTypeConfListRef.setState({rerender: !ModeSensorTypeConfListRef.state.rerender});
+            ModeNodeConfListRef.setState({rerender: !ModeNodeConfListRef.state.rerender});
             context.showMessage("Sensor Başarıyla Eklendi!").succes();
         });
     }
@@ -152,7 +172,7 @@ export class ModeNodeConfImportContext extends Component {
                         </ListItem>
                     </List>
 
-                    <ModeSensorTypeConfList ref="ModeSensorTypeConfListRef" context={context}/>
+                    <ModeNodeConfList ref="ModeNodeConfListRef" context={context}/>
 
                     <Modal
                         presentationStyle="overFullScreen"
@@ -168,3 +188,11 @@ export class ModeNodeConfImportContext extends Component {
         );//return
     }//render
 }
+
+
+const s = StyleSheet.create({
+    listTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+});
