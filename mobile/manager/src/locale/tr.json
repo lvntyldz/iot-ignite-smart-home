@@ -164,6 +164,10 @@
       "import":"Sensor Ayarı Yükleme"
     },
 
+    "modeNodeConf":{
+      "import":"Mode'a Node Ayarı Ekleme"
+    },
+
     "nodeDataConf":{
       "create":"Node/Sensor Ayarı Oluşturma",
     },

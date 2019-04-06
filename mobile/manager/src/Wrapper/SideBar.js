@@ -119,21 +119,18 @@ export default class SideBar extends Component {
         const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "SendProfile");
 
         return (
-            <View>
-                {this.loadDividerWithLabel(lang(context.locale).getLabel("menu.mode"))}
-
-                <ListItem button={true} onPress={() => context.changeScreenByType("SendProfile")}
-                          icon  {...customProps}>
-                    <Left>
-                        <Button style={{backgroundColor: "#60B760"}}>
-                            <Icon active name="ios-construct"/>
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Text>{lang(context.locale).getLabel("menu.sendMode")}</Text>
-                    </Body>
-                </ListItem>
-            </View>
+            <ListItem button={true} onPress={() => context.changeScreenByType("SendProfile")}
+                      icon  {...customProps}>
+                <Left>
+                    <Button style={{backgroundColor: "#60B760"}}>
+                        <Icon active name="ios-construct"/>
+                    </Button>
+                </Left>
+                <Body>
+                <Text>{lang(context.locale).getLabel("menu.sendMode")}</Text>
+                </Body>
+                {this.renderMenuOrderNumber(2)}
+            </ListItem>
         );
     }
 
@@ -332,6 +329,34 @@ export default class SideBar extends Component {
         );
     }
 
+    loadModeNodeConfScreen = (context) => {
+
+        if (context.role !== EASY_SETUP) {
+            return null;
+        }
+
+        const customProps = this.getCustomPropsWithSelectedItemList(context.screenType === "ModeNodeConfImport");
+
+        return (
+            <View>
+                {this.loadDividerWithLabel(lang(context.locale).getLabel("menu.mode"))}
+
+                <ListItem button={true}
+                          onPress={() => context.changeScreenByType("ModeNodeConfImport")} icon  {...customProps}>
+                    <Left>
+                        <Button style={{backgroundColor: "#60B760"}}>
+                            <Icon active name="md-planet"/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Text>{lang(context.locale).getLabel("menu.modeNodeConf.import")}</Text>
+                    </Body>
+                    {this.renderMenuOrderNumber(1)}
+                </ListItem>
+            </View>
+        );
+    }
+
 
     loadYearlyReportsGraphScreen = (context) => {
 
@@ -471,6 +496,7 @@ export default class SideBar extends Component {
                                 {this.loadCreateCloudRuleScreen(context)}
                                 {/*this.loadCreateSensorDataConfScreen(context)*/}
                                 {/*this.loadImportSensorDataConfScreen(context)*/}
+                                {this.loadModeNodeConfScreen(context)}
                                 {this.loadSendModeScreen(context)}
                                 {this.loadYearlyReportsGraphScreen(context)}
                                 {this.loadMonthlyReportsGraphScreen(context)}
