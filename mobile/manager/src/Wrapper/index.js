@@ -45,6 +45,7 @@ import DailyGraph from 'MgrScreen/Reports/Daily';
 import DailyGraphData from 'MgrScreen/Reports/Daily/Data';
 
 import Login from 'MgrScreen/Login';
+import SignUp from 'MgrScreen/SignUp';
 import * as db from 'MgrLib/db';
 import SideBar from './SideBar';
 
@@ -290,6 +291,10 @@ export default class Wrapper extends Component {
 
         if (screenType === "DailyGraphData") {
             return <DailyGraphData/>;
+        }
+
+        if (screenType === "SignUp") {
+            return <SignUp/>;
         }
 
         return <Login/>;
