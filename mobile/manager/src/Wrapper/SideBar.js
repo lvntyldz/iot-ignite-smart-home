@@ -469,45 +469,13 @@ export default class SideBar extends Component {
                                 {this.loadSensorTypeCreateScreen(context)}
                                 {this.loadNodeSensorConfCreateScreen(context)}
                                 {this.loadCreateCloudRuleScreen(context)}
-                                {this.loadCreateSensorDataConfScreen(context)}
-                                {this.loadImportSensorDataConfScreen(context)}
+                                {/*this.loadCreateSensorDataConfScreen(context)*/}
+                                {/*this.loadImportSensorDataConfScreen(context)*/}
                                 {this.loadSendModeScreen(context)}
                                 {this.loadYearlyReportsGraphScreen(context)}
                                 {this.loadMonthlyReportsGraphScreen(context)}
                                 {this.loadWeeklyReportsGraphScreen(context)}
                                 {this.loadDailyReportsGraphScreen(context)}
-
-
-                                {/*
-                                <ListItem button={true} onPress={() => context.changeScreenByType("CreateGatewayRule")}
-                                icon
-                                style={context.screenType === "CreateGatewayRule" ? activeStyle : {}}>
-                                <Left>
-                                <Button style={{backgroundColor: "#007AFF"}}>
-                                <Icon active name="md-notifications-outline"/>
-                                </Button>
-                                </Left>
-                                <Body>
-                                <Text>Create Gateway Rule</Text>
-                                </Body>
-                                </ListItem>
-                                */}
-
-                                {/*
-                                <ListItem button={true}
-                                onPress={() => context.changeScreenByType("ImportModeSensorInventoryConf")}
-                                icon
-                                style={context.screenType === "ImportModeSensorInventoryConf" ? activeStyle : {}}>
-                                <Left>
-                                <Button style={{backgroundColor: "#007AFF"}}>
-                                <Icon active name="wifi"/>
-                                </Button>
-                                </Left>
-                                <Body>
-                                <Text>Import Mode Sensor Inventory Conf</Text>
-                                </Body>
-                                </ListItem>
-                                */}
 
                             </Content>
 
