@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import {
+    Badge,
     Body,
     Button,
     Container,
@@ -24,6 +25,18 @@ const activeStyle = {backgroundColor: '#F1F1F1'};
 
 export default class SideBar extends Component {
 
+
+    renderMenuOrderNumber = (order) => {
+        if (!order) {
+            return null;
+        }
+
+        return <Right>
+            <Badge primary>
+                <Text>{order}</Text>
+            </Badge>
+        </Right>
+    }
 
     loadDashboardScreen = (context) => {
 
@@ -152,6 +165,7 @@ export default class SideBar extends Component {
         );
     }
 
+
     loadSensorTypeCreateScreen = (context) => {
 
         if (context.role !== EASY_SETUP) {
@@ -170,6 +184,7 @@ export default class SideBar extends Component {
                 <Body>
                 <Text>{lang(context.locale).getLabel("menu.sensorType.create")}</Text>
                 </Body>
+                {this.renderMenuOrderNumber(1)}
             </ListItem>
         );
     }
@@ -193,6 +208,7 @@ export default class SideBar extends Component {
                 <Body>
                 <Text>{lang(context.locale).getLabel("menu.sensorType.import")}</Text>
                 </Body>
+                {this.renderMenuOrderNumber(2)}
             </ListItem>
         );
     }
@@ -352,7 +368,7 @@ export default class SideBar extends Component {
             </ListItem>
         );
     }
-    
+
     render() {
 
         return (

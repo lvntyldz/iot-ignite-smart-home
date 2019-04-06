@@ -151,8 +151,8 @@
     },
 
     "sensorType":{
-      "create":"Sensor Oluşturma",
-      "import":"Sensor Yükleme"
+      "create":"Sensor Tipi Oluşturma ",
+      "import":"Sensor Tipi İndirme"
     },
 
     "sensorDataConf":{

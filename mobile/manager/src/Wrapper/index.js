@@ -354,7 +354,7 @@ export default class Wrapper extends Component {
                         {(context) => {
                             return (
                                 <Drawer
-                                    openDrawerOffset={0.2}
+                                    openDrawerOffset={0.07}
                                     open={context.sideBarOpen}
                                     content={<SideBar
                                         changeScreenByType={(d) => this.changeScreenByType(d)}/>}
