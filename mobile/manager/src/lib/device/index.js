@@ -40,6 +40,7 @@ export const getDeviceSummary = (token) => {
             .get()
             .then(r => {
                 console.log("Api Device Dashboard Response  : ", r);
+                r = (!r) ? ({}) : (r);
                 resolve(r);
             });
     });
@@ -55,6 +56,7 @@ export const getDeviceModels = (token) => {
             .get()
             .then(r => {
                 console.log("Api Device Models Response  : ", r);
+                r = (!r) ? ([]) : (r);
                 resolve(r);
             });
     });
@@ -70,6 +72,7 @@ export const getDeviceOsList = (token) => {
             .get()
             .then(r => {
                 console.log("Api Device OS List Response  : ", r);
+                r = (!r) ? ([]) : (r);
                 resolve(r);
             });
     });
