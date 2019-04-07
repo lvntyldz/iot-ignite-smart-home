@@ -72,8 +72,8 @@
     "device": {
       "detailTitle":"Cihaz Bilgileri",
       "controlTitle":"Cihaz Kontrolü",
-      "stopRingBtn":"Zil Çal",
-      "startRingBtn":"Zili Durdur",
+      "stopRingBtn":"Zili Durdur",
+      "startRingBtn":"Zil Çal",
       "restart":"Cihazı Yeniden Başlat",
       "gatewayId":"Cihaz ID",
       "model":"Model",
