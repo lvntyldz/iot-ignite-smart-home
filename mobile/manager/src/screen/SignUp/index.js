@@ -1,6 +1,7 @@
 import {lang} from "../../locale";
 import React, {Component} from 'react';
 import {WebView} from 'react-native';
+import {CLOUD_SIGN_UP_URL} from 'MgrConfig';
 
 import {Button, Container, Text} from 'native-base';
 //custom
@@ -34,7 +35,7 @@ export class SignUpContext extends Component {
 
                 <WebView
                     style={{flex: 1}}
-                    source={{uri: 'https://devzone.iot-ignite.com/dpanel/signup.php?page=development'}}
+                    source={{uri: CLOUD_SIGN_UP_URL}}
                 />
             </Container>
         );
