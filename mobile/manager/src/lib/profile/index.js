@@ -1,4 +1,5 @@
 import * as ajax from 'MgrLib/ajax';
+import {LOG} from 'MgrLib/log';
 
 export const getData = (token) => {
     return new Promise((resolve, reject) => {
@@ -9,7 +10,7 @@ export const getData = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Get Profile Response   : ", r);
+                LOG("Get Profile Response   :").response(r);
                 resolve(r);
             });
     });
@@ -24,7 +25,22 @@ export const getPolicy = (token, modeCode) => {
             .json()
             .get()
             .then(r => {
-                console.log("Get Policy of Mode Response   : ", r);
+                LOG("Get Policy of Mode Response  :").response(r);
+                resolve(r);
+            });
+    });
+}
+
+export const getDefaultProfile = (token) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile?name=DEMO", {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .get()
+            .then(r => {
+                LOG("Get Default Profile(Mode) Response  :").response(r);
                 resolve(r);
             });
     });
@@ -40,7 +56,23 @@ export const sendMode = (token, workingset, mode, data) => {
             .json()
             .post(true)
             .then(r => {
-                console.log("Send Mode to  Workingset Response   : ", r);
+                LOG("Send Mode to  Workingset Response    :").response(r);
+                resolve(r);
+            });
+    });
+}
+
+export const sendModeByDeviceCode = (token, deviceCode, mode, data) => {
+
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/profile/" + mode + "/pushdevice/" + deviceCode, data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post(true)
+            .then(r => {
+                LOG("Send Mode to  Workingset Response    :").response(r);
                 resolve(r);
             });
     });
@@ -55,7 +87,7 @@ export const getSensorTypeConfig = (token, modeCode) => {
             .json()
             .get()
             .then(r => {
-                console.log("Get Sensor Type Configuration of Mode Response   : ", r);
+                LOG("Get Sensor Type Configuration of Mode Response    :").response(r);
                 resolve(r);
             });
     });
@@ -70,7 +102,7 @@ export const getModeNodeConfig = (token, modeCode) => {
             .json()
             .get()
             .then(r => {
-                console.log("Get Mode Node Configuration of Mode Response   : ", r);
+                LOG("Get Mode Node Configuration of Mode Response   :").response(r);
                 r = (!r || r.result == "Error") ? ([]) : (r);
                 resolve(r);
             });
@@ -86,7 +118,7 @@ export const getNotInSensorTypeConfig = (token, modeCode) => {
             .json()
             .get()
             .then(r => {
-                console.log("Get Sensor Type Configuration of Mode Response   : ", r);
+                LOG(" Get Sensor Type Configuration of Mode Response  :").response(r);
                 resolve(r);
             });
     });
@@ -101,7 +133,7 @@ export const getNotInModeNodeConfig = (token, modeCode) => {
             .json()
             .get()
             .then(r => {
-                console.log("Get Mode Node Configuration of Mode Response   : ", r);
+                LOG(" Get Mode Node Configuration of Mode Response   :").response(r);
                 r = (!r || r.result == "Error") ? ([]) : (r);
                 resolve(r);
             });
@@ -117,7 +149,7 @@ export const getDefaultMode = (token) => {
             .json()
             .get()
             .then(r => {
-                console.info("Get Profile Response   : ", r);
+                LOG(" Get Profile Response   :").response(r);
                 let mode = {};
 
                 r.map((v, k) => {
@@ -143,7 +175,7 @@ export const addSensorConfigToMode = (token, sensorConfCode, mode, data) => {
             .json()
             .put(true)
             .then(r => {
-                console.log("Add sensor type configuration to Mode Response   : ", r);
+                LOG("Add sensor type configuration to Mode Response   :").response(r);
                 resolve(r);
             });
     });
@@ -159,7 +191,7 @@ export const addNodeConfigToMode = (token, sensorConfCode, mode, data) => {
             .json()
             .put(true)
             .then(r => {
-                console.log("Add sensor type configuration to Mode Response   : ", r);
+                LOG("Add sensor type configuration to Mode Response   :").response(r);
                 resolve(r);
             });
     });
@@ -175,7 +207,7 @@ export const removeSensorTypeConf = (token, sensorConfCode, mode, data) => {
             .json()
             .delete(true)
             .then(r => {
-                console.log("Remove sensor type configuration to Mode Response   : ", r);
+                LOG("Remove sensor type configuration to Mode Response    :").response(r);
                 resolve(r);
             });
     });
@@ -191,7 +223,7 @@ export const removeModeNodeConf = (token, sensorConfCode, mode, data) => {
             .json()
             .delete(true)
             .then(r => {
-                console.log("Remove sensor type configuration to Mode Response   : ", r);
+                LOG(" Remove sensor type configuration to Mode Response   :").response(r);
                 resolve(r);
             });
     });

@@ -1,4 +1,5 @@
 import * as ajax from 'MgrLib/ajax';
+import {LOG} from 'MgrLib/log';
 
 export const getList = (token) => {
     return new Promise((resolve, reject) => {
@@ -9,7 +10,7 @@ export const getList = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Login Response  : ", r);
+                LOG(" Api Login Response   :").response(r);
                 resolve(r);
             });
     });
@@ -24,7 +25,7 @@ export const getDetail = (token, deviceCode) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Device Detail Response  : ", r);
+                LOG(" Api Device Detail Response   :").response(r);
                 resolve(r);
             });
     });
@@ -39,7 +40,7 @@ export const getDeviceSummary = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Device Dashboard Response  : ", r);
+                LOG("Api Device Dashboard Response    :").response(r);
                 r = (!r) ? ({}) : (r);
                 resolve(r);
             });
@@ -55,7 +56,7 @@ export const getDeviceModels = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Device Models Response  : ", r);
+                LOG(" Api Device Models Response  :").response(r);
                 r = (!r) ? ([]) : (r);
                 resolve(r);
             });
@@ -71,7 +72,7 @@ export const getDeviceOsList = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Device OS List Response  : ", r);
+                LOG("  Api Device OS List Response  :").response(r);
                 r = (!r) ? ([]) : (r);
                 resolve(r);
             });

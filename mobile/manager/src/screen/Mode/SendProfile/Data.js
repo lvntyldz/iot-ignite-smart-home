@@ -72,14 +72,18 @@ export class SendProfileDataContext extends Component {
         });
     }
 
-    handleSendModeClick = () => {
+    handleSendModeClick = async () => {
 
         const {context} = this.props;
         const {mode} = this.state;
         const {policy} = this.state;
         context.showLoading();
 
-        profile.sendMode(context.token, context.workingset, mode.code, {defaultPolicy: {code: policy.code}}).then((result) => {
+
+        //await profile.getDefaultProfile(context.token);
+
+
+        profile.sendModeByDeviceCode(context.token, context.device, mode.code, {defaultPolicy: {code: policy.code}}).then((result) => {
 
             let policy = {
                 name: result.defaultPolicy.name,

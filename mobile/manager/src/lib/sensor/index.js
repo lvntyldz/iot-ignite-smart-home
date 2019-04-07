@@ -1,4 +1,5 @@
 import * as ajax from 'MgrLib/ajax';
+import {LOG} from 'MgrLib/log';
 
 export const getList = (token) => {
     return new Promise((resolve, reject) => {
@@ -9,7 +10,7 @@ export const getList = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Sensor Types Response  : ", r);
+                LOG(" Api Sensor Types Response   :").response(r);
                 resolve(r);
             });
     });
@@ -24,7 +25,7 @@ export const getPreDefinedList = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Sensor Types Response  : ", r);
+                LOG("Api Sensor Types Response    :").response(r);
                 resolve(r);
             });
     });
@@ -39,7 +40,7 @@ export const add = (token, data) => {
             .json()
             .post()
             .then(r => {
-                console.log("Api Add Sensor Type Response  : ", r);
+                LOG("Api Add Sensor Type Response   :").response(r);
                 resolve(r);
             });
     });
@@ -54,7 +55,7 @@ export const addPreDefined = (token, data) => {
             .json()
             .post()
             .then(r => {
-                console.log("Api Add Predefined Sensor Type Response  : ", r);
+                LOG("Api Add Predefined Sensor Type Response   :").response(r);
                 resolve(r);
             });
     });
@@ -69,7 +70,7 @@ export const remove = (token, sensorId) => {
             .json()
             .delete()
             .then(r => {
-                console.log("Api Remove Sensor Type Response  : ", r);
+                LOG("Api Remove Sensor Type Response   :").response(r);
                 resolve(r);
             });
     });
@@ -84,7 +85,7 @@ export const createConfig = (token, data) => {
             .json()
             .post()
             .then(r => {
-                console.log("Api Create Sensor Configuration Response  : ", r);
+                LOG("Api Create Sensor Configuration Response    :").response(r);
                 resolve(r);
             });
     });
@@ -99,7 +100,7 @@ export const createNodeSensorConfig = (token, data) => {
             .json()
             .post()
             .then(r => {
-                console.log("Api Create Node Sensor Configuration Response  : ", r);
+                LOG("Api Create Node Sensor Configuration Response   :").response(r);
                 resolve(r);
             });
     });
@@ -114,7 +115,7 @@ export const listConfig = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Sensor Configurations Response  : ", r);
+                LOG("Api Sensor Configurations Response   :").response(r);
                 resolve(r);
             });
     });
@@ -129,7 +130,7 @@ export const listNodeSensorConfig = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Node Sensor Configurations Response  : ", r);
+                LOG(" Api Node Sensor Configurations Response  :").response(r);
                 resolve(r);
             });
     });
@@ -144,7 +145,7 @@ export const nodeList = (token, deviceId) => {
             .json()
             .get()
             .then(r => {
-                console.log("Api Node Inventory Response  : ", r);
+                LOG("Api Node Inventory Response   :").response(r);
                 resolve(r.extras.nodes);
             });
     });
@@ -159,14 +160,12 @@ export const removeConfig = (token, confId) => {
             .json()
             .delete(true)
             .then(r => {
-                console.log("Api Remove Sensor Configuration Response  : ", r);
+                LOG(" Api Remove Sensor Configuration Response  :").response(r);
                 resolve(r);
             });
     });
 }
 
-
-//https://api.ardich.com/api/v3/device/14:1f:78:2e:ae:d8@iotigniteagent/sensor-data-history?nodeId=testNodeId1&sensorId=MQ6+GAS+Sensor&startDate=1530471640000&endDate=1552503640000&pageSize=1000
 export const getSensorHistory = (token, deviceId, nodeId, sensorId, startDate, endDate) => {
     const url = "/device/" + deviceId + "/sensor-data-history?nodeId=" + nodeId + "&sensorId=" + sensorId + "&startDate=" + startDate + "&endDate=" + endDate + "&pageSize=10";
     return new Promise((resolve, reject) => {
@@ -177,7 +176,7 @@ export const getSensorHistory = (token, deviceId, nodeId, sensorId, startDate, e
             .json()
             .get()
             .then(r => {
-                console.log("Api Sensor Hisitory  Response  : ", r);
+                LOG(" Api Sensor Hisitory  Response  :").response(r);
                 resolve(r.list);
             });
     });

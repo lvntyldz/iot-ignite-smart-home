@@ -5,6 +5,9 @@ export const LOG = (msg) => {
         "info": (obj) => {
             printLine(msg, obj, '#006ddb');
         },
+        "response": (obj) => {
+            printLine(msg, obj, '#707070');
+        },
         "err": (obj) => {
             printLine(msg, obj, '#ff0000');
         },

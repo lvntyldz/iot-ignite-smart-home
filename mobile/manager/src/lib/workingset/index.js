@@ -1,4 +1,5 @@
 import * as ajax from 'MgrLib/ajax';
+import {LOG} from 'MgrLib/log';
 
 export const getLast = (token) => {
     return new Promise((resolve, reject) => {
@@ -9,7 +10,7 @@ export const getLast = (token) => {
             .json()
             .get()
             .then(r => {
-                console.log("Last Workingset Response   : ", r);
+                LOG("Last Workingset Response    :").response(r);
                 resolve(r);
             });
     });
@@ -24,7 +25,7 @@ export const empty = (token) => {
             .json()
             .post(true)
             .then(r => {
-                console.info("Empty  Workingset Response   : ", r);
+                LOG(" Empty  Workingset Response   :").response(r);
                 resolve(r.code);
             });
     });
@@ -39,7 +40,7 @@ export const addDevice = (token, workingset, device) => {
             .json()
             .put(true)
             .then(r => {
-                console.info("Add Device to  Workingset Response   : ", r);
+                LOG("  Add Device to  Workingset Response :").response(r);
                 resolve(r);
             });
     });
@@ -58,7 +59,7 @@ export const startRing = (token, workingset) => {
             .json()
             .post(true)
             .then(r => {
-                console.log("startRing  Workingset Response   : ", r);
+                LOG(" startRing  Workingset Response  :").response(r);
                 resolve(r);
             });
     });
@@ -73,7 +74,7 @@ export const ringstop = (token, workingset) => {
             .json()
             .post(true)
             .then(r => {
-                console.log("ringstop  Workingset Response   : ", r);
+                LOG(" ringstop  Workingset Response  :").response(r);
                 resolve(r);
             });
     });
@@ -88,7 +89,7 @@ export const restartDevice = (token, workingset) => {
             .json()
             .post(true)
             .then(r => {
-                console.log("ringstop  Workingset Response   : ", r);
+                LOG(" ringstop  Workingset Response  :").response(r);
                 resolve(r);
             });
     });
@@ -103,7 +104,7 @@ export const sendMessage = (token, workingset, data) => {
             .json()
             .post(true)
             .then(r => {
-                console.log("send message  Workingset Response   : ", r);
+                LOG("send message  Workingset Response    :").response(r);
                 resolve(r);
             });
     });
