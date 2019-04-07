@@ -95,6 +95,21 @@ export const restartDevice = (token, workingset) => {
     });
 }
 
+export const sendMessageByDevice = (token, deviceCode, data) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device/" + deviceCode + "/control/message", data)
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .post(true)
+            .then(r => {
+                LOG("send message  deviceCode Response    :").response(r);
+                resolve(r);
+            });
+    });
+}
+
 export const sendMessage = (token, workingset, data) => {
     return new Promise((resolve, reject) => {
         ajax.doFetch("/workingset/" + workingset + "/control/message", data)

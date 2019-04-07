@@ -33,7 +33,7 @@ export class SendMessageDataContext extends Component {
 
         context.showLoading();
 
-        workingset.sendMessage(context.token, context.workingset, {message: this.state.message}).then(count => {
+        workingset.sendMessageByDevice(context.token, context.deviceId, {message: this.state.message}).then(count => {
             console.info("send message to workingset operation is success");
             context.hideLoading();
             context.showMessage(lang(locale).getLabel("screen.sendMessage.messageSentSuccess")).succes();
@@ -50,11 +50,11 @@ export class SendMessageDataContext extends Component {
 
                 <SideBarNav pageTitle={lang(locale).getLabel("screen.sendMessage.title")}/>
 
-                <Content>
+                <Content style={{marginTop: 50}}>
 
 
                     <Form>
-                        <FormItem floatingLabel>
+                        <FormItem floatingLabel style={{padding: 30}}>
                             <Label>{lang(locale).getLabel("input.message")}</Label>
                             <Input multiline={true} numberOfLines={10}
                                    onChangeText={(d) => {
@@ -63,7 +63,7 @@ export class SendMessageDataContext extends Component {
                             />
                         </FormItem>
 
-                        <Button full primary style={{paddingBottom: 4}}
+                        <Button full primary
                                 onPress={(c) => this.handleSendMessageClick(context)}>
                             <Text> {lang(locale).getLabel("button.sendMessage")} </Text>
                         </Button>
