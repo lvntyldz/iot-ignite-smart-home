@@ -134,11 +134,11 @@ export class NodeSensorConfCreateDataContext extends Component {
         context.showLoading();
 
         let config = {
-            dataReadingFrequency: 3000,
-            dataSendingFrequency: 4000,
-            offlineData: ((state.offlineDataTime || 5) * 1000),
+            dataReadingFrequency: 5000,
+            dataSendingFrequency: 5000,
+            offlineData: ((state.offlineDataTime || 6) * 1000),
             thresholdType: 'quantity',
-            dataThreshold: state.dataThreshold || 6
+            dataThreshold: state.dataThreshold || 11
         }
 
         let data = {
