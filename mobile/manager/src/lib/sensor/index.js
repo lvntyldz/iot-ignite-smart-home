@@ -11,6 +11,7 @@ export const getList = (token) => {
             .get()
             .then(r => {
                 LOG(" Api Sensor Types Response   :").response(r);
+                r = (!r) ? ([]) : (r);
                 resolve(r);
             });
     });
@@ -26,6 +27,7 @@ export const getPreDefinedList = (token) => {
             .get()
             .then(r => {
                 LOG("Api Sensor Types Response    :").response(r);
+                r = (!r) ? ([]) : (r);
                 resolve(r);
             });
     });
@@ -116,6 +118,7 @@ export const listConfig = (token) => {
             .get()
             .then(r => {
                 LOG("Api Sensor Configurations Response   :").response(r);
+                r = (!r) ? ([]) : (r);
                 resolve(r);
             });
     });
@@ -131,6 +134,7 @@ export const listNodeSensorConfig = (token) => {
             .get()
             .then(r => {
                 LOG(" Api Node Sensor Configurations Response  :").response(r);
+                r = (!r) ? ([]) : (r);
                 resolve(r);
             });
     });
