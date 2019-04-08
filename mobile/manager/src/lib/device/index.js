@@ -11,6 +11,7 @@ export const getList = (token) => {
             .get()
             .then(r => {
                 LOG(" Api Login Response   :").response(r);
+                r = (!r) ? ({}) : (r);
                 resolve(r);
             });
     });
@@ -26,6 +27,7 @@ export const getDetail = (token, deviceCode) => {
             .get()
             .then(r => {
                 LOG(" Api Device Detail Response   :").response(r);
+                r = (!r) ? ({}) : (r);
                 resolve(r);
             });
     });
