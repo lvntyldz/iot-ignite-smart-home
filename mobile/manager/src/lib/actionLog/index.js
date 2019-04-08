@@ -10,6 +10,7 @@ export const getSummary = (token, deviceId) => {
             .get()
             .then(r => {
                 console.log("Api Action Log Response  : ", r);
+                r = (!r) ? ({}) : (r);
                 resolve(r);
             });
     });
@@ -25,6 +26,7 @@ export const getDetail = (token, deviceCode, actionCode) => {
             .get()
             .then(r => {
                 console.log("Api Action Log Detail Response  : ", r);
+                r = (!r) ? ({}) : (r);
                 resolve(r);
             });
     });
