@@ -41,7 +41,8 @@ export class LoginContext extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: null,
+            //TODO:Remove login data from state
+            email: 'lewenty@gmail.com',
             password: null
         }
     }
@@ -52,9 +53,7 @@ export class LoginContext extends Component {
                 return;
             }
 
-            //TODO:Remove
-            //this.setState({email: r.email, password: r.password});
-            this.setState({email: "lewenty@gmail.com", password: r.password});
+            this.setState({email: r.email, password: r.password});
         });
     }
 
