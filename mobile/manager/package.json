@@ -8,7 +8,8 @@
     "android": "react-native run-android",
     "reinstall": "rm -rf node_modules/ && npm install && rnpm link && react-native link",
     "devtools": "react-devtools &",
-    "test": "jest"
+    "test": "jest",
+    "apiTest": "cd src/config/ && mv index.js index.prod.js && mv  index.test.js index.js && cd ../../   && jest && cd src/config/  && mv index.js index.test.js && mv index.prod.js index.js"
   },
   "dependencies": {
     "@expo/vector-icons": "6.2.1",
