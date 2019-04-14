@@ -12,7 +12,7 @@
     "sonarDocker": "docker run -d --name sonarqube -p 9000:9000 sonarqube",
     "sonarAnalyze": "docker start sonarqube && sleep 60s && sonar-scanner   -Dsonar.projectKey=smartHome   -Dsonar.sources=.   -Dsonar.host.url=http://127.0.0.1:9000   -Dsonar.login=07662432ecda594205c65826678a6d1bed9b2a99 -Dsonar.java.binaries=.",
     "test": "jest",
-    "apiTest": "cd src/config/ && mv index.js index.prod.js && mv  index.test.js index.js && cd ../../   && jest && cd src/config/  && mv index.js index.test.js && mv index.prod.js index.js"
+    "apiTest": "cd src/config/ && mv index.js index.prod.js && mv  index.tst.js index.js && cd ../../   && jest && cd src/config/  && mv index.js index.tst.js && mv index.prod.js index.js"
   },
   "dependencies": {
     "@expo/vector-icons": "6.2.1",
