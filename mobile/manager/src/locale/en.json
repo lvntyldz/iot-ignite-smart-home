@@ -19,7 +19,8 @@
     "login": {
       "title": "Login Screen",
       "message": {
-        "invalid_grant": "Could not fetch Token! Please check username and password."
+        "invalid_grant": "Could not fetch Token! Please check username and password.",
+        "incorrectUserOrPass": "Incorrect Username or Password!"
       }
     },
     "sensorType": {

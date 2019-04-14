@@ -67,7 +67,8 @@ export class LoginContext extends Component {
         }, constraints);
 
         if (validationRes && (validationRes.userEmail || validationRes.userPwd)) {
-            context.showMessage("Kullanıcı Adı veya Şifre Hatalı!").warn();
+            context.showMessage(lang(locale).getLabel("screen.login.message.incorrectUserOrPass")).warn();
+
             return;
         }
 
@@ -150,8 +151,7 @@ export class LoginContext extends Component {
                     <Button full light primary onPress={() => context.setActivePage("SignUp")}>
                         <Text> {lang(locale).getLabel("button.signup")}</Text>
                     </Button>
-
-
+                    
                 </Form>
             </Container>
         )

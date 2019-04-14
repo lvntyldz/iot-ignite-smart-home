@@ -19,7 +19,8 @@
     "login": {
       "title": "Giriş Ekranı",
       "message": {
-        "invalid_grant": "Token Alınamadı! Kullanıcı Adı ve Şifreyi Kontrol edin!"
+        "invalid_grant": "Token Alınamadı! Kullanıcı Adı ve Şifreyi Kontrol edin!",
+        "incorrectUserOrPass": "Kullanıcı Adı Veya Şifre Hatalı!"
       }
     },
     "sensorType": {
