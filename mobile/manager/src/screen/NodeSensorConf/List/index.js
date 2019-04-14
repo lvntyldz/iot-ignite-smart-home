@@ -39,7 +39,7 @@ export default class NodeSensorConfList extends Component {
         const {context} = this.props;
         const {locale} = context;
 
-        sensor.removeConfig(context.token, confId).then(response => {
+        sensor.removeNodeSensorConfig(context.token, confId).then(response => {
             console.info("delete sensor operation is success");
             this.setState({rerender: !this.state.rerender});
             context.showMessage(lang(locale).getLabel("screen.sensorDataConf.message.sensorDeletedSuccess")).succes();

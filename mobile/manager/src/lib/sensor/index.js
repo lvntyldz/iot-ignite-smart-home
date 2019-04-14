@@ -170,6 +170,21 @@ export const removeConfig = (token, confId) => {
     });
 }
 
+export const removeNodeSensorConfig = (token, confId) => {
+    return new Promise((resolve, reject) => {
+        ajax.doFetch("/device-config/inventory/" + confId, {})
+            .header({
+                'Authorization': 'Bearer ' + token
+            })
+            .json()
+            .delete(true)
+            .then(r => {
+                LOG(" Api Remove Sensor Configuration Response  :").response(r);
+                resolve(r);
+            });
+    });
+}
+
 export const getSensorHistory = (token, deviceId, nodeId, sensorId, startDate, endDate) => {
     const url = "/device/" + deviceId + "/sensor-data-history?nodeId=" + nodeId + "&sensorId=" + sensorId + "&startDate=" + startDate + "&endDate=" + endDate + "&pageSize=10";
     return new Promise((resolve, reject) => {
