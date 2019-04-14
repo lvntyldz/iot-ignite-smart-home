@@ -1,0 +1,1 @@
+{"nodeId":"ThesisNode2","ssid":"TurkTelekom_ZTTV7","password":"6Ef261756Cb6c","gatewayId":"141f782eaed8iotigniteagent","state":"SEARCH_GATEWAY_STA"}
