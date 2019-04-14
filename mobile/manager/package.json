@@ -9,6 +9,8 @@
     "reinstall": "rm -rf node_modules/ && npm install && rnpm link && react-native link",
     "devtools": "react-devtools &",
     "tree": "tree -I 'node_modules|android|ios' >tree.log",
+    "sonarDocker": "docker run -d --name sonarqube -p 9000:9000 sonarqube",
+    "sonarAnalyze": "docker start sonarqube && sleep 20s && sonar-scanner   -Dsonar.projectKey=smartHome   -Dsonar.sources=.   -Dsonar.host.url=http://127.0.0.1:9000   -Dsonar.login=07662432ecda594205c65826678a6d1bed9b2a99 -Dsonar.java.binaries=.",
     "test": "jest",
     "apiTest": "cd src/config/ && mv index.js index.prod.js && mv  index.test.js index.js && cd ../../   && jest && cd src/config/  && mv index.js index.test.js && mv index.prod.js index.js"
   },
