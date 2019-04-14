@@ -2,17 +2,164 @@
   "name": "Name",
   "input": {
     "email": "E-Mail",
-    "password": "Password"
+    "password": "Password",
+    "message": "Message"
   },
   "button": {
+    "logout": "Logout",
     "login": "Login",
-    "signup": "SignUp"
+    "signup": "Signup",
+    "sendMessage": "Send Message",
+    "createConfiguration": "Create Configuration",
+    "save": "Save",
+    "create": "Create",
+    "back": "Back"
   },
   "screen": {
-    "login": "Login Screen"
+    "login": {
+      "title": "Login Screen",
+      "message": {
+        "invalid_grant": "Could not fetch Token! Please check username and password."
+      }
+    },
+    "sensorType": {
+      "createTitle": "Add Sensor Type",
+      "importTitle": "Import Sensor Type",
+      "type": "Sensor Type ",
+      "vendor": "Vendor ",
+      "dataType": "Data Type ",
+      "message": {
+        "addSensorSuccess": "Sensor Created Successfully",
+        "senorAlreadyExists": "Sensor Already Exist!",
+        "sensorDeletedSuccess": "Sensor Deleted Successfully!"
+      }
+    },
+    "sensorDataConf": {
+      "createSensorTypeTitle": "Create Sensor Type",
+      "sensorName": "Sensor Name",
+      "offlineDataTime": "Offline Data Time",
+      "dataThreshold": "Data Threshold",
+      "message": {
+        "sensorTypeRequired": "Please Select Sensor Type Before!",
+        "sensorAddedSuccess": "Sensor Configuration Created Successfully!",
+        "sensorDeletedSuccess": "Sensor Configuration Deleted Successfully!"
+      }
+    },
+    "actionLog": {
+      "title": "Logs",
+      "logDetail": "Log Detail",
+      "cloudToDevice": "Cloud To Device",
+      "msgBody": "Body",
+      "cmdStatus": "Status",
+      "tryCount": "Try Count",
+      "sentDate": "Sent Date",
+      "deviceToCloud": "Device To Cloud",
+      "message": "Message",
+      "execResult": "Execution Result",
+      "result": "Result",
+      "msg": {
+        "noMessage": "Message Not Found!",
+        "noResult": "Result Not Found!"
+      }
+    },
+    "device": {
+      "detailTitle": "Device Informations",
+      "controlTitle": "Device Control",
+      "stopRingBtn": "Stop Ring",
+      "startRingBtn": "Start Ring",
+      "restart": "Reboot",
+      "gatewayId": "Device ID",
+      "model": "Model",
+      "serial": "Serial",
+      "osVersion": "Os Version",
+      "connectionStatus": "Connection Status",
+      "publicIp": "Public Ip",
+      "localIp": "Local Ip",
+      "batteryInfo": "Battery Status",
+      "lastPresenceDate": "Last Presence Date",
+      "message": {
+        "rebootSuccess": "Reboot Command Send To Device Successfully!",
+        "stopRingSuccess": "Stop Ring Command Send To Device Successfully!",
+        "startRingSuccess": "Start Ring Command Send To Device Successfully!"
+      }
+    },
+    "mode": {
+      "sendProfileTitle": "Send Configuration(Mode)",
+      "label": "Mode",
+      "policy": "Policy",
+      "sendModeBtn": "Send Mode"
+    },
+    "reports": {
+      "dailyTitle": "Daily Report",
+      "weeklyTitle": "Weekly Report",
+      "monthlyTitle": "Monthly Report",
+      "yearlyTitle": "Yearly Report",
+      "nodeList": "Node List",
+      "sensorList": "Sensor List"
+    },
+    "sendMessage": {
+      "title": "Send Message",
+      "messageSentSuccess": "Message Send To Device Successfully!"
+    },
+    "role": {
+      "title": "Select Role",
+      "smartUsage": "Usage",
+      "easySetup": "Setup"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "gateways": "Devices",
+      "users": "Users",
+      "deviceModel": "Device Model",
+      "deviceOs": "Device OS",
+      "device": {
+        "online": "Online",
+        "offline": "Offline",
+        "total": "Total"
+      },
+      "user": {
+        "active": "Active",
+        "passive": "Passive",
+        "total": "Total"
+      }
+    }
   },
   "menu": {
-    "dashboard": "Dashboard",
-    "actionLog": "Action Log"
+    "title": "Menu",
+    "dashboard": "Dashboar",
+    "actionLog": "Logs",
+    "sendMessage": "Send Message",
+    "sendMode": "Send Mode",
+    "gateway": "Gateway",
+    "nodeAndSensor": "Node And Sensor",
+    "mode": "Mode Operations",
+    "graphs": "Graphics",
+    "device": {
+      "detail": "Device Details",
+      "control": "Device Control"
+    },
+    "sensorType": {
+      "create": "Create Sensor Type",
+      "import": "Import Sensor Type"
+    },
+    "sensorDataConf": {
+      "create": "Create Sensor Configuration",
+      "import": "Import Sensor Configuration"
+    },
+    "modeNodeConf": {
+      "import": "Add Node Conf To Mode"
+    },
+    "nodeDataConf": {
+      "create": "Create Node/Sensor Conf"
+    },
+    "rule": {
+      "create": "Create Rule"
+    },
+    "reports": {
+      "yearly": "Yearly Data",
+      "monthly": "Monthly Data",
+      "weekly": "Weekly Data",
+      "daily": "Daily Data"
+    }
   }
 }

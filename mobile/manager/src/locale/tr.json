@@ -1,12 +1,10 @@
 {
   "name": "İsim",
-
   "input": {
     "email": "E-Posta",
     "password": "Şifre",
-    "message": "Mesaj",
+    "message": "Mesaj"
   },
-
   "button": {
     "logout": "Çıkış Yap",
     "login": "Giriş Yap",
@@ -15,131 +13,119 @@
     "createConfiguration": "Konfigürasyon Oluştur",
     "save": "Kaydet",
     "create": "Oluştur",
-    "back":"Geri",
+    "back": "Geri"
   },
-
   "screen": {
-    "login":{
-      "title":"Giriş Ekranı",
-      "message":{
-        "invalid_grant":"Token Alınamadı! Kullanıcı Adı ve Şifreyi Kontrol edin!",
+    "login": {
+      "title": "Giriş Ekranı",
+      "message": {
+        "invalid_grant": "Token Alınamadı! Kullanıcı Adı ve Şifreyi Kontrol edin!"
       }
     },
-
-    "sensorType":{
-      "createTitle":"Sensor Tipi Ekle",
-      "importTitle":"Sensor Tipi İndir",
-      "type":"Sensor Tipi ",
-      "vendor":"Üretici ",
-      "dataType":"Veri Tipi ",
-      "message":{
-        "addSensorSuccess":"Sensor Başarıyla Eklendi",
-        "senorAlreadyExists":"Sensor Zaten Ekli!",
-        "sensorDeletedSuccess":"Sensor Başarıyla Silindi!",
+    "sensorType": {
+      "createTitle": "Sensor Tipi Ekle",
+      "importTitle": "Sensor Tipi İndir",
+      "type": "Sensor Tipi ",
+      "vendor": "Üretici ",
+      "dataType": "Veri Tipi ",
+      "message": {
+        "addSensorSuccess": "Sensor Başarıyla Eklendi",
+        "senorAlreadyExists": "Sensor Zaten Ekli!",
+        "sensorDeletedSuccess": "Sensor Başarıyla Silindi!"
       }
     },
-
-    "sensorDataConf":{
-      "createSensorTypeTitle":"Sensör Tipi Oluştur",
-      "sensorName":"Sensor Adı",
-      "offlineDataTime":"Çevrimdışı Veri Okuma (Sn)",
-      "dataThreshold":"Veri Eşik değeri (Sn)",
-      "message":{
-        "sensorTypeRequired":"Önce SensorType seçmelisiniz!",
-        "sensorAddedSuccess":"Sensor Konfigurasyonu Başarıyla Eklendi!",
-        "sensorDeletedSuccess":"Sensor Konfigurasyonu Başarıyla Silindi!",
+    "sensorDataConf": {
+      "createSensorTypeTitle": "Sensör Tipi Oluştur",
+      "sensorName": "Sensor Adı",
+      "offlineDataTime": "Çevrimdışı Veri Okuma (Sn)",
+      "dataThreshold": "Veri Eşik değeri (Sn)",
+      "message": {
+        "sensorTypeRequired": "Önce SensorType seçmelisiniz!",
+        "sensorAddedSuccess": "Sensor Konfigurasyonu Başarıyla Eklendi!",
+        "sensorDeletedSuccess": "Sensor Konfigurasyonu Başarıyla Silindi!"
       }
     },
-
     "actionLog": {
-      "title":"Log Kayıtları",
-      "logDetail":"Log Detayı",
-      "cloudToDevice":"Buluttan Cihaza",
-      "msgBody":"İçerik",
-      "cmdStatus":"İçerik",
-      "tryCount":"Deneme Sayısı",
-      "sentDate":"Gönderme Zamanı",
-      "deviceToCloud":"Cihazdan Buluta",
-      "message":"Mesaj",
-      "execResult":"Çalıştırma Sonucu",
-      "result":"Sonucu",
-      "msg":{
-        "noMessage":"Mesaj Bulunamadı!",
-        "noResult":"Sonuç Bulunamadı!"
+      "title": "Log Kayıtları",
+      "logDetail": "Log Detayı",
+      "cloudToDevice": "Buluttan Cihaza",
+      "msgBody": "İçerik",
+      "cmdStatus": "Durum",
+      "tryCount": "Deneme Sayısı",
+      "sentDate": "Gönderme Zamanı",
+      "deviceToCloud": "Cihazdan Buluta",
+      "message": "Mesaj",
+      "execResult": "Çalıştırma Sonucu",
+      "result": "Sonucu",
+      "msg": {
+        "noMessage": "Mesaj Bulunamadı!",
+        "noResult": "Sonuç Bulunamadı!"
       }
     },
-
     "device": {
-      "detailTitle":"Cihaz Bilgileri",
-      "controlTitle":"Cihaz Kontrolü",
-      "stopRingBtn":"Zili Durdur",
-      "startRingBtn":"Zil Çal",
-      "restart":"Cihazı Yeniden Başlat",
-      "gatewayId":"Cihaz ID",
-      "model":"Model",
-      "serial":"Seri No",
-      "osVersion":"İşletim Sistemi Versiyonu",
-      "connectionStatus":"Bağlantı Durumu",
-      "publicIp":"Dış Ip",
-      "localIp":"İç Ip",
-      "batteryInfo":"Şarj Durumu",
-      "lastPresenceDate":"Son Bilgi Gönderme Zamanı",
-      "message":{
-        "rebootSuccess":"Reboot Komutu Cihaza Başarıyla Gönderildi!",
-        "stopRingSuccess":"Stop Ring Komutu Cihaza Başarıyla Gönderildi!",
-        "startRingSuccess":"Start Ring Komutu Cihaza Başarıyla Gönderildi!",
+      "detailTitle": "Cihaz Bilgileri",
+      "controlTitle": "Cihaz Kontrolü",
+      "stopRingBtn": "Zili Durdur",
+      "startRingBtn": "Zil Çal",
+      "restart": "Cihazı Yeniden Başlat",
+      "gatewayId": "Cihaz ID",
+      "model": "Model",
+      "serial": "Seri No",
+      "osVersion": "İşletim Sistemi Versiyonu",
+      "connectionStatus": "Bağlantı Durumu",
+      "publicIp": "Dış Ip",
+      "localIp": "İç Ip",
+      "batteryInfo": "Şarj Durumu",
+      "lastPresenceDate": "Son Bilgi Gönderme Zamanı",
+      "message": {
+        "rebootSuccess": "Yeniden Başlatma Komutu Cihaza Başarıyla Gönderildi!",
+        "stopRingSuccess": "Zili Durdur Komutu Cihaza Başarıyla Gönderildi!",
+        "startRingSuccess": "Zil Çal Komutu Cihaza Başarıyla Gönderildi!"
       }
     },
-
-
     "mode": {
-      "sendProfileTitle":"Ayarları Gönder(Mode)",
-      "label":"Mode",
-      "policy":"Kural",
-      "sendModeBtn":"Mode Gönder",
+      "sendProfileTitle": "Ayarları Gönder(Mode)",
+      "label": "Mode",
+      "policy": "Kural",
+      "sendModeBtn": "Mode Gönder"
     },
-
     "reports": {
-      "dailyTitle":"Günlük Rapor",
-      "weeklyTitle":"Haftalık Rapor",
-      "monthlyTitle":"Aylık Rapor",
-      "yearlyTitle":"Yıllık Rapor",
-      "nodeList":"Node Listesi",
-      "sensorList":"Sensör Listesi",
+      "dailyTitle": "Günlük Rapor",
+      "weeklyTitle": "Haftalık Rapor",
+      "monthlyTitle": "Aylık Rapor",
+      "yearlyTitle": "Yıllık Rapor",
+      "nodeList": "Node Listesi",
+      "sensorList": "Sensör Listesi"
     },
-
     "sendMessage": {
-      "title":"Mesaj Gönder",
-      "messageSentSuccess":"Mesajınız Cihaza Başarıyla Gönderildi!",
+      "title": "Mesaj Gönder",
+      "messageSentSuccess": "Mesajınız Cihaza Başarıyla Gönderildi!"
     },
-
     "role": {
-      "title":"Rol Seçimi",
-      "smartUsage":"Kullanım",
-      "easySetup":"Kurulum",
+      "title": "Rol Seçimi",
+      "smartUsage": "Kullanım",
+      "easySetup": "Kurulum"
     },
-
     "dashboard": {
-      "title":"Kontrol Göstergeleri",
-      "gateways":"Cihazlar",
-      "users":"Kullanıcılar",
-      "deviceModel":"Cihaz Model",
-      "deviceOs":"İşletim Sistemleri",
-      "device":{
-        "online":"Çevrimiçi",
-        "offline":"Çevrimdışı",
-        "total":"Toplam"
+      "title": "Kontrol Göstergeleri",
+      "gateways": "Cihazlar",
+      "users": "Kullanıcılar",
+      "deviceModel": "Cihaz Model",
+      "deviceOs": "İşletim Sistemleri",
+      "device": {
+        "online": "Çevrimiçi",
+        "offline": "Çevrimdışı",
+        "total": "Toplam"
       },
-      "user":{
-        "active":"Aktif",
-        "passive":"Pasif",
-        "total":"Toplam",
+      "user": {
+        "active": "Aktif",
+        "passive": "Pasif",
+        "total": "Toplam"
       }
     }
   },
-
   "menu": {
-    "title":"Menü",
+    "title": "Menü",
     "dashboard": "Kontrol Paneli",
     "actionLog": "Log Kayıtları",
     "sendMessage": "Mesaj Gönder",
@@ -148,40 +134,32 @@
     "nodeAndSensor": "Node Ve Sensör",
     "mode": "Mode İşlemleri",
     "graphs": "Grafikler",
-
-    "device":{
-      "detail":"Cihaz Bilgileri",
-      "control":"Cihaz Komutları"
+    "device": {
+      "detail": "Cihaz Bilgileri",
+      "control": "Cihaz Komutları"
     },
-
-    "sensorType":{
-      "create":"Sensor Tipi Oluşturma ",
-      "import":"Sensor Tipi İndirme"
+    "sensorType": {
+      "create": "Sensor Tipi Oluşturma ",
+      "import": "Sensor Tipi İndirme"
     },
-
-    "sensorDataConf":{
-      "create":"Sensor Ayarı Oluşturma",
-      "import":"Sensor Ayarı Yükleme"
+    "sensorDataConf": {
+      "create": "Sensor Ayarı Oluşturma",
+      "import": "Sensor Ayarı Yükleme"
     },
-
-    "modeNodeConf":{
-      "import":"Mode'a Node Ayarı Ekleme"
+    "modeNodeConf": {
+      "import": "Mode'a Node Ayarı Ekleme"
     },
-
-    "nodeDataConf":{
-      "create":"Node/Sensor Ayarı Oluşturma",
+    "nodeDataConf": {
+      "create": "Node/Sensor Ayarı Oluşturma"
     },
-
-    "rule":{
-      "create":"Kural Oluşturma"
+    "rule": {
+      "create": "Kural Oluşturma"
     },
-
-    "reports":{
-      "yearly":"Yıllık Veriler",
-      "monthly":"Aylık Veriler",
-      "weekly":"Haftalık Veriler",
-      "daily":"Günlük Veriler"
+    "reports": {
+      "yearly": "Yıllık Veriler",
+      "monthly": "Aylık Veriler",
+      "weekly": "Haftalık Veriler",
+      "daily": "Günlük Veriler"
     }
-
   }
 }
