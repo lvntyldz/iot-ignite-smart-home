@@ -49,6 +49,10 @@ export default class NodeSensorConfList extends Component {
     render() {
         const {sensorConfigs} = this.state;
 
+        if (!Array.isArray(sensorConfigs)) {
+            return null;
+        }
+
         return (
             <Container>
                 <Content>
