@@ -16,6 +16,9 @@
     "back": "Back"
   },
   "screen": {
+    "nodeSensorConf": {
+      "createTitle": "Create Node/Sensor Conf"
+    },
     "login": {
       "title": "Login Screen",
       "message": {
@@ -38,6 +41,8 @@
     "sensorDataConf": {
       "createSensorTypeTitle": "Create Sensor Type",
       "sensorName": "Sensor Name",
+      "nodeName": "Node Name",
+      "configName": "Config Name",
       "offlineDataTime": "Offline Data Time",
       "dataThreshold": "Data Threshold",
       "message": {

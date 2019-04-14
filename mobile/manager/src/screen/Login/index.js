@@ -151,7 +151,7 @@ export class LoginContext extends Component {
                     <Button full light primary onPress={() => context.setActivePage("SignUp")}>
                         <Text> {lang(locale).getLabel("button.signup")}</Text>
                     </Button>
-                    
+
                 </Form>
             </Container>
         )

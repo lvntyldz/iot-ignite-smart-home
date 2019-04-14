@@ -16,6 +16,9 @@
     "back": "Geri"
   },
   "screen": {
+    "nodeSensorConf": {
+      "createTitle": "Node/Sensor Ayarı Ekle"
+    },
     "login": {
       "title": "Giriş Ekranı",
       "message": {
@@ -38,6 +41,8 @@
     "sensorDataConf": {
       "createSensorTypeTitle": "Sensör Tipi Oluştur",
       "sensorName": "Sensor Adı",
+      "nodeName": "Node Adı",
+      "configName": "Ayar Adı",
       "offlineDataTime": "Çevrimdışı Veri Okuma (Sn)",
       "dataThreshold": "Veri Eşik değeri (Sn)",
       "message": {

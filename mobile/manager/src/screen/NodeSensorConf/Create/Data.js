@@ -245,7 +245,7 @@ export class NodeSensorConfCreateDataContext extends Component {
         return (
             <Container>
 
-                <SideBarNav pageTitle={lang(locale).getLabel("screen.reports.dailyTitle")}/>
+                <SideBarNav pageTitle={lang(locale).getLabel("screen.nodeSensorConf.createTitle")}/>
 
                 <Content>
                     <List>
