@@ -26,7 +26,6 @@ export class CreateCloudRuleContext extends Component {
     }
 
     render() {
-        const {context} = this.props;
 
         return (
             <Container>

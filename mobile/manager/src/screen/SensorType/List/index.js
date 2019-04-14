@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
 
 import * as sensor from 'MgrLib/sensor';
@@ -49,7 +48,6 @@ export default class SensorTypeList extends Component {
 
     render() {
         const {sensors} = this.state;
-        const {context} = this.props;
 
         return (
             <Container>

@@ -4,7 +4,6 @@ import {Container, Content,} from 'native-base';
 import {CtxConsumer} from 'MgrBoot/Container';
 import SensorList from '../Inventory/Sensor';
 import SideBarNav from 'MgrComponent/SideBarNav';
-import NodeSensorConfCreateData from "./Create/Data";
 import {lang} from 'MgrLocale';
 
 export default class NodeSensorList extends Component {

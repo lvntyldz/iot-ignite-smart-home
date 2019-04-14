@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Body, Card, CardItem, Container, DeckSwiper, Left, Text, View} from 'native-base';
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
-import {Dimensions, ScrollView} from 'react-native';
+import {Dimensions} from 'react-native';
 import {BarChart, LineChart, PieChart} from 'react-native-chart-kit'
 
 const screenWidth = Dimensions.get('window').width
@@ -107,7 +107,6 @@ export class GraphContext extends Component {
     }
 
     render() {
-        const {context} = this.props;
         const cards = [
             {title: 'Line', cardContent: this.loadLineKit()},
             {title: 'Pie', cardContent: this.loadPieKit()},

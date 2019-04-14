@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
+import { Modal} from 'react-native';
 import {
     Body,
     Button,
     Container,
     Content,
     Form,
-    FormItem,
     Header,
     Icon,
     Input,
@@ -206,7 +205,6 @@ export class CreateSensorDataConfContext extends Component {
     }
 
     render() {
-        const {sensors} = this.state;
         const {context} = this.props;
         const {locale} = context;
 

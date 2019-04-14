@@ -95,9 +95,6 @@ export class LoginContext extends Component {
     render() {
         const {context} = this.props;
         const {locale} = context;
-        const {summary} = this.state;
-        const {model} = this.state;
-        const {os} = this.state;
 
         const primaryLocaleStyle = {color: '#FFF', fontSize: 25};
         const secondaryLocaleStyle = {color: '#000', fontSize: 25};

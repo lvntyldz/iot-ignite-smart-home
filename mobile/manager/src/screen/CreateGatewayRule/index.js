@@ -26,8 +26,6 @@ export class CreateGatewayRuleContext extends Component {
     }
 
     render() {
-        const {context} = this.props;
-
         return (
             <Container>
                 <SideBarNav pageTitle="Create Gateway Rule"/>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
+import {Modal} from 'react-native';
 import {
     Body,
     Button,
@@ -14,7 +14,6 @@ import {
     Text,
     Title,
 } from 'native-base';
-
 //custom
 import {CtxConsumer} from 'MgrBoot/Container';
 import * as actionLog from 'MgrLib/actionLog';
@@ -174,7 +173,7 @@ export class ActionLogDataContext extends Component {
                         <Text> {lang(locale).getLabel("screen.actionLog.message")} </Text>
                     </Left>
                     <Body>
-                    <Text>{deliveryFromDeviceStatus.desc ||lang(locale).getLabel("screen.actionLog.msg.noMessage")}</Text>
+                    <Text>{deliveryFromDeviceStatus.desc || lang(locale).getLabel("screen.actionLog.msg.noMessage")}</Text>
                     </Body>
                 </ListItem>
                 <ListItem>

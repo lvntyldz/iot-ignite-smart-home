@@ -1,6 +1,5 @@
 //TODO:Development[Multilanguage support]
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
 //custom
 import * as sensor from 'MgrLib/sensor';
@@ -48,7 +47,6 @@ export default class ModeSensorInventoryConfList extends Component {
 
     render() {
         const {sensors} = this.state;
-        const {context} = this.props;
 
         return (
             <Container>

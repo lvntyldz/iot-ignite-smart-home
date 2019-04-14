@@ -44,7 +44,6 @@ export class NodeListContext extends Component {
 
     render() {
         const {nodes} = this.state;
-        const {context} = this.props;
 
         if (!nodes) {
             return null;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
+import { Modal} from 'react-native';
 import {Badge, Body, Button, Container, Content, Icon, Left, List, ListItem, Right, Text,} from 'native-base';
 
 import {CtxConsumer} from 'MgrBoot/Container';
@@ -95,7 +95,6 @@ export class ImportSensorTypeContext extends Component {
     }
 
     render() {
-        const {sensors} = this.state;
         const {context} = this.props;
         const {locale} = context;
 

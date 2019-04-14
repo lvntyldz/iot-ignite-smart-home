@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, StyleSheet, TouchableHighlight, View} from 'react-native';
+import {Modal, StyleSheet, View} from 'react-native';
 import {
     Badge,
     Body,
@@ -73,7 +73,6 @@ export class ModeNodeConfImportContext extends Component {
 
     importPreDefinedSensor = () => {
         const {notInSensors} = this.state;
-        const {context} = this.props;
 
         return <Container>
             <Header>
@@ -152,7 +151,6 @@ export class ModeNodeConfImportContext extends Component {
     }
 
     render() {
-        const {sensors} = this.state;
         const {context} = this.props;
 
         return (

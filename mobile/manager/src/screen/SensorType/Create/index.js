@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
+import { Modal} from 'react-native';
 import {
     Body,
     Button,
@@ -158,7 +158,6 @@ export class CreateSensorTypeContext extends Component {
     }
 
     render() {
-        const {sensors} = this.state;
         const {context} = this.props;
         const {locale} = context;
 

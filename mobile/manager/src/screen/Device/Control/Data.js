@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
 import {Button, Container, Content, Separator, Text,} from 'native-base';
 
 import {CtxConsumer} from 'MgrBoot/Container';

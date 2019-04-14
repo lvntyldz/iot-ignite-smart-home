@@ -1,6 +1,6 @@
 //TODO:Development[Multilanguage support]
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, TouchableHighlight, View} from 'react-native';
+import {Modal} from 'react-native';
 import {
     Badge,
     Body,
@@ -70,7 +70,6 @@ export class ImportModeSensorTypeConfContext extends Component {
 
     importPreDefinedSensor = () => {
         const {notInSensors} = this.state;
-        const {context} = this.props;
 
         return <Container>
             <Header>
@@ -133,7 +132,6 @@ export class ImportModeSensorTypeConfContext extends Component {
     }
 
     render() {
-        const {sensors} = this.state;
         const {context} = this.props;
 
         return (

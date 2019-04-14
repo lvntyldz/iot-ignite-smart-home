@@ -50,7 +50,6 @@ export class DeviceListContext extends Component {
 
     render() {
         const {devices} = this.state;
-        const {context} = this.props;
 
         if (!devices.content) {
             return null;

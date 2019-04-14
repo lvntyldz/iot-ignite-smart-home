@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Modal, ScrollView, StyleSheet, TouchableHighlight, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Badge, Body, Button, Card, CardItem, Container, Content, Icon, Label, Right, Text} from 'native-base';
 //custom
 import * as profile from 'MgrLib/profile';
