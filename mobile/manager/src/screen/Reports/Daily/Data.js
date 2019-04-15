@@ -60,7 +60,7 @@ export class DailyGraphDataContext extends Component {
         });
 
         const dbGraphData = await  sensorDataDb.getDailyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
-        const listData = await  sensorDataDb.getDailyDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
+        const listData = await  sensorDataDb.getSensorDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id, 1);
 
         dbGraphData.map((v, k) => {
 

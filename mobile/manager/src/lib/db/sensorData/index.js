@@ -64,13 +64,13 @@ export const getDailyAverageBySensorType = (deviceId, nodeId, sensorId) => {
     });
 }
 
-export const getDailyDataBySensorType = (deviceId, nodeId, sensorId) => {
+export const getSensorDataBySensorType = (deviceId, nodeId, sensorId,dayRange) => {
     return new Promise((resolve, reject) => {
         db.transaction((tx) => {
 
             let sqlQuery = `﻿SELECT * FROM sensorData
                                   WHERE formattedSensorCreateDate is not null
-        							    AND formattedSensorCreateDate> (SELECT DATETIME('now', '-1 day'))
+        							    AND formattedSensorCreateDate> (SELECT DATETIME('now', '-${dayRange} day'))
                                         AND deviceId = ?
                                         AND nodeId = ?
                                         AND sensorId = ?

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Content} from 'native-base';
+import {Body, Container, Content, Left, ListItem, Text} from 'native-base';
 
 import {CtxConsumer} from 'MgrBoot/Container';
 import SideBarNav from 'MgrComponent/SideBarNav';
@@ -31,6 +31,7 @@ export class WeeklyGraphDataContext extends Component {
             rerender: false,
             graphData: defaultGraphData,
             pieData: [],
+            listData: []
         }
     }
 
@@ -48,6 +49,7 @@ export class WeeklyGraphDataContext extends Component {
         let pieData = [];
 
         const d = await sensor.getSensorHistory(context.token, context.deviceId, context.node.nodeId, context.sensor.id, startDate, endDate);
+        const listData = await  sensorDataDb.getSensorDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id, 7);
 
         await sensorDataDb.deleteAllSensorData();
 
@@ -58,9 +60,9 @@ export class WeeklyGraphDataContext extends Component {
             sensorDataDb.addSensorData(v.deviceId, v.nodeId, v.sensorId, v.createDate, sensorData, formattedSensorCreateDate);
         });
 
-        const dbData = await  sensorDataDb.getWeeklyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
+        const dbGraphData = await  sensorDataDb.getWeeklyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
 
-        dbData.map((v, k) => {
+        dbGraphData.map((v, k) => {
 
             pieData.push({
                 name: v.formattedDate,
@@ -74,7 +76,7 @@ export class WeeklyGraphDataContext extends Component {
             graphData.datasets[0].data.push(v.average);
         });
 
-        self.setState({graphData, pieData});
+        self.setState({graphData, pieData, listData});
         context.hideLoading();
     }
 
@@ -90,6 +92,20 @@ export class WeeklyGraphDataContext extends Component {
 
                 <Content>
                     <Graph pieData={this.state.pieData} graphData={this.state.graphData}/>
+                    {
+                        this.state.listData.map((v, k) => {
+                            return (
+                                <ListItem icon key={v.id}>
+                                    <Left>
+                                        <Text>{v.formattedSensorCreateDate}</Text>
+                                    </Left>
+                                    <Body>
+                                    <Text>{v.data}</Text>
+                                    </Body>
+                                </ListItem>
+                            );
+                        })
+                    }
                 </Content>
 
             </Container>
