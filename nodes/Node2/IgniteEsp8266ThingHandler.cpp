@@ -9,16 +9,12 @@
 
 // Sensors
 #define SENSOR_FLAME "Flame Sensor"
-#define SENSOR_DHT11_TEMPERATURE "DHT11 Temperature Sensor"
-#define SENSOR_DHT11_HUMIDITY "DHT11 Humidity Sensor"
 
 #define ACTUATOR true
 #define NOT_ACTUATOR false
 
 // Sensor Types
 #define TYPE_FLAME "Flame"
-#define TYPE_TEMPERATURE "Temperature"
-#define TYPE_HUMIDITY "Humidity"
 #define TYPE_LED "Led"
 
 // Actuators
@@ -26,11 +22,9 @@
 
 // ConnectedPinsForInfo
 #define PIN_DATA_FLAME_SENSOR "D3"
-#define PIN_DATA_DHT11_SENSOR "D4"
 #define PIN_DATA_BLUE_LED "D6"
 
 #define PIN_FLAME_SENSOR D3
-#define PIN_DHT11_SENSOR D4
 #define PIN_BLUE_LED D6
 #define PIN_RESET_BUTTON D8
 
@@ -39,7 +33,6 @@
 
 // Vendors
 #define VENDOR_FLAME "Flame Sensor"
-#define VENDOR_DHT11 "DHT11 Temperature And Humidity Sensor"
 #define VENDOR_BLUE_LED "Simple Diode"
 
 // Data Types
@@ -48,16 +41,11 @@
 #define DATA_TYPE_INTEGER "INTEGER"
 #define DATA_TYPE_BOOLEAN "BOOLEAN"
 
-// DHT Specific
-#define DHTTYPE DHT11
-
 #define CONFIG_REQUEST "configuration"
 #define ACTION_REQUEST "action"
 #define RESET_REQUEST "reset"
 #define DATA_RESPONSE "data"
 #define STATUS_REQUEST "inventory-status"
-
-DHT *IgniteEsp8266ThingHandler::dht = new DHT(PIN_DHT11_SENSOR, DHTTYPE);
 
 bool IgniteEsp8266ThingHandler::ledState;
 
@@ -67,7 +55,6 @@ void IgniteEsp8266ThingHandler::setup() {
   initBlueLED();
   initResetButton();
   initFlame();
-  dht->begin();
 }
 
 IgniteEsp8266ThingHandler::IgniteEsp8266ThingHandler()
@@ -105,15 +92,6 @@ void IgniteEsp8266ThingHandler::inventorySetup() {
                       DATA_TYPE_INTEGER,
                       new IgniteEsp8266Timer(readFlame));
 
-  addThingToInventory(SENSOR_DHT11_TEMPERATURE, TYPE_TEMPERATURE,
-                      PIN_DATA_DHT11_SENSOR, NOT_ACTUATOR, VENDOR_DHT11,
-                      DATA_TYPE_FLOAT,
-                      new IgniteEsp8266Timer(readDHTTemperature));
-
-  addThingToInventory(SENSOR_DHT11_HUMIDITY, TYPE_HUMIDITY,
-                      PIN_DATA_DHT11_SENSOR, NOT_ACTUATOR, VENDOR_DHT11,
-                      DATA_TYPE_FLOAT, new IgniteEsp8266Timer(readDHTHumidity));
-
   addThingToInventory(ACTUATOR_BLUE_LED, TYPE_LED, PIN_DATA_BLUE_LED, ACTUATOR,
                       VENDOR_BLUE_LED, DATA_TYPE_STRING,
                       new IgniteEsp8266Timer(readLedData));
@@ -123,68 +101,6 @@ void IgniteEsp8266ThingHandler::unknownMessageReceived(String msg) {
   Serial.println("----- ----- ----- unknownMessageReceived ----- ----- -----");
   Serial.print("msg");
   Serial.println(msg);
-}
-
-void IgniteEsp8266ThingHandler::readDHTTemperature() {
-  Serial.println("----- ----- ----- readDHTTemperature ----- ----- -----");
-  String packet = "";
-  String tempData = "";
-  float t = dht->readTemperature();
-
-  Serial.print("Temperature : ");
-  Serial.println(t);
-
-  if (isnan(t)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return;
-  }
-  tempData = String(t);
-
-  StaticJsonBuffer<100> jsonBuffer;
-  JsonObject &root = jsonBuffer.createObject();
-  JsonArray &data = root.createNestedArray("data");
-
-  root["messageType"] = DATA_RESPONSE;
-  root["thingId"] = SENSOR_DHT11_TEMPERATURE;
-  data.add(tempData);
-
-  root.printTo(packet);
-
-  Serial.println("Temperature :");
-  Serial.println(packet);
-  packet += "\n";
-  sendMessage(packet);
-}
-
-void IgniteEsp8266ThingHandler::readDHTHumidity() {
-  Serial.println("----- ----- ----- readDHTHumidity ----- ----- -----");
-  String packet = "";
-  String humData = "";
-  float h = dht->readHumidity();
-
-  Serial.print("Humidity : ");
-  Serial.println(h);
-
-
-  if (isnan(h)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return;
-  }
-  humData = String(h);
-
-  StaticJsonBuffer<100> jsonBuffer;
-  JsonObject &root = jsonBuffer.createObject();
-  JsonArray &data = root.createNestedArray("data");
-
-  root["messageType"] = DATA_RESPONSE;
-  root["thingId"] = SENSOR_DHT11_HUMIDITY;
-  data.add(humData);
-
-  root.printTo(packet);
-  Serial.println("Humidity :");
-  Serial.println(packet);
-  packet += "\n";
-  sendMessage(packet);
 }
 
 void IgniteEsp8266ThingHandler::readFlame() {
