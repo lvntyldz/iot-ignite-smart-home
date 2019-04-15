@@ -25,11 +25,11 @@
 #define ACTUATOR_BLUE_LED "Blue LED Actuator"
 
 // ConnectedPinsForInfo
-#define PIN_DATA_MQ6_GAS_SENSOR "D3"
+#define PIN_DATA_MQ6_GAS_SENSOR "D5"
 #define PIN_DATA_DHT11_SENSOR "D4"
 #define PIN_DATA_BLUE_LED "D6"
 
-#define PIN_MQ6_GAS_SENSOR D3
+#define PIN_MQ6_GAS_SENSOR D5
 #define PIN_DHT11_SENSOR D4
 #define PIN_BLUE_LED D6
 #define PIN_RESET_BUTTON D8
