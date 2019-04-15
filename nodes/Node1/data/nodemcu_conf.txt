@@ -1,1 +1,1 @@
-{"nodeId":"Node1","ssid":"TurkTelekom_ZTTV7","password":"6Ef261756Cb6c","gatewayId":"141f782eaed8iotigniteagent","state":"SEARCH_GATEWAY_STA"}
+{"nodeId":"Node1","ssid":"iPhoneLy","password":"Ecr4567890","gatewayId":"141f782eaed8iotigniteagent","state":"SEARCH_GATEWAY_STA"}
