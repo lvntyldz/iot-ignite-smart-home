@@ -9,12 +9,14 @@
 
 // Sensors
 #define SENSOR_FLAME "Flame Sensor"
+#define SENSOR_RAIN "Rain Sensor"
 
 #define ACTUATOR true
 #define NOT_ACTUATOR false
 
 // Sensor Types
 #define TYPE_FLAME "Flame"
+#define TYPE_RAIN "Rain"
 #define TYPE_LED "Led"
 
 // Actuators
@@ -22,9 +24,11 @@
 
 // ConnectedPinsForInfo
 #define PIN_DATA_FLAME_SENSOR "D3"
+#define PIN_DATA_RAIN_SENSOR "D5"
 #define PIN_DATA_BLUE_LED "D6"
 
 #define PIN_FLAME_SENSOR D3
+#define PIN_RAIN_SENSOR D5
 #define PIN_BLUE_LED D6
 #define PIN_RESET_BUTTON D8
 
@@ -33,6 +37,7 @@
 
 // Vendors
 #define VENDOR_FLAME "Flame Sensor"
+#define VENDOR_RAIN "Rain Sensor"
 #define VENDOR_BLUE_LED "Simple Diode"
 
 // Data Types
@@ -55,6 +60,7 @@ void IgniteEsp8266ThingHandler::setup() {
   initBlueLED();
   initResetButton();
   initFlame();
+  initRain();
 }
 
 IgniteEsp8266ThingHandler::IgniteEsp8266ThingHandler()
@@ -91,6 +97,11 @@ void IgniteEsp8266ThingHandler::inventorySetup() {
                       PIN_DATA_FLAME_SENSOR, NOT_ACTUATOR, VENDOR_FLAME,
                       DATA_TYPE_INTEGER,
                       new IgniteEsp8266Timer(readFlame));
+
+  addThingToInventory(SENSOR_RAIN, TYPE_RAIN,
+                      PIN_DATA_RAIN_SENSOR, NOT_ACTUATOR, VENDOR_RAIN,
+                      DATA_TYPE_INTEGER,
+                      new IgniteEsp8266Timer(readRain));
 
   addThingToInventory(ACTUATOR_BLUE_LED, TYPE_LED, PIN_DATA_BLUE_LED, ACTUATOR,
                       VENDOR_BLUE_LED, DATA_TYPE_STRING,
@@ -138,6 +149,46 @@ void IgniteEsp8266ThingHandler::readFlame() {
 
   root.printTo(packet);
   Serial.println("flame :");
+  Serial.println(packet);
+  packet += "\n";
+  sendMessage(packet);
+}
+
+void IgniteEsp8266ThingHandler::readRain() {
+  Serial.println("----- ----- ----- readRain ----- ----- -----");
+  String packet = "";
+  String rainData = "";
+
+  int rainVal = digitalRead(PIN_RAIN_SENSOR);
+
+  Serial.print("Rain : ");
+  Serial.println(rainVal);
+
+
+  if(rainVal==0){
+    Serial.println("***Rain detected!!!");
+  }else{
+    Serial.println("No Rain.");
+  }
+
+
+  if (isnan(rainVal)) {
+    Serial.println("Failed to read from Rain sensor!");
+    return;
+  }
+
+  rainData = String(rainVal);
+
+  StaticJsonBuffer<100> jsonBuffer;
+  JsonObject &root = jsonBuffer.createObject();
+  JsonArray &data = root.createNestedArray("data");
+
+  root["messageType"] = DATA_RESPONSE;
+  root["thingId"] = SENSOR_RAIN;
+  data.add(rainData);
+
+  root.printTo(packet);
+  Serial.println("rain :");
   Serial.println(packet);
   packet += "\n";
   sendMessage(packet);
@@ -192,6 +243,11 @@ void IgniteEsp8266ThingHandler::initBlueLED() {
 void IgniteEsp8266ThingHandler::initFlame() {
   Serial.println("----- ----- ----- initFlame ----- ----- -----");
   pinMode(PIN_FLAME_SENSOR, INPUT);
+}
+
+void IgniteEsp8266ThingHandler::initRain() {
+  Serial.println("----- ----- ----- initRain ----- ----- -----");
+  pinMode(PIN_RAIN_SENSOR, INPUT);
 }
 
 void IgniteEsp8266ThingHandler::initResetButton() {

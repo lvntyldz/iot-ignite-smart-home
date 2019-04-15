@@ -15,6 +15,7 @@ class IgniteEsp8266ThingHandler : public IgniteThingHandler {
     virtual void unknownMessageReceived(String msg);
     static void readLedData();
     static void readFlame();
+    static void readRain();
     virtual void setup();
 
 
@@ -25,6 +26,7 @@ class IgniteEsp8266ThingHandler : public IgniteThingHandler {
     static long resetStateTime;
     void initBlueLED();
     void initFlame();
+    void initRain();
     void initResetButton();
     static void resetOn();
     static void resetOnFinal();
