@@ -114,30 +114,28 @@ export class GraphContext extends Component {
         ];
 
         return (
-            <Container>
-                <View>
-                    <DeckSwiper
-                        dataSource={cards}
-                        renderItem={item =>
-                            <Card style={{elevation: 3}}>
+            <Container style={{flex: 1, maxHeight: 350}}>
+                <DeckSwiper
+                    dataSource={cards}
+                    renderItem={item =>
+                        <Card style={{elevation: 3}}>
 
-                                <CardItem>
-                                    <Left>
-                                        <Body>
-                                        <Text>{item.title}</Text>
-                                        <Text note>Graph Data</Text>
-                                        </Body>
-                                    </Left>
-                                </CardItem>
+                            <CardItem>
+                                <Left>
+                                    <Body>
+                                    <Text>{item.title}</Text>
+                                    <Text note>Graph Data</Text>
+                                    </Body>
+                                </Left>
+                            </CardItem>
 
-                                <CardItem cardBody>
-                                    {item.cardContent}
-                                </CardItem>
+                            <CardItem cardBody>
+                                {item.cardContent}
+                            </CardItem>
 
-                            </Card>
-                        }
-                    />
-                </View>
+                        </Card>
+                    }
+                />
             </Container>
         )
     }//render

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Content} from 'native-base';
+import {Body, Container, Content, Left, List, ListItem, Text} from 'native-base';
 
 import {CtxConsumer} from 'MgrBoot/Container';
 import SideBarNav from 'MgrComponent/SideBarNav';
@@ -31,6 +31,7 @@ export class DailyGraphDataContext extends Component {
             rerender: false,
             graphData: defaultGraphData,
             pieData: [],
+            listData: []
         }
     }
 
@@ -58,9 +59,10 @@ export class DailyGraphDataContext extends Component {
             sensorDataDb.addSensorData(v.deviceId, v.nodeId, v.sensorId, v.createDate, sensorData, formattedSensorCreateDate);
         });
 
-        const dbData = await  sensorDataDb.getDailyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
+        const dbGraphData = await  sensorDataDb.getDailyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
+        const listData = await  sensorDataDb.getDailyDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
 
-        dbData.map((v, k) => {
+        dbGraphData.map((v, k) => {
 
             pieData.push({
                 name: v.formattedDate,
@@ -74,9 +76,10 @@ export class DailyGraphDataContext extends Component {
             graphData.datasets[0].data.push(v.average);
         });
 
-        self.setState({graphData, pieData});
+        self.setState({graphData, pieData, listData});
         context.hideLoading();
     }
+
 
     render() {
 
@@ -90,6 +93,33 @@ export class DailyGraphDataContext extends Component {
 
                 <Content>
                     <Graph pieData={this.state.pieData} graphData={this.state.graphData}/>
+
+                    <List>
+                        <ListItem icon>
+                            <Left>
+                                <Text style={{fontWeight: 'bold'}}> Tarih/Saat</Text>
+                            </Left>
+                            <Body>
+                            <Text style={{fontWeight: 'bold'}}> Değer</Text>
+                            </Body>
+                        </ListItem>
+                        {
+                            this.state.listData.map((v, k) => {
+                                return (
+                                    <ListItem icon key={v.id}>
+                                        <Left>
+                                            <Text>{v.formattedSensorCreateDate}</Text>
+                                        </Left>
+                                        <Body>
+                                        <Text>{v.data}</Text>
+                                        </Body>
+                                    </ListItem>
+                                );
+                            })
+                        }
+
+                    </List>
+
                 </Content>
 
             </Container>
