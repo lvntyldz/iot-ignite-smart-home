@@ -62,6 +62,12 @@ export class MonthlyGraphDataContext extends Component {
         const dbGraphData = await  sensorDataDb.getMonthlyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
         const listData = await  sensorDataDb.getSensorDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id, 30);
 
+        if (!listData || !dbGraphData) {
+            self.setState({graphData: defaultGraphData, pieData: [], listData: []});
+            context.hideLoading();
+            return;
+        }
+
         dbGraphData.map((v, k) => {
 
             pieData.push({

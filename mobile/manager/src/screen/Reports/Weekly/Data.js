@@ -49,7 +49,6 @@ export class WeeklyGraphDataContext extends Component {
         let pieData = [];
 
         const d = await sensor.getSensorHistory(context.token, context.deviceId, context.node.nodeId, context.sensor.id, startDate, endDate);
-        const listData = await  sensorDataDb.getSensorDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id, 7);
 
         await sensorDataDb.deleteAllSensorData();
 
@@ -61,6 +60,13 @@ export class WeeklyGraphDataContext extends Component {
         });
 
         const dbGraphData = await  sensorDataDb.getWeeklyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
+        const listData = await  sensorDataDb.getSensorDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id, 7);
+
+        if (!listData || !dbGraphData) {
+            self.setState({graphData: defaultGraphData, pieData: [], listData: []});
+            context.hideLoading();
+            return;
+        }
 
         dbGraphData.map((v, k) => {
 

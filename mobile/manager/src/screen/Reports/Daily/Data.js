@@ -59,8 +59,14 @@ export class DailyGraphDataContext extends Component {
             sensorDataDb.addSensorData(v.deviceId, v.nodeId, v.sensorId, v.createDate, sensorData, formattedSensorCreateDate);
         });
 
-        const dbGraphData = await  sensorDataDb.getDailyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
-        const listData = await  sensorDataDb.getSensorDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id, 1);
+        let dbGraphData = await  sensorDataDb.getDailyAverageBySensorType(context.deviceId, context.node.nodeId, context.sensor.id);
+        let listData = await  sensorDataDb.getSensorDataBySensorType(context.deviceId, context.node.nodeId, context.sensor.id, 1);
+
+        if (!listData || !dbGraphData) {
+            self.setState({graphData: defaultGraphData, pieData: [], listData: []});
+            context.hideLoading();
+            return;
+        }
 
         dbGraphData.map((v, k) => {
 
