@@ -17,7 +17,7 @@ class IgniteEsp8266ThingHandler : public IgniteThingHandler {
     static void readDHTTemperature();
     static void readLedData();
     static void readDHTHumidity();
-    static void readMq6Gas();
+    static void readFlame();
     virtual void setup();
 
 
@@ -28,7 +28,7 @@ class IgniteEsp8266ThingHandler : public IgniteThingHandler {
     static bool ledState;
     static long resetStateTime;
     void initBlueLED();
-    void initMq6Gas();
+    void initFlame();
     void initResetButton();
     static void resetOn();
     static void resetOnFinal();

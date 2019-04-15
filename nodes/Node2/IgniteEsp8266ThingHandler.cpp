@@ -8,7 +8,7 @@
 #define NODE_TYPE "DYNAMIC NODE - DHT11 SENSOR"
 
 // Sensors
-#define SENSOR_MQ6_GAS "MQ6 GAS Sensor"
+#define SENSOR_FLAME "Flame Sensor"
 #define SENSOR_DHT11_TEMPERATURE "DHT11 Temperature Sensor"
 #define SENSOR_DHT11_HUMIDITY "DHT11 Humidity Sensor"
 
@@ -16,7 +16,7 @@
 #define NOT_ACTUATOR false
 
 // Sensor Types
-#define TYPE_MQ6_GAS "Mq6Gas"
+#define TYPE_FLAME "Flame"
 #define TYPE_TEMPERATURE "Temperature"
 #define TYPE_HUMIDITY "Humidity"
 #define TYPE_LED "Led"
@@ -25,11 +25,11 @@
 #define ACTUATOR_BLUE_LED "Blue LED Actuator"
 
 // ConnectedPinsForInfo
-#define PIN_DATA_MQ6_GAS_SENSOR "D3"
+#define PIN_DATA_FLAME_SENSOR "D3"
 #define PIN_DATA_DHT11_SENSOR "D4"
 #define PIN_DATA_BLUE_LED "D6"
 
-#define PIN_MQ6_GAS_SENSOR D3
+#define PIN_FLAME_SENSOR D3
 #define PIN_DHT11_SENSOR D4
 #define PIN_BLUE_LED D6
 #define PIN_RESET_BUTTON D8
@@ -38,7 +38,7 @@
 #define PIN_DATA_RESET_BUTTON "D8"
 
 // Vendors
-#define VENDOR_MQ6_GAS "MQ-6 Gas Sensor"
+#define VENDOR_FLAME "Flame Sensor"
 #define VENDOR_DHT11 "DHT11 Temperature And Humidity Sensor"
 #define VENDOR_BLUE_LED "Simple Diode"
 
@@ -66,7 +66,7 @@ long IgniteEsp8266ThingHandler::resetStateTime;
 void IgniteEsp8266ThingHandler::setup() {
   initBlueLED();
   initResetButton();
-  initMq6Gas();
+  initFlame();
   dht->begin();
 }
 
@@ -100,10 +100,10 @@ void IgniteEsp8266ThingHandler::inventorySetup() {
 
   Serial.println("----- ----- ----- inventorySetup ----- ----- -----");
 
-  addThingToInventory(SENSOR_MQ6_GAS, TYPE_MQ6_GAS,
-                      PIN_DATA_MQ6_GAS_SENSOR, NOT_ACTUATOR, VENDOR_MQ6_GAS,
+  addThingToInventory(SENSOR_FLAME, TYPE_FLAME,
+                      PIN_DATA_FLAME_SENSOR, NOT_ACTUATOR, VENDOR_FLAME,
                       DATA_TYPE_INTEGER,
-                      new IgniteEsp8266Timer(readMq6Gas));
+                      new IgniteEsp8266Timer(readFlame));
 
   addThingToInventory(SENSOR_DHT11_TEMPERATURE, TYPE_TEMPERATURE,
                       PIN_DATA_DHT11_SENSOR, NOT_ACTUATOR, VENDOR_DHT11,
@@ -187,33 +187,41 @@ void IgniteEsp8266ThingHandler::readDHTHumidity() {
   sendMessage(packet);
 }
 
-void IgniteEsp8266ThingHandler::readMq6Gas() {
-  Serial.println("----- ----- ----- readMq6Gas ----- ----- -----");
+void IgniteEsp8266ThingHandler::readFlame() {
+  Serial.println("----- ----- ----- readFlame ----- ----- -----");
   String packet = "";
-  String gasData = "";
+  String flameData = "";
 
-  int gasVal = digitalRead(PIN_MQ6_GAS_SENSOR);
+  int flameVal = digitalRead(PIN_FLAME_SENSOR);
 
-  Serial.print("Gas : ");
-  Serial.println(gasVal);
+  Serial.print("flame : ");
+  Serial.println(flameVal);
 
-  if (isnan(gasVal)) {
-    Serial.println("Failed to read from MQ6 Gas sensor!");
+
+  if(flameVal==0){
+    Serial.println("***Flame detected!!!");
+  }else{
+    Serial.println("No Flame.");
+  }
+
+
+  if (isnan(flameVal)) {
+    Serial.println("Failed to read from Flame sensor!");
     return;
   }
 
-  gasData = String(gasVal);
+  flameData = String(flameVal);
 
   StaticJsonBuffer<100> jsonBuffer;
   JsonObject &root = jsonBuffer.createObject();
   JsonArray &data = root.createNestedArray("data");
 
   root["messageType"] = DATA_RESPONSE;
-  root["thingId"] = SENSOR_MQ6_GAS;
-  data.add(gasData);
+  root["thingId"] = SENSOR_FLAME;
+  data.add(flameData);
 
   root.printTo(packet);
-  Serial.println("Gas :");
+  Serial.println("flame :");
   Serial.println(packet);
   packet += "\n";
   sendMessage(packet);
@@ -265,9 +273,9 @@ void IgniteEsp8266ThingHandler::initBlueLED() {
   digitalWrite(PIN_BLUE_LED, LOW);
 }
 
-void IgniteEsp8266ThingHandler::initMq6Gas() {
-  Serial.println("----- ----- ----- initMq6Gas ----- ----- -----");
-  pinMode(PIN_MQ6_GAS_SENSOR, INPUT);
+void IgniteEsp8266ThingHandler::initFlame() {
+  Serial.println("----- ----- ----- initFlame ----- ----- -----");
+  pinMode(PIN_FLAME_SENSOR, INPUT);
 }
 
 void IgniteEsp8266ThingHandler::initResetButton() {
