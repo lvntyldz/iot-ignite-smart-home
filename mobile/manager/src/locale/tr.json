@@ -159,7 +159,7 @@
       "create": "Node/Sensor Ayarı Oluşturma"
     },
     "rule": {
-      "create": "Kural Oluşturma"
+      "create": "Kurallar"
     },
     "reports": {
       "yearly": "Yıllık Veriler",

@@ -159,7 +159,7 @@
       "create": "Create Node/Sensor Conf"
     },
     "rule": {
-      "create": "Create Rule"
+      "create": "Rules"
     },
     "reports": {
       "yearly": "Yearly Data",
