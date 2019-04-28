@@ -18,6 +18,17 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "http://repo.maven.apache.org/maven2"
+    }
+    maven {
+        url "https://repo.iot-ignite.com/content/repositories/releases"
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -25,4 +36,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.ardic.android:IoTIgnite:0.8.2'
+    implementation 'com.google.code.gson:gson:2.6.2'
 }
