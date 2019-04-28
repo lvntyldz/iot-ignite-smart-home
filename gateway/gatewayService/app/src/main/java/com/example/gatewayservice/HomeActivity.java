@@ -18,42 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeDevice;
-import com.ardic.android.iot.hwnodeapptemplate.listener.CompatibilityListener;
-import com.ardic.android.iot.hwnodeapptemplate.listener.ThingEventListener;
-import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeManagerListener;
-import com.ardic.android.iot.hwnodeapptemplate.manager.GenericWifiNodeManager;
-import com.ardic.android.iot.hwnodeapptemplate.node.GenericWifiNodeDevice;
-import com.ardic.android.iot.hwnodeapptemplate.service.WifiNodeService;
-import com.ardic.android.iotignite.exceptions.UnsupportedVersionExceptionType;
-import com.example.constants.DynamicNodeConstants;
-import com.example.gatewayservice.R;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeDevice;
@@ -64,6 +28,7 @@ import com.ardic.android.iot.hwnodeapptemplate.manager.GenericWifiNodeManager;
 import com.ardic.android.iot.hwnodeapptemplate.node.GenericWifiNodeDevice;
 import com.ardic.android.iot.hwnodeapptemplate.service.WifiNodeService;
 import com.ardic.android.iotignite.exceptions.UnsupportedVersionExceptionType;
+import com.example.constants.DynamicNodeConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;

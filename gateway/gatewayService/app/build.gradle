@@ -42,9 +42,9 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:0.9.1.0'
     implementation project(':nodeTemplate')
     implementation 'com.ardic.android:utilitylib:0.1'
-    implementation 'com.ardic.android:connectivitylib:0.2'
-    implementation 'org.apache.commons:commons-lang3:3.4'
-    implementation 'org.jmdns:jmdns:3.5.1'
+    //implementation 'com.ardic.android:connectivitylib:0.2'
+    //implementation 'org.apache.commons:commons-lang3:3.4'
+    //implementation 'org.jmdns:jmdns:3.5.1'
 
 
     configurations {
