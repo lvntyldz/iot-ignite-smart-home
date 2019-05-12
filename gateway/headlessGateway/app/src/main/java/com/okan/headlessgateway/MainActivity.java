@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements FromView {
 
     private ListView espListView = null;
@@ -57,6 +60,19 @@ public class MainActivity extends AppCompatActivity implements FromView {
         espListView = findViewById(R.id.espList);
         startNDSBtnView = findViewById(R.id.startNDSBtn);
         hideActivtyBtnView = findViewById(R.id.hideActivtyBtn);
+    }
+
+    @Override
+    public List<Object> getEspList() {
+
+        List<Object> objectList = new ArrayList<>();
+
+        for (int i = 0; i < espListView.getAdapter().getCount(); i++) {
+            Object item = espListView.getAdapter().getItem(i);
+            objectList.add(item);
+        }
+
+        return objectList;
     }
 
     @Override

@@ -14,5 +14,7 @@ class DiscoveryService {
 
     public void onStartNDSBtnClick() {
         view.showMessage(R.string.nds_started);
+
+        view.getEspList();
     }
 }
