@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">headlessGateway</string>
+    <string name="app_name"> Headless Gateway Service </string>
+    <string name="nds_started"> Ağ Tarama Servisi Başladı. </string>
+    <string name="activity_hide_msg"> Uygulama Servis Olarak Devam Edecek </string>
 </resources>
