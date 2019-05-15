@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements FromView, View.On
     }
 
     private void initComponents() {
-        espListView = findViewById(R.id.espList);
-        startNDSBtnView = findViewById(R.id.startNDSBtn);
-        hideActivtyBtnView = findViewById(R.id.hideActivtyBtn);
+        espListView = (ListView) findViewById(R.id.espList);
+        startNDSBtnView = (Button) findViewById(R.id.startNDSBtn);
+        hideActivtyBtnView = (Button) findViewById(R.id.hideActivtyBtn);
     }
 
     @Override
