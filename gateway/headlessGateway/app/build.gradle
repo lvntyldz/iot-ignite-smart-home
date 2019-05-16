@@ -29,8 +29,8 @@ android {
     } else {
         throw new GradleException("Could not read version.properties!")
     }
-    signingConfigs {
 
+    signingConfigs {
         //APK sign parameters
         release {
             storeFile file(RELEASE_STORE_FILE)
@@ -75,7 +75,6 @@ dependencies {
     implementation 'com.ardic.android:IoTIgnite:0.8.2'
     implementation 'com.ardic.android:utilitylib:0.1'
     implementation 'com.ardic.android:connectivitylib:0.2'
-    testImplementation 'junit:junit:4.12'
     implementation 'org.apache.commons:commons-lang3:3.4'
     implementation 'org.jmdns:jmdns:3.5.1'
 
@@ -86,10 +85,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.afollestad.material-dialogs:core:0.9.1.0'
-    implementation 'com.ardic.android:utilitylib:0.1'
-    implementation 'com.ardic.android:connectivitylib:0.2'
-    implementation 'org.apache.commons:commons-lang3:3.4'
-    implementation 'org.jmdns:jmdns:3.5.1'
     implementation 'com.ardic.android.iot:HwNodeAppTemplates:1.0'
 
     configurations {
