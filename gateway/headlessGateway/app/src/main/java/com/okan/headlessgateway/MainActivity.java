@@ -11,17 +11,20 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeDevice;
 import com.okan.headlessgateway.service.DiscoveryService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MainActivity extends Activity implements FromView, View.OnClickListener {
 
     private static final String TAG = "HG-MainActivity-";
     private ListView espListView = null;
+    private List<BaseWifiNodeDevice> nodeList = new CopyOnWriteArrayList<>();
     private DiscoveryService service;
-    private Button startNDSBtnView, hideActivtyBtnView;
+    private Button startNDSBtnView, hideActivtyBtnView, ledOnBtnView, ledOffBtnVew;
     private String[] values;
 
     @Override
@@ -41,6 +44,8 @@ public class MainActivity extends Activity implements FromView, View.OnClickList
         //click listener
         startNDSBtnView.setOnClickListener(this);
         hideActivtyBtnView.setOnClickListener(this);
+        ledOffBtnVew.setOnClickListener(this);
+        ledOnBtnView.setOnClickListener(this);
 
         //Discovery Service
         service = new DiscoveryService(this);
@@ -50,19 +55,8 @@ public class MainActivity extends Activity implements FromView, View.OnClickList
         espListView = (ListView) findViewById(R.id.espList);
         startNDSBtnView = (Button) findViewById(R.id.startNDSBtn);
         hideActivtyBtnView = (Button) findViewById(R.id.hideActivtyBtn);
-    }
-
-    @Override
-    public List<Object> getEspList() {
-
-        List<Object> objectList = new ArrayList<>();
-
-        for (int i = 0; i < espListView.getAdapter().getCount(); i++) {
-            Object item = espListView.getAdapter().getItem(i);
-            objectList.add(item);
-        }
-
-        return objectList;
+        ledOffBtnVew = (Button) findViewById(R.id.ledOffBtn);
+        ledOnBtnView = (Button) findViewById(R.id.ledOnBtn);
     }
 
     @Override
@@ -100,6 +94,18 @@ public class MainActivity extends Activity implements FromView, View.OnClickList
         if (view.equals(startNDSBtnView)) {
             Log.i(TAG, "startNDSBtnView Clicked");
             service.onStartNDSBtnClick();
+            return;
+        }
+
+        if (view.equals(ledOnBtnView)) {
+            Log.i(TAG, "ledOnBtnView Clicked");
+            service.ledOnBtnClick();
+            return;
+        }
+
+        if (view.equals(ledOffBtnVew)) {
+            Log.i(TAG, "ledOffBtnVew Clicked");
+            service.ledOffBtnClick();
             return;
         }
 

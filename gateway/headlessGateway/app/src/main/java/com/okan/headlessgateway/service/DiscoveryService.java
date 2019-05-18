@@ -27,7 +27,14 @@ public class DiscoveryService implements WifiNodeManagerListener, CompatibilityL
         view.startServiceFromActivity(new Intent(view.getMainContext(), WifiNodeService.class));
         WifiNodeService.setCompatibilityListener(this);
         view.showMessage(R.string.nds_started);
-        view.getEspList();
+    }
+
+    public void ledOnBtnClick() {
+        view.showMessage(R.string.led_started);
+    }
+
+    public void ledOffBtnClick() {
+        view.showMessage(R.string.led_sopped);
     }
 
     @Override

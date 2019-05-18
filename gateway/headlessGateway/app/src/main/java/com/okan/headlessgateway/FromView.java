@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface FromView {
 
-    List<Object> getEspList();
-
     Context getMainContext();
 
     void setEspListView(String[] espList);

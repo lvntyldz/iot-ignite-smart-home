@@ -35,8 +35,6 @@ public class DiscoveryServiceTest {
     @Before
     public void setUp() throws Exception {
         esps = new ArrayList<>();
-        when(view.getEspList()).thenReturn(esps);
-
     }
 
     @Test
