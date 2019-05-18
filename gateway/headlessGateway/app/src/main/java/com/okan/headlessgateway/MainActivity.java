@@ -16,13 +16,12 @@ import com.okan.headlessgateway.service.DiscoveryService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MainActivity extends Activity implements FromView, View.OnClickListener {
 
     private static final String TAG = "HG-MainActivity-";
     private ListView espListView = null;
-    private List<BaseWifiNodeDevice> nodeList = new CopyOnWriteArrayList<>();
+    private List<BaseWifiNodeDevice> nodeList = new ArrayList<>();
     private DiscoveryService service;
     private Button startNDSBtnView, hideActivtyBtnView, ledOnBtnView, ledOffBtnVew;
     private String[] values;
@@ -80,6 +79,19 @@ public class MainActivity extends Activity implements FromView, View.OnClickList
     @Override
     public void startServiceFromActivity(Intent intent) {
         startService(intent);
+    }
+
+    @Override
+    public void addNodeToList(BaseWifiNodeDevice baseWifiNodeDevice) {
+
+        if (!nodeList.contains(baseWifiNodeDevice)) {
+            nodeList.add(baseWifiNodeDevice);
+        }
+    }
+
+    @Override
+    public List<BaseWifiNodeDevice> getNodeList() {
+        return nodeList;
     }
 
     @Override

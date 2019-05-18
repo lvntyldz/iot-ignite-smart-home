@@ -8,7 +8,10 @@ import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeManagerListener;
 import com.ardic.android.iotignite.exceptions.UnsupportedVersionException;
 import com.okan.headlessgateway.FromView;
 import com.okan.headlessgateway.R;
+import com.okan.headlessgateway.constants.IgniteNodeMCUConstants;
 import com.okan.headlessgateway.listener.CompatibilityListener;
+
+import java.util.List;
 
 public class DiscoveryService implements WifiNodeManagerListener, CompatibilityListener {
 
@@ -30,10 +33,41 @@ public class DiscoveryService implements WifiNodeManagerListener, CompatibilityL
     }
 
     public void ledOnBtnClick() {
-        view.showMessage(R.string.led_started);
+
+        List<BaseWifiNodeDevice> nodeList = view.getNodeList();
+
+        BaseWifiNodeDevice node = null;
+        if (nodeList == null || nodeList.isEmpty()) {
+            Log.i(TAG, "There is No Node!");
+            view.showMessage(R.string.no_active_node);
+            return;
+        }
+
+        node = nodeList.get(0);
+
+        if (node.sendActionMessage(IgniteNodeMCUConstants.ACTUATOR_BLUE_LED, IgniteNodeMCUConstants.LED_ON_ACTION)) {
+            view.showMessage(R.string.led_started);
+        }
+
     }
 
     public void ledOffBtnClick() {
+
+        List<BaseWifiNodeDevice> nodeList = view.getNodeList();
+
+        BaseWifiNodeDevice node = null;
+        if (nodeList == null || nodeList.isEmpty()) {
+            Log.i(TAG, "There is No Node!");
+            view.showMessage(R.string.no_active_node);
+            return;
+        }
+
+        node = nodeList.get(0);
+
+        if (node.sendActionMessage(IgniteNodeMCUConstants.ACTUATOR_BLUE_LED, IgniteNodeMCUConstants.LED_OFF_ACTION)) {
+            view.showMessage(R.string.led_started);
+        }
+
         view.showMessage(R.string.led_sopped);
     }
 
@@ -46,6 +80,7 @@ public class DiscoveryService implements WifiNodeManagerListener, CompatibilityL
     @Override
     public void onWifiNodeDeviceAdded(BaseWifiNodeDevice baseWifiNodeDevice) {
         Log.i(TAG, "Node Device Added On WiFi... nodeDevice : " + baseWifiNodeDevice);
+        view.addNodeToList(baseWifiNodeDevice);
         view.showMessage(R.string.onWifiNodeDeviceAdded_msg);
     }
 
