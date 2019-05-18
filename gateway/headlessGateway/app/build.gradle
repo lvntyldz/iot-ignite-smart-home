@@ -80,6 +80,11 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.7.22'
+    testImplementation group: 'org.powermock', name: 'powermock-mockito-release-full', version: '1.6.1', ext: 'pom'
+    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '1.6.1'
+    testImplementation group: 'org.powermock', name: 'powermock-api-mockito', version: '1.6.1'
+    testImplementation group: 'org.powermock', name: 'powermock-core', version: '1.6.1'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'org.mockito:mockito-android:2.7.22'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

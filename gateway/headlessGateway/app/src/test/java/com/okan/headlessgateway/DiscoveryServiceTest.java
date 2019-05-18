@@ -1,11 +1,15 @@
 package com.okan.headlessgateway;
 
+import android.util.Log;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +18,8 @@ import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({Log.class})
 public class DiscoveryServiceTest {
 
     @InjectMocks
@@ -27,7 +32,6 @@ public class DiscoveryServiceTest {
 
     @Before
     public void setUp() throws Exception {
-
         esps = new ArrayList<>();
         when(view.getEspList()).thenReturn(esps);
 
@@ -35,6 +39,8 @@ public class DiscoveryServiceTest {
 
     @Test
     public void should() {
+
+        PowerMockito.mockStatic(Log.class);
 
         service.onStartNDSBtnClick();
         verify(view).showMessage(anyInt());
