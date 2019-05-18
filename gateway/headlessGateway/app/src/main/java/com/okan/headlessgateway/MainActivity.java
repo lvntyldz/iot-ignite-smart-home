@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.okan.headlessgateway.service.DiscoveryService;
+
 import java.util.ArrayList;
 import java.util.List;
 

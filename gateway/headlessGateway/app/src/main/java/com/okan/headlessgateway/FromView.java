@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import java.util.List;
 
-interface FromView {
+public interface FromView {
 
     List<Object> getEspList();
 

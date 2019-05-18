@@ -2,6 +2,8 @@ package com.okan.headlessgateway;
 
 import android.util.Log;
 
+import com.okan.headlessgateway.service.DiscoveryService;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
