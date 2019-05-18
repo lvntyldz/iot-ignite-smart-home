@@ -2,4 +2,7 @@
     <string name="app_name"> Headless Gateway Service </string>
     <string name="nds_started"> Ağ Tarama Servisi Başladı. </string>
     <string name="activity_hide_msg"> Uygulama Servis Olarak Devam Edecek </string>
+    <string name="onUnsupportedVersionExceptionReceived_msg"> Desteklenmeyen Versiyon Hatası Oluştu </string>
+    <string name="onIgniteConnectionChanged_msg"> Ignite Bağlantı Değişikliği! </string>
+    <string name="onWifiNodeDeviceAdded_msg">WiFi Üzerinden Cihaz Eklendi</string>
 </resources>

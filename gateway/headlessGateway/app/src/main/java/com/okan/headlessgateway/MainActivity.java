@@ -16,12 +16,11 @@ import java.util.List;
 
 public class MainActivity extends Activity implements FromView, View.OnClickListener {
 
+    private static final String TAG = "HG-MainActivity-";
     private ListView espListView = null;
     private DiscoveryService service;
     private Button startNDSBtnView, hideActivtyBtnView;
     private String[] values;
-
-    private static final String TAG = "HG-MainActivity-";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
