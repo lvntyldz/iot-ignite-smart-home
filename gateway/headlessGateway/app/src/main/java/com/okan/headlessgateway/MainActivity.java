@@ -1,5 +1,6 @@
 package com.okan.headlessgateway;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeDevice;
 import com.ardic.android.iot.hwnodeapptemplate.listener.CompatibilityListener;
 import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeManagerListener;
+import com.ardic.android.iot.hwnodeapptemplate.service.WifiNodeService;
 import com.ardic.android.iotignite.exceptions.UnsupportedVersionException;
 
 import java.util.ArrayList;
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements FromView, View.On
                 "Windows", "Ubuntu", "Android", "iPhone", "Windows"};
 
         setEspListView(values);
+
+        startService(new Intent(this, WifiNodeService.class));
+        WifiNodeService.setCompatibilityListener(this);
+        Log.i(TAG, "Dynamic Node Application started...");
+
 
         startNDSBtnView.setOnClickListener(onStartNDSBtnClickListener());
         hideActivtyBtnView.setOnClickListener(onHideActivityBtnClickListener());
