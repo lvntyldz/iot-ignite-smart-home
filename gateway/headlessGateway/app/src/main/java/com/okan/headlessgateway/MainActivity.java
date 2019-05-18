@@ -1,9 +1,9 @@
 package com.okan.headlessgateway;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FromView, View.OnClickListener {
+public class MainActivity extends Activity implements FromView, View.OnClickListener {
 
     private ListView espListView = null;
     private DiscoveryService service;
@@ -37,28 +37,12 @@ public class MainActivity extends AppCompatActivity implements FromView, View.On
 
         setEspListView(values);
 
-        startNDSBtnView.setOnClickListener(onStartNDSBtnClickListener());
-        hideActivtyBtnView.setOnClickListener(onHideActivityBtnClickListener());
+        //click listener
+        startNDSBtnView.setOnClickListener(this);
+        hideActivtyBtnView.setOnClickListener(this);
 
+        //Discovery Service
         service = new DiscoveryService(this);
-    }
-
-    private View.OnClickListener onHideActivityBtnClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                service.onHideActivityBtnClick();
-            }
-        };
-    }
-
-    private View.OnClickListener onStartNDSBtnClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                service.onStartNDSBtnClick();
-            }
-        };
     }
 
     private void initComponents() {
@@ -105,6 +89,18 @@ public class MainActivity extends AppCompatActivity implements FromView, View.On
 
     @Override
     public void onClick(View view) {
-        Log.i(TAG, "onClick");
+
+        if (view.equals(hideActivtyBtnView)) {
+            Log.i(TAG, "hideActivtyBtnView Clicked");
+            service.onHideActivityBtnClick();
+            return;
+        }
+
+        if (view.equals(startNDSBtnView)) {
+            Log.i(TAG, "startNDSBtnView Clicked");
+            service.onStartNDSBtnClick();
+            return;
+        }
+
     }
 }
