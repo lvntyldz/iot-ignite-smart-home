@@ -1,5 +1,6 @@
 package com.okan.headlessgateway;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,23 +11,17 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeDevice;
-import com.ardic.android.iot.hwnodeapptemplate.listener.CompatibilityListener;
-import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeManagerListener;
-import com.ardic.android.iot.hwnodeapptemplate.service.WifiNodeService;
-import com.ardic.android.iotignite.exceptions.UnsupportedVersionException;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FromView, View.OnClickListener, WifiNodeManagerListener, CompatibilityListener {
+public class MainActivity extends AppCompatActivity implements FromView, View.OnClickListener {
 
     private ListView espListView = null;
     private DiscoveryService service;
     private Button startNDSBtnView, hideActivtyBtnView;
-    String[] values;
+    private String[] values;
 
-    private static final String TAG = "Headless GateWay - ";
+    private static final String TAG = "HG-MainActivity-";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +36,6 @@ public class MainActivity extends AppCompatActivity implements FromView, View.On
                 "Windows", "Ubuntu", "Android", "iPhone", "Windows"};
 
         setEspListView(values);
-
-        startService(new Intent(this, WifiNodeService.class));
-        WifiNodeService.setCompatibilityListener(this);
-        Log.i(TAG, "Dynamic Node Application started...");
-
 
         startNDSBtnView.setOnClickListener(onStartNDSBtnClickListener());
         hideActivtyBtnView.setOnClickListener(onHideActivityBtnClickListener());
@@ -91,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements FromView, View.On
     }
 
     @Override
+    public Context getMainContext() {
+        return MainActivity.this;
+    }
+
+    @Override
     public void setEspListView(String[] data) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, data);
@@ -104,22 +99,12 @@ public class MainActivity extends AppCompatActivity implements FromView, View.On
     }
 
     @Override
+    public void startServiceFromActivity(Intent intent) {
+        startService(intent);
+    }
+
+    @Override
     public void onClick(View view) {
         Log.i(TAG, "onClick");
-    }
-
-    @Override
-    public void onUnsupportedVersionExceptionReceived(UnsupportedVersionException e) {
-        Log.i(TAG, "onUnsupportedVersionExceptionReceived");
-    }
-
-    @Override
-    public void onWifiNodeDeviceAdded(BaseWifiNodeDevice baseWifiNodeDevice) {
-        Log.i(TAG, "onWifiNodeDeviceAdded");
-    }
-
-    @Override
-    public void onIgniteConnectionChanged(boolean b) {
-        Log.i(TAG, "onIgniteConnectionChanged");
     }
 }

@@ -1,11 +1,24 @@
 package com.okan.headlessgateway;
 
-class DiscoveryService {
+import android.content.Intent;
+import android.util.Log;
 
-    FromView view;
+import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeDevice;
+import com.ardic.android.iot.hwnodeapptemplate.listener.CompatibilityListener;
+import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeManagerListener;
+import com.ardic.android.iot.hwnodeapptemplate.service.WifiNodeService;
+import com.ardic.android.iotignite.exceptions.UnsupportedVersionException;
+
+class DiscoveryService implements WifiNodeManagerListener, CompatibilityListener {
+
+    private FromView view;
+    private static final String TAG = "HG-DiscoveryService-";
 
     public DiscoveryService(FromView view) {
         this.view = view;
+        view.startServiceFromActivity(new Intent(view.getMainContext(), WifiNodeService.class));
+        WifiNodeService.setCompatibilityListener(this);
+        Log.i(TAG, "WifiNodeService Started...");
     }
 
     public void onHideActivityBtnClick() {
@@ -16,5 +29,20 @@ class DiscoveryService {
         view.showMessage(R.string.nds_started);
 
         view.getEspList();
+    }
+
+    @Override
+    public void onUnsupportedVersionExceptionReceived(UnsupportedVersionException e) {
+        Log.i(TAG, "onUnsupportedVersionExceptionReceived");
+    }
+
+    @Override
+    public void onWifiNodeDeviceAdded(BaseWifiNodeDevice baseWifiNodeDevice) {
+        Log.i(TAG, "onWifiNodeDeviceAdded");
+    }
+
+    @Override
+    public void onIgniteConnectionChanged(boolean b) {
+        Log.i(TAG, "onIgniteConnectionChanged");
     }
 }
