@@ -1,15 +1,13 @@
 package com.okan.headlessgateway.service;
 
-
 import android.util.Log;
 
 import com.ardic.android.connectivitylib.listener.NsdServiceListener;
-import com.okan.headlessgateway.network.NodeNsdServer;
+import com.okan.headlessgateway.nsdserver.NodeNsdServer;
 
 public class NSDHelperService {
 
     public static final String TAG = NSDHelperService.class.getSimpleName();
-
     // NSD Variables
     private NodeNsdServer mJmDnsServer;
 

@@ -1,19 +1,17 @@
-package com.okan.headlessgateway.network;
-
+package com.okan.headlessgateway.manager;
 
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.ardic.android.connectivitylib.listener.NsdServiceListener;
-import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeManager;
-import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeListener;
-import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeManagerListener;
-import com.ardic.android.iot.hwnodeapptemplate.manager.GenericWifiNodeManager;
-import com.ardic.android.iot.hwnodeapptemplate.object.WifiNode;
+import com.okan.headlessgateway.base.BaseWifiNodeManager;
+import com.okan.headlessgateway.listener.WifiNodeListener;
+import com.okan.headlessgateway.listener.WifiNodeManagerListener;
+import com.okan.headlessgateway.object.WifiNode;
+import com.okan.headlessgateway.service.NSDHelperService;
 import com.ardic.android.iotignite.exceptions.AuthenticationException;
 import com.ardic.android.iotignite.nodes.IotIgniteManager;
-import com.okan.headlessgateway.service.NSDHelperService;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -28,7 +26,7 @@ public class WifiNodeManager implements NsdServiceListener {
     private static String deviceID;
     private TcpServerManager tcpServerManager = new TcpServerManager();
     private List<BaseWifiNodeManager> managers = new CopyOnWriteArrayList<>();
-    private WifiNodeManager.IpHostListenerClass deviceListener = new WifiNodeManager.IpHostListenerClass();
+    private IpHostListenerClass deviceListener = new IpHostListenerClass();
 
     private WifiNodeManager(Context context, IotIgniteManager igniteContext) {
         mContext = context;

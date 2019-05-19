@@ -1,14 +1,12 @@
-package com.okan.headlessgateway.network;
-
+package com.okan.headlessgateway.manager;
 
 import android.util.Log;
 
-import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeListener;
-import com.ardic.android.iot.hwnodeapptemplate.manager.TcpServerSocket;
-import com.ardic.android.iot.hwnodeapptemplate.object.InventoryHolder;
-import com.ardic.android.iot.hwnodeapptemplate.object.WifiNode;
-import com.ardic.android.iot.hwnodeapptemplate.utils.CommunicationUtils;
-import com.okan.headlessgateway.constants.IgniteNodeMCUConstants;
+import com.okan.headlessgateway.constant.IgniteNodeMCUConstants;
+import com.okan.headlessgateway.listener.WifiNodeListener;
+import com.okan.headlessgateway.object.InventoryHolder;
+import com.okan.headlessgateway.object.WifiNode;
+import com.okan.headlessgateway.utils.CommunicationUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

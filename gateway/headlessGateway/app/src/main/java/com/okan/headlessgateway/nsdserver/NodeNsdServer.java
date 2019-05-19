@@ -1,8 +1,8 @@
-package com.okan.headlessgateway.network;
+package com.okan.headlessgateway.nsdserver;
 
 import com.ardic.android.connectivitylib.listener.NsdServiceListener;
 import com.ardic.android.connectivitylib.network.NSDServer;
-import com.okan.headlessgateway.constants.IgniteNodeMCUConstants;
+import com.okan.headlessgateway.constant.IgniteNodeMCUConstants;
 
 import java.util.HashMap;
 
