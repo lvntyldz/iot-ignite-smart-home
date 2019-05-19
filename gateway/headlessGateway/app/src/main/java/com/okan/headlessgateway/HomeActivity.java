@@ -2,12 +2,10 @@ package com.okan.headlessgateway;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -45,6 +43,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private TextView nodeIDTextLvt;
     private Button ledOnBtnViewLvt;
     private Button ledOffBtnViewLvt;
+    private Button removeActiveNodeViewLvt;
 
 
     private static final String TAG = "Dynamic Node App";
@@ -197,6 +196,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         //buttons
         ledOnBtnViewLvt = findViewById(R.id.ledOnBtn);
         ledOffBtnViewLvt = findViewById(R.id.ledOffBtn);
+        removeActiveNodeViewLvt = findViewById(R.id.removeActiveNode);
 
 
         // textviews
@@ -216,6 +216,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         //listenter
         ledOnBtnViewLvt.setOnClickListener(this);
         ledOffBtnViewLvt.setOnClickListener(this);
+        removeActiveNodeViewLvt.setOnClickListener(this);
     }
 
     @Override
@@ -231,69 +232,21 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
             return;
         }
 
-
-        if (v.equals(ledImageView)) {
-            //final Esp esp = getActiveEsp();
-
-            if (activeEsp != null && isActiveEspConnected) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        // change the background
-                        if (LED_TEXT_ON.equals(ledText.getText().toString())) {
-                            // send led_off message here.
-                            Log.i(TAG, "Sending LED_OFF message..");
-
-                            if (activeEsp.sendActionMessage(DynamicNodeConstants.ACTUATOR_BLUE_LED, DynamicNodeConstants.LED_OFF_ACTION)) {
-                                setLedUI(false);
-                            }
-                        } else if (LED_TEXT_OFF.equals(ledText.getText().toString())) {
-                            // send led_on message here.
-                            Log.i(TAG, "Sending LED_ON message..");
-                            if (activeEsp.sendActionMessage(DynamicNodeConstants.ACTUATOR_BLUE_LED, DynamicNodeConstants.LED_ON_ACTION)) {
-                                setLedUI(true);
-                            }
-                        }
-                    }
-
-
-                }).start();
-            } else {
-                if (activeEsp == null) {
-                    Log.i(TAG, "Active Esp is NULL ");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Esp -> [" + activeEsp.getWifiNodeDevice().getHolder().getNodeId() + "] <- is disconnected!", Toast.LENGTH_LONG).show();
-                }
-            }
-
-        } else if (v.equals(deleteNodeImageView)) {
-            //delete active node here.
-            new AlertDialog.Builder(HomeActivity.this)
-                    .setTitle("Delete Node")
-                    .setMessage("Are you sure you want to delete this node?")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            if (activeEsp != null && activeEsp.getNode() != null) {
-                                sendResetMessage();
-                            } else {
-                                Log.i(TAG, "There is no active esp!!! ");
-                                showDeleteNodeErrorToast();
-                            }
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // do nothing
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-
+        if (v.equals(removeActiveNodeViewLvt)) {
+            removeActiveNode();
+            showMessage(R.string.active_node_deleted);
+            return;
         }
+    }
 
-
+    private void removeActiveNode() {
+        if (espNodeListLvt.size() < 1) {
+            showMessage(R.string.no_active_node);
+            return;
+        }
+        espNodeListLvt.remove(0);
+        activeEspLvt = null;
+        updateSelectedNode();
     }
 
     public void setLedUI(final boolean state) {

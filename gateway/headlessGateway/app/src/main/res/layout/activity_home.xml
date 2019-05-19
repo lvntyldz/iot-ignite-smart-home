@@ -177,11 +177,18 @@
                     android:layout_marginTop="165dp"
                     android:text="Işığı Kapat" />
 
+                <Button
+                    android:id="@+id/removeActiveNode"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="215dp"
+                    android:text="Aktif Düğümü Sil" />
+
                 <ListView
                     android:id="@+id/espList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="215dp"></ListView>
+                    android:layout_marginTop="265dp"></ListView>
             </RelativeLayout>
 
         </FrameLayout>
