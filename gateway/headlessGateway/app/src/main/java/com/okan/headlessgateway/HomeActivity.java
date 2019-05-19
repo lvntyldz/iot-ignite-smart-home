@@ -225,7 +225,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private void updateSelectedNode() {
 
         if (espNodeListLvt.size() > 0) {
-            updateTextViewWithUIThread(nodeIDTextLvt, espNodeListLvt.get(0).getNode().getNodeID());
+            updateTextViewWithUIThread(nodeIDTextLvt, R.string.active_node_label + espNodeListLvt.get(0).getNode().getNodeID());
             activeEspLvt = espNodeListLvt.get(0);
             return;
         }

@@ -11,4 +11,5 @@
     <string name="no_available_node">Düğüm Erişilebilir Değil</string>
     <string name="active_node_deleted">Aktif Düğüm Silindi</string>
     <string name="wifi_discovery_started">WiFi Tarama başladı.</string>
+    <string name="active_node_label">Aktif Node :</string>
 </resources>
