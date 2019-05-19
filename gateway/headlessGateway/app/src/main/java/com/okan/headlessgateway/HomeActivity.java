@@ -36,10 +36,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private Button ledOffBtnViewLvt;
     private Button removeActiveNodeViewLvt;
 
-
-    private static final String DEGREE = "\u00b0" + "C";
-    private TextView tempText, humText;
-
     private GenericWifiNodeManager espManager;
     private List<BaseWifiNodeDevice> espNodeList = new CopyOnWriteArrayList<>();
     private BaseWifiNodeDevice activeEsp;
@@ -49,27 +45,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         public void onDataReceived(final String s, final String s1, final com.ardic.android.iotignite.things.ThingData thingData) {
 
             Log.i(TAG, "onDataReceived [" + s + "][" + s1 + "][" + thingData.getDataList() + "]");
-
-            if (activeEsp != null) {
-                Log.i(TAG, " Socket : " + activeEsp.getWifiNodeDevice().getNodeSocket());
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //setUINodeId(activeEsp.getWifiNodeDevice().getHolder().getNodeId());
-                        float data = Float.valueOf(thingData.getDataList().get(0));
-                        int data_int = (int) data;
-                        if (DynamicNodeConstants.TEMPERATURE_SENSOR.equals(s1)) {
-                            tempText.setText(data_int + DEGREE);
-
-                        } else if (DynamicNodeConstants.HUMIDITY_SENSOR.equals(s1)) {
-                            humText.setText(data_int + "%");
-                        }
-
-                    }
-
-                });
-            }
 
         }
 
@@ -158,9 +133,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         //texts
         nodeIDTextLvt = (TextView) findViewById(R.id.nodeIDTextView);
 
-        tempText = (TextView) findViewById(R.id.temperatureTextView);
-        humText = (TextView) findViewById(R.id.humidityTextView);
-
         //listenter
         ledOnBtnViewLvt.setOnClickListener(this);
         ledOffBtnViewLvt.setOnClickListener(this);
@@ -247,8 +219,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tempText.setText(DEGREE);
-                humText.setText("%");
                 nodeIDTextLvt.setText(R.string.no_available_node);
             }
         });
