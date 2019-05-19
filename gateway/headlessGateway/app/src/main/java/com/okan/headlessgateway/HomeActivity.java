@@ -32,7 +32,10 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private Button ledOnBtnViewLvt;
     private Button ledOffBtnViewLvt;
     private Button removeActiveNodeViewLvt;
+    private Button startNDSBtnView;
+    private Button hideActivtyBtnView;
     private ListView espListView = null;
+
 
     private GenericWifiNodeManager espManager;
 
@@ -40,11 +43,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        startService(new Intent(this, WifiNodeService.class));
-        WifiNodeService.setCompatibilityListener(this);
-        Log.i(TAG, "WifiNodeService started...");
-        showMessage(R.string.wifi_discovery_started);
 
         initUIComponents();
         initSensorDatas();
@@ -57,27 +55,17 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         super.onDestroy();
     }
 
-    private void initUIComponents() {
-
-        //lists
-        espListView = (ListView) findViewById(R.id.espList);
-
-        //buttons
-        ledOnBtnViewLvt = findViewById(R.id.ledOnBtn);
-        ledOffBtnViewLvt = findViewById(R.id.ledOffBtn);
-        removeActiveNodeViewLvt = findViewById(R.id.removeActiveNode);
-
-        //texts
-        nodeIDTextLvt = (TextView) findViewById(R.id.nodeIDTextView);
-
-        //listenter
-        ledOnBtnViewLvt.setOnClickListener(this);
-        ledOffBtnViewLvt.setOnClickListener(this);
-        removeActiveNodeViewLvt.setOnClickListener(this);
-    }
-
     @Override
     public void onClick(View v) {
+
+        if (v.equals(startNDSBtnView)) {
+            startApplicationAsService();
+            return;
+        }
+
+        if (v.equals(hideActivtyBtnView)) {
+            return;
+        }
 
         if (v.equals(ledOnBtnViewLvt)) {
             doLedOnAction();
@@ -94,6 +82,45 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
             showMessage(R.string.active_node_deleted);
             return;
         }
+    }
+
+    @Override
+    public void onWifiNodeDeviceAdded(BaseWifiNodeDevice baseWifiNodeDevice) {
+        Log.i(TAG, ">>>>>>>>>> DEVICE ADDED <<<<<<<<<<");
+        checkAndUpdateDeviceList(baseWifiNodeDevice);
+    }
+
+    @Override
+    public void onUnsupportedVersionExceptionReceived(com.ardic.android.iotignite.exceptions.UnsupportedVersionException e) {
+        Log.i(TAG, "Ignite onUnsupportedVersionExceptionReceived :  " + e);
+    }
+
+    @Override
+    public void onIgniteConnectionChanged(boolean b) {
+        Log.i(TAG, "Ignite Connection State Changed To -> " + b);
+    }
+
+    private void initUIComponents() {
+
+        //lists
+        espListView = (ListView) findViewById(R.id.espList);
+
+        //buttons
+        ledOnBtnViewLvt = findViewById(R.id.ledOnBtn);
+        ledOffBtnViewLvt = findViewById(R.id.ledOffBtn);
+        removeActiveNodeViewLvt = findViewById(R.id.removeActiveNode);
+        startNDSBtnView = findViewById(R.id.startNDSBtn);
+        hideActivtyBtnView = findViewById(R.id.hideActivtyBtn);
+
+        //texts
+        nodeIDTextLvt = (TextView) findViewById(R.id.nodeIDTextView);
+
+        //listenter
+        ledOnBtnViewLvt.setOnClickListener(this);
+        ledOffBtnViewLvt.setOnClickListener(this);
+        removeActiveNodeViewLvt.setOnClickListener(this);
+        startNDSBtnView.setOnClickListener(this);
+        hideActivtyBtnView.setOnClickListener(this);
     }
 
     private void removeActiveNode() {
@@ -115,23 +142,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
             }
         });
     }
-
-    @Override
-    public void onWifiNodeDeviceAdded(BaseWifiNodeDevice baseWifiNodeDevice) {
-        Log.i(TAG, ">>>>>>>>>> DEVICE ADDED <<<<<<<<<<");
-        checkAndUpdateDeviceList(baseWifiNodeDevice);
-    }
-
-    @Override
-    public void onUnsupportedVersionExceptionReceived(com.ardic.android.iotignite.exceptions.UnsupportedVersionException e) {
-        Log.i(TAG, "Ignite onUnsupportedVersionExceptionReceived :  " + e);
-    }
-
-    @Override
-    public void onIgniteConnectionChanged(boolean b) {
-        Log.i(TAG, "Ignite Connection State Changed To -> " + b);
-    }
-
 
     private void initEspDeviceAndNodeManager() {
         espManager = GenericWifiNodeManager.getInstance(getApplicationContext());
@@ -233,4 +243,12 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
             }
         });
     }
+
+    private void startApplicationAsService() {
+        startService(new Intent(this, WifiNodeService.class));
+        WifiNodeService.setCompatibilityListener(this);
+        Log.i(TAG, "WifiNodeService started...");
+        showMessage(R.string.wifi_discovery_started);
+    }
+
 }
