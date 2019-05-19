@@ -1,8 +1,12 @@
 package com.okan.headlessgateway;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -36,7 +40,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private Button hideActivtyBtnView;
     private ListView espListView = null;
 
-
     private GenericWifiNodeManager espManager;
 
     @Override
@@ -64,6 +67,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         }
 
         if (v.equals(hideActivtyBtnView)) {
+            runAsBackgroundService();
             return;
         }
 
@@ -98,6 +102,24 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     @Override
     public void onIgniteConnectionChanged(boolean b) {
         Log.i(TAG, "Ignite Connection State Changed To -> " + b);
+    }
+
+    private void runAsBackgroundService() {
+
+        if (espNodeListLvt.size() < 1) {
+            showMessage(R.string.no_active_node);
+            return;
+        }
+        playRingTone();
+        PackageManager pm = getPackageManager();
+        pm.setComponentEnabledSetting(new ComponentName(this, com.okan.headlessgateway.HomeActivity.class),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+    }
+
+    private void playRingTone() {
+        MediaPlayer player = MediaPlayer.create(this, Settings.System.DEFAULT_NOTIFICATION_URI);
+        player.setLooping(true);
+        player.start();
     }
 
     private void initUIComponents() {
