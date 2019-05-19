@@ -16,13 +16,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ardic.android.iotignite.exceptions.UnsupportedVersionException;
+import com.ardic.android.iotignite.things.ThingConfiguration;
+import com.ardic.android.iotignite.things.ThingData;
 import com.okan.headlessgateway.base.BaseWifiNodeDevice;
 import com.okan.headlessgateway.constant.DynamicNodeConstants;
 import com.okan.headlessgateway.listener.CompatibilityListener;
+import com.okan.headlessgateway.listener.ThingEventListener;
 import com.okan.headlessgateway.listener.WifiNodeManagerListener;
 import com.okan.headlessgateway.manager.GenericWifiNodeManager;
 import com.okan.headlessgateway.node.GenericWifiNodeDevice;
 import com.okan.headlessgateway.service.WifiNodeService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -42,6 +49,104 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private ListView espListView = null;
 
     private GenericWifiNodeManager espManager;
+
+
+    private ThingEventListener espEventListener = new ThingEventListener() {
+
+        private void handleReceivedData(final ThingData thingData, final String s1) {
+            if (activeEsp != null) {
+                Log.i(TAG, " Socket : " + activeEsp.getWifiNodeDevice().getNodeSocket());
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        float data = Float.valueOf(thingData.getDataList().get(0));
+                        int data_int = (int) data;
+
+                        if (DynamicNodeConstants.TEMPERATURE_SENSOR.equals(s1)) {
+                            showMessage(R.string.temperature_data_detected);
+                            return;
+                        }
+
+                        if (DynamicNodeConstants.HUMIDITY_SENSOR.equals(s1)) {
+                            showMessage(R.string.humidty_data_detected);
+                            return;
+                        }
+
+                        if (DynamicNodeConstants.MQ6_GAS_SENSOR.equals(s1)) {
+                            showMessage(R.string.gas_data_detected);
+                            return;
+                        }
+
+                        if (DynamicNodeConstants.FLAME_SENSOR.equals(s1)) {
+                            showMessage(R.string.flame_data_detected);
+                            return;
+                        }
+
+                        if (DynamicNodeConstants.RAIN_SENSOR.equals(s1)) {
+                            showMessage(R.string.rain_data_detected);
+                            return;
+                        }
+
+
+                    }
+
+                });
+            }
+        }
+
+        @Override
+        public void onDataReceived(final String s, final String s1, final ThingData thingData) {
+            Log.i(TAG, "onDataReceived [" + s + "][" + s1 + "][" + thingData.getDataList() + "]");
+            handleReceivedData(thingData, s1);
+        }
+
+        @Override
+        public void onConnectionStateChanged(final String s, final boolean b) {
+            Log.i(TAG, "onConnectionStateChanged [" + s + "][" + b + "]");
+        }
+
+        @Override
+        public void onActionReceived(String s, String s1, String s2) {
+            Log.i(TAG, "onActionReceived [" + s + "][" + s1 + "][" + s2 + "]");
+        }
+
+        @Override
+        public void onConfigReceived(String s, String s1, ThingConfiguration thingConfiguration) {
+            Log.i(TAG, "onConfigReceived [" + s + "][" + s1 + "][" + thingConfiguration.getDataReadingFrequency() + "]");
+        }
+
+        @Override
+        public void onUnknownMessageReceived(String s, String s1) {
+            Log.i(TAG, "onUnknownMessageReceived [" + s + "][" + s1 + "]");
+
+            if (activeEsp != null) {
+                try {
+                    JSONObject json = new JSONObject(s1);
+                    if (json.has("ledState")) {
+                        int ledState = json.getInt("ledState");
+                    }
+                } catch (JSONException e) {
+                    Log.i(TAG, "JSONException on onUnknownMessageReceived() : " + e);
+
+                }
+            }
+        }
+
+        @Override
+        public void onNodeUnregistered(String s) {
+            Log.i(TAG, "onNodeUnregistered [" + s + "]");
+            if (activeEsp != null) {
+                activeEsp.removeThingEventListener(espEventListener);
+            }
+        }
+
+        @Override
+        public void onThingUnregistered(String s, String s1) {
+            Log.i(TAG, "onThingUnregistered [" + s + "][" + s1 + "]");
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +204,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     }
 
     @Override
-    public void onUnsupportedVersionExceptionReceived(com.ardic.android.iotignite.exceptions.UnsupportedVersionException e) {
+    public void onUnsupportedVersionExceptionReceived(UnsupportedVersionException e) {
         Log.i(TAG, "Ignite onUnsupportedVersionExceptionReceived :  " + e);
     }
 
@@ -253,10 +358,12 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         if (espNodeList.size() > 0) {
             updateTextViewWithUIThread(nodeIDText, getString(R.string.active_node_label) + espNodeList.get(0).getNode().getNodeID());
             activeEsp = espNodeList.get(0);
+            activeEsp.addThingEventListener(espEventListener);
             return;
         }
 
         updateTextViewWithUIThread(nodeIDText, getString(R.string.no_active_node));
+        activeEsp.removeThingEventListener(espEventListener);
         activeEsp = null;
 
     }
@@ -282,8 +389,12 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                activeEsp.removeThingEventListener(espEventListener);
+
                 BaseWifiNodeDevice node = espNodeList.get((int) id);
                 activeEsp = node;
+                activeEsp.addThingEventListener(espEventListener);
+
                 updateTextViewWithUIThread(nodeIDText, getString(R.string.active_node_label) + node.getNode().getNodeID());
             }
         };

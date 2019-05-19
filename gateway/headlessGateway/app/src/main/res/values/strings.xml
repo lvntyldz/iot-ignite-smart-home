@@ -12,4 +12,9 @@
     <string name="active_node_deleted">Aktif Düğüm Silindi</string>
     <string name="wifi_discovery_started">WiFi Tarama başladı.</string>
     <string name="active_node_label">Aktif Node :</string>
+    <string name="temperature_data_detected">Sıcaklık Verisi alındı</string>
+    <string name="humidty_data_detected">Nem Verisi Algılandı</string>
+    <string name="gas_data_detected">Gaz Verisi Alıglandı</string>
+    <string name="flame_data_detected">Alev Verisi Algılandı</string>
+    <string name="rain_data_detected">Su Verisi Algılandı</string>
 </resources>
