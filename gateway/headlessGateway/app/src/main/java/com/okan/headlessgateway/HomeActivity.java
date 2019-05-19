@@ -31,12 +31,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class HomeActivity extends Activity implements View.OnClickListener, WifiNodeManagerListener, CompatibilityListener {
 
     private static final String TAG = "HG-HomeActivity";
-    private List<BaseWifiNodeDevice> espNodeListLvt = new CopyOnWriteArrayList<>();
-    private BaseWifiNodeDevice activeEspLvt;
-    private TextView nodeIDTextLvt;
-    private Button ledOnBtnViewLvt;
-    private Button ledOffBtnViewLvt;
-    private Button removeActiveNodeViewLvt;
+    private List<BaseWifiNodeDevice> espNodeList = new CopyOnWriteArrayList<>();
+    private BaseWifiNodeDevice activeEsp;
+    private TextView nodeIDText;
+    private Button ledOnBtnView;
+    private Button ledOffBtnView;
+    private Button removeActiveNodeView;
     private Button startNDSBtnView;
     private Button hideActivtyBtnView;
     private ListView espListView = null;
@@ -75,17 +75,17 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
             return;
         }
 
-        if (v.equals(ledOnBtnViewLvt)) {
+        if (v.equals(ledOnBtnView)) {
             doLedOnAction();
             return;
         }
 
-        if (v.equals(ledOffBtnViewLvt)) {
+        if (v.equals(ledOffBtnView)) {
             doLedOffAction();
             return;
         }
 
-        if (v.equals(removeActiveNodeViewLvt)) {
+        if (v.equals(removeActiveNodeView)) {
             removeActiveNode();
             showMessage(R.string.active_node_deleted);
             return;
@@ -110,7 +110,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
 
     private void runAsBackgroundService() {
 
-        if (espNodeListLvt.size() < 1) {
+        if (espNodeList.size() < 1) {
             showMessage(R.string.no_active_node);
             return;
         }
@@ -132,30 +132,30 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         espListView = (ListView) findViewById(R.id.espList);
 
         //buttons
-        ledOnBtnViewLvt = findViewById(R.id.ledOnBtn);
-        ledOffBtnViewLvt = findViewById(R.id.ledOffBtn);
-        removeActiveNodeViewLvt = findViewById(R.id.removeActiveNode);
+        ledOnBtnView = findViewById(R.id.ledOnBtn);
+        ledOffBtnView = findViewById(R.id.ledOffBtn);
+        removeActiveNodeView = findViewById(R.id.removeActiveNode);
         startNDSBtnView = findViewById(R.id.startNDSBtn);
         hideActivtyBtnView = findViewById(R.id.hideActivtyBtn);
 
         //texts
-        nodeIDTextLvt = (TextView) findViewById(R.id.nodeIDTextView);
+        nodeIDText = (TextView) findViewById(R.id.nodeIDTextView);
 
         //listenter
-        ledOnBtnViewLvt.setOnClickListener(this);
-        ledOffBtnViewLvt.setOnClickListener(this);
-        removeActiveNodeViewLvt.setOnClickListener(this);
+        ledOnBtnView.setOnClickListener(this);
+        ledOffBtnView.setOnClickListener(this);
+        removeActiveNodeView.setOnClickListener(this);
         startNDSBtnView.setOnClickListener(this);
         hideActivtyBtnView.setOnClickListener(this);
     }
 
     private void removeActiveNode() {
-        if (espNodeListLvt.size() < 1) {
+        if (espNodeList.size() < 1) {
             showMessage(R.string.no_active_node);
             return;
         }
-        espNodeListLvt.remove(0);
-        activeEspLvt = null;
+        espNodeList.remove(0);
+        activeEsp = null;
         updateSelectedNode();
         updateNodeList();
     }
@@ -164,7 +164,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                nodeIDTextLvt.setText(R.string.no_available_node);
+                nodeIDText.setText(R.string.no_available_node);
             }
         });
     }
@@ -181,14 +181,14 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
 
     private void checkAndUpdateDeviceList(BaseWifiNodeDevice device) {
         //already exist remove for update
-        if (espNodeListLvt.contains(device)) {
+        if (espNodeList.contains(device)) {
 
-            if (espNodeListLvt.indexOf(device) != -1) {
-                espNodeListLvt.remove(espNodeListLvt.indexOf(device));
+            if (espNodeList.indexOf(device) != -1) {
+                espNodeList.remove(espNodeList.indexOf(device));
             }
         }
 
-        espNodeListLvt.add(device);
+        espNodeList.add(device);
 
         updateSelectedNode();
         updateNodeList();
@@ -199,10 +199,10 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
             @Override
             public void run() {
 
-                String[] nodeIds = new String[espNodeListLvt.size()];
+                String[] nodeIds = new String[espNodeList.size()];
                 int i = 0;
 
-                for (BaseWifiNodeDevice nodes : espNodeListLvt) {
+                for (BaseWifiNodeDevice nodes : espNodeList) {
                     nodeIds[i] = nodes.getNode().getNodeID();
                     i++;
                 }
@@ -220,7 +220,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
 
     private void doLedOnAction() {
 
-        if (activeEspLvt == null) {
+        if (activeEsp == null) {
             showMessage(R.string.no_active_node);
             return;
         }
@@ -228,14 +228,14 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         new Thread(new Runnable() {
             @Override
             public void run() {
-                activeEspLvt.sendActionMessage(DynamicNodeConstants.ACTUATOR_BLUE_LED, DynamicNodeConstants.LED_ON_ACTION);
+                activeEsp.sendActionMessage(DynamicNodeConstants.ACTUATOR_BLUE_LED, DynamicNodeConstants.LED_ON_ACTION);
             }
         }).start();
     }
 
     private void doLedOffAction() {
 
-        if (activeEspLvt == null) {
+        if (activeEsp == null) {
             showMessage(R.string.no_active_node);
             return;
         }
@@ -243,21 +243,21 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         new Thread(new Runnable() {
             @Override
             public void run() {
-                activeEspLvt.sendActionMessage(DynamicNodeConstants.ACTUATOR_BLUE_LED, DynamicNodeConstants.LED_OFF_ACTION);
+                activeEsp.sendActionMessage(DynamicNodeConstants.ACTUATOR_BLUE_LED, DynamicNodeConstants.LED_OFF_ACTION);
             }
         }).start();
     }
 
     private void updateSelectedNode() {
 
-        if (espNodeListLvt.size() > 0) {
-            updateTextViewWithUIThread(nodeIDTextLvt, getString(R.string.active_node_label) + espNodeListLvt.get(0).getNode().getNodeID());
-            activeEspLvt = espNodeListLvt.get(0);
+        if (espNodeList.size() > 0) {
+            updateTextViewWithUIThread(nodeIDText, getString(R.string.active_node_label) + espNodeList.get(0).getNode().getNodeID());
+            activeEsp = espNodeList.get(0);
             return;
         }
 
-        updateTextViewWithUIThread(nodeIDTextLvt, getString(R.string.no_active_node));
-        activeEspLvt = null;
+        updateTextViewWithUIThread(nodeIDText, getString(R.string.no_active_node));
+        activeEsp = null;
 
     }
 
@@ -276,15 +276,15 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         Log.i(TAG, "WifiNodeService started...");
         showMessage(R.string.wifi_discovery_started);
     }
-    
+
     private AdapterView.OnItemClickListener onNodeListClick() {
         return new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                BaseWifiNodeDevice node = espNodeListLvt.get((int) id);
-                activeEspLvt = node;
-                updateTextViewWithUIThread(nodeIDTextLvt, getString(R.string.active_node_label) + node.getNode().getNodeID());
+                BaseWifiNodeDevice node = espNodeList.get((int) id);
+                activeEsp = node;
+                updateTextViewWithUIThread(nodeIDText, getString(R.string.active_node_label) + node.getNode().getNodeID());
             }
         };
     }
