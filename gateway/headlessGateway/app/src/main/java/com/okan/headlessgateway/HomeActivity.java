@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -50,6 +51,9 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         initUIComponents();
         initSensorDatas();
         initEspDeviceAndNodeManager();
+
+
+        espListView.setOnItemClickListener(onNodeListClick());
     }
 
     @Override
@@ -271,6 +275,18 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         WifiNodeService.setCompatibilityListener(this);
         Log.i(TAG, "WifiNodeService started...");
         showMessage(R.string.wifi_discovery_started);
+    }
+    
+    private AdapterView.OnItemClickListener onNodeListClick() {
+        return new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                BaseWifiNodeDevice node = espNodeListLvt.get((int) id);
+                activeEspLvt = node;
+                updateTextViewWithUIThread(nodeIDTextLvt, getString(R.string.active_node_label) + node.getNode().getNodeID());
+            }
+        };
     }
 
 }
