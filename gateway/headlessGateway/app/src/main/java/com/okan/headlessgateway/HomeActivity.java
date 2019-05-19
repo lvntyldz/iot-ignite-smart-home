@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,8 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private Button ledOnBtnViewLvt;
     private Button ledOffBtnViewLvt;
     private Button removeActiveNodeViewLvt;
+    private ListView espListView = null;
+
 
     private GenericWifiNodeManager espManager;
     private List<BaseWifiNodeDevice> espNodeList = new CopyOnWriteArrayList<>();
@@ -114,8 +118,8 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         initUIComponents();
         initSensorDatas();
         initEspDeviceAndNodeManager();
-
     }
+
 
     @Override
     protected void onDestroy() {
@@ -124,6 +128,9 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     }
 
     private void initUIComponents() {
+
+        //lists
+        espListView = (ListView) findViewById(R.id.espList);
 
         //buttons
         ledOnBtnViewLvt = findViewById(R.id.ledOnBtn);
@@ -167,6 +174,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         espNodeListLvt.remove(0);
         activeEspLvt = null;
         updateSelectedNode();
+        updateNodeList();
     }
 
     @Override
@@ -280,7 +288,28 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         espNodeListLvt.add(device);
 
         updateSelectedNode();
+        updateNodeList();
         //updateActiveEsp();
+    }
+
+    private void updateNodeList() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                String[] nodeIds = new String[espNodeListLvt.size()];
+                int i = 0;
+
+                for (BaseWifiNodeDevice nodes : espNodeListLvt) {
+                    nodeIds[i] = nodes.getNode().getNodeID();
+                    i++;
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, nodeIds);
+                espListView.setAdapter(adapter);
+
+            }
+        });
     }
 
     private void showMessage(int msgId) {
