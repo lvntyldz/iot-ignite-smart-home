@@ -3,10 +3,7 @@ package com.okan.headlessgateway;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,7 +14,6 @@ import android.widget.Toast;
 import com.okan.headlessgateway.base.BaseWifiNodeDevice;
 import com.okan.headlessgateway.constant.DynamicNodeConstants;
 import com.okan.headlessgateway.listener.CompatibilityListener;
-import com.okan.headlessgateway.listener.ThingEventListener;
 import com.okan.headlessgateway.listener.WifiNodeManagerListener;
 import com.okan.headlessgateway.manager.GenericWifiNodeManager;
 import com.okan.headlessgateway.node.GenericWifiNodeDevice;
@@ -29,7 +25,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class HomeActivity extends Activity implements View.OnClickListener, WifiNodeManagerListener, CompatibilityListener {
 
-
     private static final String TAG = "HG-HomeActivity";
     private List<BaseWifiNodeDevice> espNodeListLvt = new CopyOnWriteArrayList<>();
     private BaseWifiNodeDevice activeEspLvt;
@@ -39,87 +34,22 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     private Button removeActiveNodeViewLvt;
     private ListView espListView = null;
 
-
     private GenericWifiNodeManager espManager;
-    private List<BaseWifiNodeDevice> espNodeList = new CopyOnWriteArrayList<>();
-    private BaseWifiNodeDevice activeEsp;
-    private ThingEventListener espEventListener = new ThingEventListener() {
-
-        @Override
-        public void onDataReceived(final String s, final String s1, final com.ardic.android.iotignite.things.ThingData thingData) {
-
-            Log.i(TAG, "onDataReceived [" + s + "][" + s1 + "][" + thingData.getDataList() + "]");
-
-        }
-
-        @Override
-        public void onConnectionStateChanged(final String s, final boolean b) {
-            Log.i(TAG, "onConnectionStateChanged [" + s + "][" + b + "]");
-        }
-
-        @Override
-        public void onActionReceived(String s, String s1, String s2) {
-            Log.i(TAG, "onActionReceived [" + s + "][" + s1 + "][" + s2 + "]");
-        }
-
-        @Override
-        public void onConfigReceived(String s, String s1, com.ardic.android.iotignite.things.ThingConfiguration thingConfiguration) {
-            Log.i(TAG, "onConfigReceived [" + s + "][" + s1 + "][" + thingConfiguration.getDataReadingFrequency() + "]");
-        }
-
-        @Override
-        public void onUnknownMessageReceived(String s, String s1) {
-            Log.i(TAG, "onUnknownMessageReceived [" + s + "][" + s1 + "]");
-        }
-
-        @Override
-        public void onNodeUnregistered(String s) {
-            Log.i(TAG, "onNodeUnregistered [" + s + "]");
-            if (activeEsp != null) {
-                // sendResetMessage();
-                activeEsp.removeThingEventListener(espEventListener);
-
-                for (BaseWifiNodeDevice dvc : espNodeList) {
-                    if (dvc.getNode().getNodeID() != null && s.equals(dvc.getNode().getNodeID())) {
-                        Log.i(TAG, "Removing [" + s + "]");
-
-                        if (espNodeList.indexOf(dvc) != -1) {
-                            espNodeList.remove(espNodeList.indexOf(dvc));
-                            // remove from list. Update UI.
-                            if (s.equals(activeEsp.getNode().getNodeID())) {
-                                Log.i(TAG, "Updating... [" + s + "]");
-
-                                //updateActiveEsp();
-                            }
-
-                            break;
-                        } else {
-                            Log.i(TAG, "Fail to remove : [" + s + "]");
-                        }
-                    }
-                }
-            }
-        }
-
-        @Override
-        public void onThingUnregistered(String s, String s1) {
-            Log.i(TAG, "onThingUnregistered [" + s + "][" + s1 + "]");
-        }
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         startService(new Intent(this, WifiNodeService.class));
         WifiNodeService.setCompatibilityListener(this);
-        Log.i(TAG, "Dynamic Node Application started...");
+        Log.i(TAG, "WifiNodeService started...");
+        showMessage(R.string.wifi_discovery_started);
+
         initUIComponents();
         initSensorDatas();
         initEspDeviceAndNodeManager();
     }
-
 
     @Override
     protected void onDestroy() {
@@ -177,52 +107,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         updateNodeList();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        menu.clear();
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-
-        for (GenericWifiNodeDevice dvc : espManager.getWifiNodeDeviceList()) {
-            checkAndUpdateDeviceList(dvc);
-        }
-
-        if (!espNodeList.isEmpty()) {
-            Log.i(TAG, "EspNode List Size : " + espNodeList.size());
-            for (BaseWifiNodeDevice esp : espNodeList) {
-                Log.i(TAG, "Esp : " + esp.getWifiNodeDevice().getHolder().getNodeId());
-                if (esp.getWifiNodeDevice().getHolder().getNodeId() != null && !TextUtils.isEmpty(esp.getWifiNodeDevice().getHolder().getNodeId())) {
-                    menu.add(Menu.NONE, Menu.NONE, Menu.NONE, esp.getWifiNodeDevice().getHolder().getNodeId());
-                }
-            }
-        } else {
-            Log.i(TAG, "EspNode List EMPTY");
-
-        }
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        for (BaseWifiNodeDevice e : espNodeList) {
-            if (!TextUtils.isEmpty(item.getTitle()) && e.getNode() != null && !TextUtils.isEmpty(e.getNode().getNodeID()) && item.getTitle().equals(e.getNode().getNodeID())) {
-                activeEsp.removeThingEventListener(espEventListener);
-                activeEsp = e;
-                //updateActiveEsp();
-                break;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
     private void initSensorDatas() {
         runOnUiThread(new Runnable() {
             @Override
@@ -260,23 +144,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
     }
 
     private void checkAndUpdateDeviceList(BaseWifiNodeDevice device) {
-        /*
-        if (DynamicNodeConstants.TYPE.equals(device.getWifiNodeDevice().getNodeType())) {
-
-            if (!espNodeList.contains(device)) {
-                Log.i(TAG, "New node found adding to list.");
-                espNodeList.add(device);
-            } else {
-                Log.i(TAG, "New node already in list.Updating...");
-                if (espNodeList.indexOf(device) != -1) {
-                    Log.i(TAG, "New node already in list.Removing...");
-                    espNodeList.remove(espNodeList.indexOf(device));
-                }
-                espNodeList.add(device);
-            }
-        }
-        */
-
         //already exist remove for update
         if (espNodeListLvt.contains(device)) {
 
@@ -289,7 +156,6 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
 
         updateSelectedNode();
         updateNodeList();
-        //updateActiveEsp();
     }
 
     private void updateNodeList() {
@@ -367,6 +233,4 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
             }
         });
     }
-
-
 }
