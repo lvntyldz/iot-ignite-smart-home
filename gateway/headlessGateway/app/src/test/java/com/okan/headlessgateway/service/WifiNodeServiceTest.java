@@ -25,7 +25,7 @@ import static org.mockito.Matchers.anyInt;
 
 @RunWith(PowerMockRunner.class)
 public class WifiNodeServiceTest {
-    
+
     @InjectMocks
     private WifiNodeService wifiNodeService;
 

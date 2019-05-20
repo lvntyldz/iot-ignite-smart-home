@@ -6,8 +6,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.okan.headlessgateway.listener.CompatibilityListener;
-import com.okan.headlessgateway.manager.WifiNodeManager;
+import com.ardic.android.iot.hwnodeapptemplate.listener.CompatibilityListener;
+import com.ardic.android.iot.hwnodeapptemplate.manager.WifiNodeManager;
 import com.ardic.android.iotignite.callbacks.ConnectionCallback;
 import com.ardic.android.iotignite.exceptions.UnsupportedVersionException;
 import com.ardic.android.iotignite.nodes.IotIgniteManager;
@@ -122,7 +122,45 @@ public class WifiNodeService extends Service implements ConnectionCallback, Time
         serviceInstance = null;
     }
 
+
+    //for test
     public boolean isIgniteConnected() {
         return isIgniteConnected;
+    }
+
+    public IotIgniteManager.Builder getIgniteBuilder() {
+        return igniteBuilder;
+    }
+
+    public void setIgniteBuilder(IotIgniteManager.Builder igniteBuilder) {
+        this.igniteBuilder = igniteBuilder;
+    }
+
+    public IotIgniteManager getIotContext() {
+        return iotContext;
+    }
+
+    public void setIotContext(IotIgniteManager iotContext) {
+        this.iotContext = iotContext;
+    }
+
+    public TimeoutTimer getIgniteTimer() {
+        return igniteTimer;
+    }
+
+    public void setIgniteTimer(TimeoutTimer igniteTimer) {
+        this.igniteTimer = igniteTimer;
+    }
+
+    public WifiNodeManager getWifiNodeManager() {
+        return wifiNodeManager;
+    }
+
+    public void setWifiNodeManager(WifiNodeManager wifiNodeManager) {
+        this.wifiNodeManager = wifiNodeManager;
+    }
+
+    public void setIgniteConnected(boolean igniteConnected) {
+        isIgniteConnected = igniteConnected;
     }
 }

@@ -1,5 +1,5 @@
 
-package com.okan.headlessgateway;
+package com.okan.headlessgateway.service;
 
 import android.util.Log;
 

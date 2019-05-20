@@ -16,16 +16,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ardic.android.iot.hwnodeapptemplate.base.BaseWifiNodeDevice;
+import com.ardic.android.iot.hwnodeapptemplate.listener.CompatibilityListener;
+import com.ardic.android.iot.hwnodeapptemplate.listener.ThingEventListener;
+import com.ardic.android.iot.hwnodeapptemplate.listener.WifiNodeManagerListener;
+import com.ardic.android.iot.hwnodeapptemplate.manager.GenericWifiNodeManager;
+import com.ardic.android.iot.hwnodeapptemplate.node.GenericWifiNodeDevice;
 import com.ardic.android.iotignite.exceptions.UnsupportedVersionException;
 import com.ardic.android.iotignite.things.ThingConfiguration;
 import com.ardic.android.iotignite.things.ThingData;
-import com.okan.headlessgateway.base.BaseWifiNodeDevice;
 import com.okan.headlessgateway.constant.DynamicNodeConstants;
-import com.okan.headlessgateway.listener.CompatibilityListener;
-import com.okan.headlessgateway.listener.ThingEventListener;
-import com.okan.headlessgateway.listener.WifiNodeManagerListener;
-import com.okan.headlessgateway.manager.GenericWifiNodeManager;
-import com.okan.headlessgateway.node.GenericWifiNodeDevice;
 import com.okan.headlessgateway.service.WifiNodeService;
 
 import org.json.JSONException;
