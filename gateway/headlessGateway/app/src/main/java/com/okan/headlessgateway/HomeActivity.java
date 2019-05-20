@@ -60,35 +60,37 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        float data = Float.valueOf(thingData.getDataList().get(0));
+
+                        String dataStr = thingData.getDataList().get(0);
+
+
+                        float data = Float.valueOf(dataStr);
                         int data_int = (int) data;
 
                         if (DynamicNodeConstants.TEMPERATURE_SENSOR.equals(s1)) {
-                            showMessage(R.string.temperature_data_detected);
+                            showMessageWithStringPostfix(R.string.temperature_data_detected, dataStr);
                             return;
                         }
 
                         if (DynamicNodeConstants.HUMIDITY_SENSOR.equals(s1)) {
-                            showMessage(R.string.humidty_data_detected);
+                            showMessageWithStringPostfix(R.string.humidty_data_detected, dataStr);
                             return;
                         }
 
                         if (DynamicNodeConstants.MQ6_GAS_SENSOR.equals(s1)) {
-                            showMessage(R.string.gas_data_detected);
+                            showMessageWithStringPostfix(R.string.gas_data_detected, dataStr);
                             return;
                         }
 
                         if (DynamicNodeConstants.FLAME_SENSOR.equals(s1)) {
-                            showMessage(R.string.flame_data_detected);
+                            showMessageWithStringPostfix(R.string.flame_data_detected, dataStr);
                             return;
                         }
 
                         if (DynamicNodeConstants.RAIN_SENSOR.equals(s1)) {
-                            showMessage(R.string.rain_data_detected);
+                            showMessageWithStringPostfix(R.string.rain_data_detected, dataStr);
                             return;
                         }
-
-
                     }
 
                 });
@@ -317,6 +319,10 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
 
             }
         });
+    }
+
+    private void showMessageWithStringPostfix(int msgId, String s) {
+        Toast.makeText(HomeActivity.this, getString(msgId) + " : " + s, Toast.LENGTH_SHORT).show();
     }
 
     private void showMessage(int msgId) {
