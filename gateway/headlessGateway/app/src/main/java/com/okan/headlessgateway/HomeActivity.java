@@ -406,4 +406,93 @@ public class HomeActivity extends Activity implements View.OnClickListener, Wifi
         };
     }
 
+
+    //for test
+    public List<BaseWifiNodeDevice> getEspNodeList() {
+        return espNodeList;
+    }
+
+    public void setEspNodeList(List<BaseWifiNodeDevice> espNodeList) {
+        this.espNodeList = espNodeList;
+    }
+
+    public BaseWifiNodeDevice getActiveEsp() {
+        return activeEsp;
+    }
+
+    public void setActiveEsp(BaseWifiNodeDevice activeEsp) {
+        this.activeEsp = activeEsp;
+    }
+
+    public TextView getNodeIDText() {
+        return nodeIDText;
+    }
+
+    public void setNodeIDText(TextView nodeIDText) {
+        this.nodeIDText = nodeIDText;
+    }
+
+    public Button getLedOnBtnView() {
+        return ledOnBtnView;
+    }
+
+    public void setLedOnBtnView(Button ledOnBtnView) {
+        this.ledOnBtnView = ledOnBtnView;
+    }
+
+    public Button getLedOffBtnView() {
+        return ledOffBtnView;
+    }
+
+    public void setLedOffBtnView(Button ledOffBtnView) {
+        this.ledOffBtnView = ledOffBtnView;
+    }
+
+    public Button getRemoveActiveNodeView() {
+        return removeActiveNodeView;
+    }
+
+    public void setRemoveActiveNodeView(Button removeActiveNodeView) {
+        this.removeActiveNodeView = removeActiveNodeView;
+    }
+
+    public Button getStartNDSBtnView() {
+        return startNDSBtnView;
+    }
+
+    public void setStartNDSBtnView(Button startNDSBtnView) {
+        this.startNDSBtnView = startNDSBtnView;
+    }
+
+    public Button getHideActivtyBtnView() {
+        return hideActivtyBtnView;
+    }
+
+    public void setHideActivtyBtnView(Button hideActivtyBtnView) {
+        this.hideActivtyBtnView = hideActivtyBtnView;
+    }
+
+    public ListView getEspListView() {
+        return espListView;
+    }
+
+    public void setEspListView(ListView espListView) {
+        this.espListView = espListView;
+    }
+
+    public GenericWifiNodeManager getEspManager() {
+        return espManager;
+    }
+
+    public void setEspManager(GenericWifiNodeManager espManager) {
+        this.espManager = espManager;
+    }
+
+    public ThingEventListener getEspEventListener() {
+        return espEventListener;
+    }
+
+    public void setEspEventListener(ThingEventListener espEventListener) {
+        this.espEventListener = espEventListener;
+    }
 }
